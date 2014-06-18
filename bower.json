@@ -1,0 +1,20 @@
+{
+  "name": "running_catalog",
+  "version": "0.0.0",
+  "main": "index.html",
+  "license": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "x2js": "*",
+    "angular-route": "~1.2.18",
+    "bootstrap": "~3.1.1"
+  }
+}

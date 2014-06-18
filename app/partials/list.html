@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+			<p>Pages :</p>
+			<button ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setUrl($index)">{{$index + 1}}</button>
+		</div>
+
+		<div class="col-md-10">
+			<h2>Main Controller</h2>
+			<ul>
+				<li ng-repeat="product in products | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize">
+					<h4>{{ product.Details.Title }}</h4>
+					<p>{{ product.CategoryPath.ProductCategoryPath }} : {{ product.Price.DisplayPrice }}</p>
+					<p>{{ product.Details.DescriptionShort }}</p>
+					<img ng-src="{{ product.Images.Img.URL }}" alt="">
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
