@@ -8,12 +8,19 @@ var runningCatalogApp = angular.module('runningCatalogApp', [
 runningCatalogApp.config(['$routeProvider',
 	function($routeProvider){
 		$routeProvider.
-			when('/catalog', {
+			when('/', {
 				templateUrl: 'partials/list.html',
-				controller: 'MainCtrl',
-				reloadOnSearch: false
+				controller: 'MainCtrl'
+			}).
+			when('/:category', {
+				templateUrl: 'partials/list.html',
+				controller: 'CatCtrl'
+			}).
+			when('/:category/:product', {
+				templateUrl: 'partials/product.html',
+				controller: 'ProdCtrl'
 			}).
 			otherwise({
-				redirectTo: '/catalog'
+				redirectTo: '/'
 			})
 	}])

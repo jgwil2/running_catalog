@@ -1,20 +1,45 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2">
-			<p>Pages :</p>
-			<button ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setUrl($index)">{{$index + 1}}</button>
+		<div class="col-md-12">
+			<div ng-show="category">
+				<h4>Catégorie :</h4>
+				<p>{{ category }}</p>
+			</div>
+			<div ng-hide="category">
+				<h4>Rechercher par catégorie :</h4>
+				<p><a href="#/running">Running</a></p>
+				<p><a href="#/fitness">Fitness</a></p>
+				<p><a href="#/tennis">Tennis</a></p>
+			</div>
 		</div>
+	</div>
 
-		<div class="col-md-10">
-			<h2>Main Controller</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<h2>{{ controller }}</h2>
 			<ul>
-				<li ng-repeat="product in products | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize">
-					<h4>{{ product.Details.Title }}</h4>
+				<li ng-repeat="product in cat = (products | filter:categoryFilter) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
+					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.Images.Img.URL }}" alt=""></a>
+					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}"><h4>{{ product.Details.Title }}</h4></a>
 					<p>{{ product.CategoryPath.ProductCategoryPath }} : {{ product.Price.DisplayPrice }}</p>
 					<p>{{ product.Details.DescriptionShort }}</p>
-					<img ng-src="{{ product.Images.Img.URL }}" alt="">
 				</li>
 			</ul>
+
+			<h4>Pages :</h4>
+			<div class="pagination" >
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}">
+                    	<a href ng-click="prevPage()">« Prev</a>
+                    </li>
+					<li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}">
+						<a href >{{$index + 1}}</a>
+					</li>
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href ng-click="nextPage()">Next »</a>
+                    </li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
