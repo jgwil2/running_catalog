@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RSCAS162000",
+    "CategoryPath": {
+        "ProductCategoryID": "34036141",
+        "ProductCategoryPath": "Running > Chaussures de running"
+    },
+    "Price": {
+        "DisplayPrice": "34.90 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RSCAS1620002&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RSCAS162000"
+    },
+    "Details": {
+        "Title": "Asics - Patriot 6 Hommes - HW13",
+        "DescriptionShort": "Le mod\u00e8le parfait pour d\u00e9buterLes Running Patriot 6 de la c\u00e9l\u00e8bre marque Asics est un tr\u00e8s bon mod\u00e8le d\u00b4entr\u00e9e de gamme. Il vous permettra de vous initier \u00e0 la"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/569-asics-laufschuhe-herren-patriot-6-hw13-rscas162-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": "Hommes"
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": ""
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "Chaussures de running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "6"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}

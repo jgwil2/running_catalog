@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RBEAD384000",
+    "CategoryPath": {
+        "ProductCategoryID": "34036139",
+        "ProductCategoryPath": "Running > V\u00eatements de running"
+    },
+    "Price": {
+        "DisplayPrice": "24.90 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RBEAD3840002&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RBEAD384000"
+    },
+    "Details": {
+        "Title": "Adidas - T-shirt Response Crew Hommes - SS13",
+        "DescriptionShort": "Ce tee-shirt haute performance deviendra rapidement votre haut de course pr\u00e9f\u00e9r\u00e9. Le tee-shirt \u00e0 manches longues adidas Response pour hommes est con\u00e7u avec un"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/901-adidas-laufshirt-herren-response-long-sl-rbead384-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": "Hommes"
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": ""
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "V\u00eatements de running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "3"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}

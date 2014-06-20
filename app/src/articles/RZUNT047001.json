@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RZUNT047001",
+    "CategoryPath": {
+        "ProductCategoryID": "34036143",
+        "ProductCategoryPath": "Running > Accessoires running"
+    },
+    "Price": {
+        "DisplayPrice": "29.95 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RZUNT0470012&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RZUNT047001"
+    },
+    "Details": {
+        "Title": "Nathan - Ceinture de Running Swift",
+        "DescriptionShort": "Sacoche de Running - le confort et la perfection dans chaque courseCette vous permettra de transporter du mat\u00e9riel, elle se r\u00e9v\u00e8lera tr\u00e9s pratique lors de vos"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/797-nathan-laufgrtel-swift-rzunt047-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": ""
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": "gris"
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "Accessoires running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "1"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}

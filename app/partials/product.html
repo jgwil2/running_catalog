@@ -6,6 +6,9 @@
 			<p class="left"><img ng-src="{{ product.Images.Img.URL }}" alt=""></p>
 			<h3>{{ product.Details.Title }}</h3>
 			<p>{{ product.Details.DescriptionShort }}</p>
+			<p>Pour {{ product.Properties.Property.1._Text }}</p>
+			<p>{{ product.Properties.Property.2._Title }} : {{ product.Properties.Property.2._Text }}</p>
+			<p>{{ product.Properties.Property.3._Text }}</p>
 			<h4>{{ product.Price.DisplayPrice }}</h4>
 
 		</div>

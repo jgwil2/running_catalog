@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RSCSA132000",
+    "CategoryPath": {
+        "ProductCategoryID": "34036141",
+        "ProductCategoryPath": "Running > Chaussures de running"
+    },
+    "Price": {
+        "DisplayPrice": "84.90 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RSCSA1320002&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RSCSA132000"
+    },
+    "Details": {
+        "Title": "Saucony- Guide 6 Femmes - HW13",
+        "DescriptionShort": "Chaussures de Running con\u00e7ue pour vos entrainements de tous les jours !La derni\u00e8re \u00e9dition de notre mod\u00e8le phare est arriv\u00e9e, avec un maintien et un contact"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/20-saucony-laufschuhe-damen-guide-6-hw13-rscsa132-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": "Femmes"
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": ""
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "Chaussures de running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "23"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}

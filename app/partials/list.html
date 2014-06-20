@@ -1,24 +1,67 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
+			
 			<div ng-show="category">
 				<h4>Catégorie :</h4>
 				<p>{{ category }}</p>
 			</div>
-			<div ng-hide="category">
-				<h4>Rechercher par catégorie :</h4>
-				<p><a href="#/running">Running</a></p>
-				<p><a href="#/fitness">Fitness</a></p>
-				<p><a href="#/tennis">Tennis</a></p>
-			</div>
+			<div class="panel panel-default">
+				<div ng-hide="category" class="left panel-body">
+					<h4>Rechercher par catégorie :</h4>
+					<p><a href="#/v&ecirc;tements">Vêtements</a></p>
+					<p><a href="#/chaussures">Chaussures</a></p>
+					<p><a href="#/accessoires">Accessoires</a></p>
+				</div>
+				<div ng-hide="category" class="left panel-body">
+					<h4>Rechercher par marque :</h4>
+					<div class="left">
+						<p><a href="#/adidas">Adidas</a></p>
+						<p><a href="#/asics">Asics</a></p>
+						<p><a href="#/gilet">Gilet</a></p>
+					</div>
+					<div class="left">
+						<p><a href="#/mizuno">Mizuno</a></p>
+						<p><a href="#/nathan">Nathan</a></p>
+						<p><a href="#/nike">Nike</a></p>
+					</div>
+					<div class="left">
+						<p><a href="#/polar">Polar</a></p>
+						<p><a href="#/powerbar">PowerBar</a></p>
+						<p><a href="#/saucony">Saucony</a></p>
+					</div>
+				</div>
+				<div class="left panel-body">
+					<h4>Pour :</h4>
+					<p><input type="checkbox" ng-model="hommes" ng-change="setGenderFilter()"> Hommes</p>
+					<p><input type="checkbox" ng-model="femmes" ng-change="setGenderFilter()"> Femmes</p>
+				</div>
+				<div class="panel-body">
+					<h4>Rechercher par mot clé :</h4>
+					<input ng-model="query">
+				</div>
+			
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-md-12">
 			<h2>{{ controller }}</h2>
+			<div class="pagination" >
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}">
+                    	<a href ng-click="prevPage()">« Prev</a>
+                    </li>
+					<li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}">
+						<a href >{{$index + 1}}</a>
+					</li>
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href ng-click="nextPage()">Next »</a>
+                    </li>
+				</ul>
+			</div>
 			<ul>
-				<li ng-repeat="product in cat = (products | filter:categoryFilter) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
+				<li ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:{CategoryPath:categoryFilter}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
 					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.Images.Img.URL }}" alt=""></a>
 					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}"><h4>{{ product.Details.Title }}</h4></a>
 					<p>{{ product.CategoryPath.ProductCategoryPath }} : {{ product.Price.DisplayPrice }}</p>

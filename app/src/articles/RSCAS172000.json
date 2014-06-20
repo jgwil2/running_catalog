@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RSCAS172000",
+    "CategoryPath": {
+        "ProductCategoryID": "34036141",
+        "ProductCategoryPath": "Running > Chaussures de running"
+    },
+    "Price": {
+        "DisplayPrice": "125.90 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RSCAS1720002&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RSCAS172000"
+    },
+    "Details": {
+        "Title": "Asics - Running Gel-Kayano 19 Femmes - HW13",
+        "DescriptionShort": "Un maximum de confortLes Asics - Gel Kayano 19 femmes vous permettront de courir avec un maximum de confort. Ce sont la r\u00e9f\u00e9rence en terme d\u00b4amortissement. De"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/986-asics-laufschuhe-damen-gel-kayano-19-hw1-rscas172-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": "Femmes"
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": ""
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "Chaussures de running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "10"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}

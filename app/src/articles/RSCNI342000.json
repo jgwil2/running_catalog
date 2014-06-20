@@ -1,0 +1,77 @@
+{
+    "_ProgramID": "5943",
+    "_ArticleNumber": "RSCNI342000",
+    "CategoryPath": {
+        "ProductCategoryID": "34036141",
+        "ProductCategoryPath": "Running > Chaussures de running"
+    },
+    "Price": {
+        "DisplayPrice": "109.90 EUR"
+    },
+    "Deeplinks": {
+        "Product": "http://clic.reussissonsensemble.fr/click.asp?ref=345425&site=5943&type=text&tnb=23&diurl=http://www.keller-sports.fr/index.php?cl=details&anid=RSCNI3420002&utm_source=fr.affili.net&utm_medium=CPO&utm_term=RSCNI342000"
+    },
+    "Details": {
+        "Title": "Nike - Free 5.0+ Hommes",
+        "DescriptionShort": "Maintien et libert\u00e9 de mouvementLa chaussure de course \u00e0 pied Nike Free 5.0+ pour Homme procure renfort"
+    },
+    "Date": [
+
+    ],
+    "Images": {
+        "Img": {
+            "_Name": "Adv",
+            "URL": "http://i1.keller-sports.fr/out/pictures/1/740-nike-free-50-herren-laufschuh-schwarz-we-rscni342-1_p1.jpg"
+        }
+    },
+    "Properties": {
+        "Property": [
+            {
+                "_Title": "Delivery",
+                "_Text": "2-3"
+            },
+            {
+                "_Title": "Gender",
+                "_Text": "Hommes"
+            },
+            {
+                "_Title": "Couleur",
+                "_Text": "bleu"
+            },
+            {
+                "_Title": "Material",
+                "_Text": ""
+            },
+            {
+                "_Title": "Ind_description",
+                "_Text": ""
+            },
+            {
+                "_Title": "Category_Single",
+                "_Text": "Chaussures de running"
+            },
+            {
+                "_Title": "Avaibility",
+                "_Text": "In Stock"
+            },
+            {
+                "_Title": "Stock",
+                "_Text": "10"
+            },
+            {
+                "_Title": "Pro_Player",
+                "_Text": ""
+            },
+            {
+                "_Title": "New_Product",
+                "_Text": ""
+            }
+        ]
+    },
+    "Shipping": [
+
+    ],
+    "BasePriceInformation": [
+
+    ]
+}
