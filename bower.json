@@ -13,7 +13,6 @@
   ],
   "dependencies": {
     "angular": "~1.2.18",
-    "x2js": "*",
     "angular-route": "~1.2.18",
     "bootstrap": "~3.1.1"
   }

@@ -1,4 +1,5 @@
 var runningCatalogApp = angular.module('runningCatalogApp', [
+	'catalogConfig',
 	'catalogControllers',
 	'catalogFilters',
 	'ngRoute'
@@ -9,7 +10,7 @@ runningCatalogApp.config(['$routeProvider',
 		$routeProvider.
 			when('/', {
 				templateUrl: 'partials/list.html',
-				controller: 'MainCtrl'
+				controller: 'CatCtrl'
 			}).
 			when('/:category', {
 				templateUrl: 'partials/list.html',

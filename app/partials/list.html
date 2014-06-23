@@ -61,7 +61,7 @@
 				</ul>
 			</div>
 			<ul>
-				<li ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:{CategoryPath:categoryFilter}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
+				<li ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getFilter()) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
 					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.Images.Img.URL }}" alt=""></a>
 					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}"><h4>{{ product.Details.Title }}</h4></a>
 					<p>{{ product.CategoryPath.ProductCategoryPath }} : {{ product.Price.DisplayPrice }}</p>
