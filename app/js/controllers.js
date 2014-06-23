@@ -1,8 +1,8 @@
 var catalogControllers = angular.module('catalogControllers', []);
 
-catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http, $filter){
-
+catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG',
+  function($scope, $routeParams, $http, CONFIG){
+    
     // Main page
 
     $scope.controller = 'Catalog Controller';
@@ -13,7 +13,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http',
 
     // If parameter is passed into route, set category by which to filter
 
-    var brandsArray = ['adidas', 'asics', 'gilet', 'mizuno', 'nathan', 'nike', 'polar', 'powerbar', 'saucony'];
+    var brandsArray = CONFIG.brandsArray;
 
     if($routeParams.category){
       $scope.category = $routeParams.category;
@@ -39,7 +39,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http',
     // Set current page and number of items per page
 
     $scope.currentPage = 0; 
-    $scope.pageSize = 75;
+    $scope.pageSize = CONFIG.pageSize;
 
     $scope.setCurrentPage = function(currentPage){
       $scope.currentPage = currentPage;
