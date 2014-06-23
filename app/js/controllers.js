@@ -2,7 +2,7 @@ var catalogControllers = angular.module('catalogControllers', []);
 
 catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG',
   function($scope, $routeParams, $http, CONFIG){
-    
+
     // Main page
 
     $scope.controller = 'Catalog Controller';
@@ -13,7 +13,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
     // If parameter is passed into route, set category by which to filter
 
-    var brandsArray = CONFIG.brandsArray;
+    $scope.brandsArray = CONFIG.brandsArray;
 
     if($routeParams.category){
       $scope.category = $routeParams.category;
@@ -22,7 +22,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       // Otherwise filter on Product.CategoryPath (CategoryPath.ProductCategoryPath is location of category)
 
       $scope.getFilter = function(){
-        if(brandsArray.indexOf($scope.category) !== -1){
+        if($scope.brandsArray.indexOf($scope.category) !== -1){
           return {Details:$scope.category}
         }
         else{
