@@ -1,5 +1,4 @@
 var runningCatalogApp = angular.module('runningCatalogApp', [
-	'catalogConfig',
 	'catalogControllers',
 	'catalogFilters',
 	'ngRoute'
