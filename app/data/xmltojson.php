@@ -109,14 +109,15 @@ foreach($json['Products']['Product'] as $product){
 
             //create new array with select fields from each product associative array in products array
 
-            $list[$counter]['_ArticleNumber'] = $product['_ArticleNumber']; 
-            $list[$counter]['CategoryPath']['ProductCategoryID'] = $product['CategoryPath']['ProductCategoryID'];
-            $list[$counter]['CategoryPath']['ProductCategoryPath'] = $product['CategoryPath']['ProductCategoryPath'];
-            $list[$counter]['Price']['DisplayPrice'] = $product['Price']['DisplayPrice'];
+            $list[$counter]['_ArticleNumber'] = $product['_ArticleNumber'];
+            $list[$counter]['Category'] = $product['Properties']['Property'][5]['_Text'];
+            $list[$counter]['Price'] = $product['Price']['DisplayPrice'];
             $list[$counter]['Details']['Title'] = $product['Details']['Title'];
             $list[$counter]['Details']['DescriptionShort'] = $product['Details']['DescriptionShort'];
-            $list[$counter]['Images']['Img']['URL'] = $product['Images']['Img']['URL'];
+            $list[$counter]['ImageURL'] = $product['Images']['Img']['URL'];
             $list[$counter]['Gender'] = $product['Properties']['Property'][1]['_Text'];
+            $list[$counter]['Color'] = $product['Properties']['Property'][2]['_Text'];
+            $list[$counter]['URL'] = $product['Deeplinks']['Product'];
 
             // write individual product file with all fields of product associative array
 

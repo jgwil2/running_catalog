@@ -11,9 +11,15 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       $scope.products = data;
     });
 
-    // If parameter is passed into route, set category by which to filter
+    // Get brands from config.js
 
     $scope.brandsArray = CONFIG.brandsArray;
+
+    // Show all colors by default
+
+    $scope.color = "";
+
+    // If parameter is passed into route, set param as category by which to filter
 
     if($routeParams.category){
       $scope.category = $routeParams.category;
@@ -26,17 +32,12 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
           return {Details:$scope.category}
         }
         else{
-          return {CategoryPath:$scope.category}
+          return {Category:$scope.category}
         }
       }
     }
 
-    // Viewing both men's and women's items
-
-    $scope.hommes = true;
-    $scope.femmes = true;
-
-    // Set current page and number of items per page
+    // Set current page and number of items per page (config.js)
 
     $scope.currentPage = 0; 
     $scope.pageSize = CONFIG.pageSize;
@@ -51,7 +52,13 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
     $scope.numberOfPages = function(){
       if($scope.cat){
-        return Math.ceil($scope.cat.length/ $scope.pageSize)
+        if($scope.cat.length == 0){
+          $scope.noArticles = true;
+        }
+        else{
+          $scope.noArticles = false;
+        }
+        return Math.ceil($scope.cat.length/$scope.pageSize)
       }
     }
 
@@ -69,6 +76,15 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       }
     }
 
+    $scope.resetPage = function(){
+      $scope.currentPage = 0;
+    }
+
+    // Viewing both men's and women's items
+
+    $scope.hommes = true;
+    $scope.femmes = true;
+
     // Set filter by gender and reset page to 0
 
     $scope.setGenderFilter = function(){
@@ -84,7 +100,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       else{
         $scope.genderFilter = "";
       }
-      $scope.currentPage = 0;
+      $scope.resetPage();
     }
 
   }]);

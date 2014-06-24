@@ -2,25 +2,41 @@
 	<div class="row">
 		<div class="col-md-2">
 			<div ng-show="category">
-				<h4>Catégorie :</h4>
-				<p>{{ category | uppercase }}</p>
+				<h3><a href="/#">Boutique</a></h3>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<h4>Rechercher par mot clé :</h4>
-					<input ng-model="query">
+					<input ng-model="query" ng-change="resetPage()">
 				</div>
-				<div ng-hide="category" class="panel-body">
+				<div class="panel-body">
 					<h4>Rechercher par catégorie :</h4>
 					<p><a href="#/v&ecirc;tements">Vêtements</a></p>
 					<p><a href="#/chaussures">Chaussures</a></p>
 					<p><a href="#/accessoires">Accessoires</a></p>
 				</div>
-				<div ng-hide="category" class="panel-body">
+				<div class="panel-body">
 					<h4>Rechercher par marque :</h4>
 					<div class="left">
 						<p ng-repeat="brand in brandsArray"><a href="#/{{brand}}">{{ brand | uppercase }}</a>
 					</div>
+				</div>
+				<div class="panel-body">
+					<h4>Couleur :</h4>
+					<form class="left">
+						<p><input type="radio" ng-model="color" value="" ng-change="resetPage()"> Toutes</p>
+						<p><input type="radio" ng-model="color" value="blanc" ng-change="resetPage()"> Blanc</p>
+						<p><input type="radio" ng-model="color" value="noir" ng-change="resetPage()"> Noir</p>
+						<p><input type="radio" ng-model="color" value="gris" ng-change="resetPage()"> Gris</p>
+						<p><input type="radio" ng-model="color" value="rouge" ng-change="resetPage()"> Rouge</p>
+						<p><input type="radio" ng-model="color" value="bleu" ng-change="resetPage()"> Bleu</p>
+						<p><input type="radio" ng-model="color" value="vert" ng-change="resetPage()"> Vert</p>
+						<p><input type="radio" ng-model="color" value="jaune" ng-change="resetPage()"> Jaune</p>
+						<p><input type="radio" ng-model="color" value="rose" ng-change="resetPage()"> Rose</p>
+						<p><input type="radio" ng-model="color" value="orange" ng-change="resetPage()"> Orange</p>
+						<p><input type="radio" ng-model="color" value="lilas" ng-change="resetPage()"> Lilas</p>
+						<p><input type="radio" ng-model="color" value="argent" ng-change="resetPage()"> Argent</p>
+					</form>
 				</div>
 				<div class="panel-body">
 					<h4>Pour :</h4>
@@ -31,8 +47,9 @@
 		</div>
 
 		<div class="col-md-10">
-			<h2>{{ controller }}</h2>
-			<div class="pagination" >
+			<h1 ng-hide="category">Boutique</h1>
+			<h2 ng-show="category">{{ category | uppercase }}</h2>
+			<div class="pagination" ng-hide="noArticles">
 				<ul>
 					<li ng-class="{disabled: currentPage == 0}">
                     	<a href ng-click="prevPage()">« Prev</a>
@@ -45,17 +62,18 @@
                     </li>
 				</ul>
 			</div>
+			<div class="alert alert-warning" ng-show="noArticles"><h4>Pas d'articles correspondants aux critères de recherche</h4></div>
 			<ul>
-				<li ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getFilter()) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
-					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.Images.Img.URL }}" alt=""></a>
+				<li ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="thumbnail">
+					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.ImageURL }}" alt=""></a>
 					<a href="#/{{category || 'category'}}/{{product._ArticleNumber}}"><h4>{{ product.Details.Title }}</h4></a>
-					<p>{{ product.CategoryPath.ProductCategoryPath }} : {{ product.Price.DisplayPrice }}</p>
+					<p>{{ product.Category }} : {{ product.Price }}</p>
 					<p>{{ product.Details.DescriptionShort }}</p>
+					<p><a href="{{ product.URL }}">Voir sur Keller Sports</a></p>
 				</li>
 			</ul>
 
-			<h4>Pages :</h4>
-			<div class="pagination" >
+			<div class="pagination" ng-hide="noArticles">
 				<ul>
 					<li ng-class="{disabled: currentPage == 0}">
                     	<a href ng-click="prevPage()">« Prev</a>
