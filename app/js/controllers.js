@@ -162,6 +162,13 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'D
       // Get product ID from route parameter
       $scope.getProductID($routeParams.productID);
 
+      // Remove main product from product array
+      for (var i = 0, j = $scope.products.length; i < j; i++) {
+        if($scope.products[i] == $scope.product){
+          $scope.products.splice(i, 1);
+        }
+      };
+
       // Set page title to product title
       Data.setTitle($scope.product.Title)
 
