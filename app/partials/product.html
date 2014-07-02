@@ -1,16 +1,59 @@
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-12">
 
-			<h2>Product Controller</h2>
-			<p class="left"><img ng-src="{{ product.Images.Img.URL }}" alt=""></p>
-			<h3>{{ product.Details.Title }}</h3>
-			<p>{{ product.Details.DescriptionShort }}</p>
-			<p>Pour {{ product.Properties.Property.1._Text }}</p>
-			<p>{{ product.Properties.Property.2._Title }} : {{ product.Properties.Property.2._Text }}</p>
-			<p>{{ product.Properties.Property.3._Text }}</p>
-			<h4>{{ product.Price.DisplayPrice }}</h4>
+		<div class="col-md-2">
+			<h1><a href="/#">Boutique</a></h1>
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h4>Rechercher par catégorie :</h4>
+					<p><a href="#/v&ecirc;tements">Vêtements</a></p>
+					<ul>
+						<li ng-repeat="subcategory in vetementsSubcatsArray"><a href="#/v&ecirc;tements/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+					</ul>
+					<p><a href="#/chaussures">Chaussures</a></p>
+					<ul>
+						<li ng-repeat="subcategory in chaussuresSubcatsArray"><a href="#/chaussures/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+					</ul>
+					<p><a href="#/accessoires">Accessoires</a></p>
+					<ul>
+						<li ng-repeat="subcategory in accessoiresSubcatsArray"><a href="#/accessoires/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+					</ul>
+				</div>
+				<div class="panel-body">
+					<h4>Rechercher par marque :</h4>
+					<div class="left">
+						<p ng-repeat="brand in brandsArray" class="capitalize"><a href="#/{{brand}}">{{ brand }}</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<div class="col-md-10">
+
+			<p class="left"><img ng-src="{{ product.ImageURL }}" alt=""></p>
+			<h2>{{ product.Title }}</h2>
+			<p>{{ product.DescriptionShort }}...</p>
+			<p>Pour {{ product.Gender }}</p>
+			<p><span ng-show="product.Color">Couleur :</span> {{ product.Color }}</p>
+			<p>{{ product.Material }}</p>
+			<h4>{{ product.Price }}</h4>
+
+			<h3 class="clear">D'autres articles :</h3>
+
+			<ul>
+				<div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:subcat || category) | limitTo:3" class="col-md-4">
+					<li class="thumbnail fixheight">
+						<a href="#/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"><div class="popup"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"></div></a>
+						<h4><a href="#/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}">{{ product.Title }}</a></h4>
+						<p>{{ product.Category }}</p>
+						<p>{{ product.DescriptionShort }}...</p>
+						<p ng-show="product.Color">Couleur : {{ product.Color }}</p>
+						<p>{{ product.Material }}</p>
+						<p>{{ product.Price }}</p>
+						<a class="btn btn-primary" href="{{ product.URL }}">En voir plus</a>
+					</li>
+				</div>
+			</ul>
 		</div>
 	</div>
 </div>

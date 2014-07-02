@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="runningCatalogApp">
+<html lang="en" ng-app="runningCatalogApp" ng-controller="MainCtrl">
 <head>
 	<meta charset="UTF-8">
-	<title>Running Catalog</title>
+	<title>{{ data.title() | capitalize }}Running Catalog</title>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/app.css">
 	<script src="bower_components/angular/angular.min.js"></script>

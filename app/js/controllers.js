@@ -1,9 +1,16 @@
 var catalogControllers = angular.module('catalogControllers', []);
 
-catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG',
-  function($scope, $routeParams, $http, CONFIG){
+catalogControllers.controller('MainCtrl', ['$scope', 'Data',
+  function($scope, Data){
+    $scope.data = Data;
+  }]);
+
+catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG', 'Data',
+  function($scope, $routeParams, $http, CONFIG, Data){
 
     // Main page
+
+    Data.setTitle('');
 
     $scope.controller = 'Catalog Controller';
 
@@ -11,29 +18,68 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       $scope.products = data;
     });
 
-    // Get brands from config.js
+    // Get brands/subcategories/sucategories to pluralize from config.js to populate template
 
     $scope.brandsArray = CONFIG.brandsArray;
+    $scope.vetementsSubcatsArray = CONFIG.vetementsSubcatsArray;
+    $scope.chaussuresSubcatsArray = CONFIG.chaussuresSubcatsArray;
+    $scope.accessoiresSubcatsArray = CONFIG.accessoiresSubcatsArray;
+    $scope.pluralizeArray = CONFIG.pluralizeArray;
 
     // Show all colors by default
 
     $scope.color = "";
+
+    $scope.colorFunction = function(color){
+      $scope.color = color;
+      $scope.resetPage();
+    }
+
+    // If parameter is in pluralizeArray, return true
+
+    $scope.isPlural = function(subcategory){
+      if($scope.pluralizeArray.indexOf(subcategory) !== -1){
+        return true
+      }
+    }
 
     // If parameter is passed into route, set param as category by which to filter
 
     if($routeParams.category){
       $scope.category = $routeParams.category;
 
-      // If category is a brand, filter on Product.Details (Details.Title is location of brand name in data)
-      // Otherwise filter on Product.CategoryPath (CategoryPath.ProductCategoryPath is location of category)
+      Data.setTitle($scope.category + ' | ');
 
-      $scope.getFilter = function(){
-        if($scope.brandsArray.indexOf($scope.category) !== -1){
-          return {Details:$scope.category}
-        }
-        else{
-          return {Category:$scope.category}
-        }
+      if($scope.brandsArray.indexOf($scope.category) !== -1){
+        $scope.isBrand = true;
+      }
+    }
+
+    // If second parameter is passed into route, set param as subcategory by which to filter
+
+    if($routeParams.subcat){
+      $scope.subcat = $routeParams.subcat;
+      $scope.isSubcategory = true;
+
+      Data.setTitle($scope.subcat + ($scope.isPlural($scope.subcat) ? 's' : '') + ' | ');
+    }
+
+    // If parameter is a brand, filter by Title field, otherwise filter by Category field
+
+    $scope.getField = function(){
+      if($scope.isBrand){
+        return {Title:$scope.category}
+      }
+      else{
+        return {Category:$scope.category}
+      }
+    }
+
+    // If subcategory is set, return the subcategory to the filter
+
+    $scope.subcatFilter = function(){
+      if($scope.isSubcategory){
+        return $scope.subcat
       }
     }
 
@@ -105,13 +151,75 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
   }]);
 
-catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http',
-  function($scope, $routeParams, $http){
+catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'Data', 'CONFIG',
+  function($scope, $routeParams, $http, Data, CONFIG){
 
     // Individual product
 
-    $http.get('data/articles/' + $routeParams.productID + '.json').success(function(data){
-      $scope.product = data;
+    $http.get('data/running.json').success(function(data){
+      $scope.products = data;
+
+      // Get product ID from route parameter
+      $scope.getProductID($routeParams.productID);
+
+      // Set page title to product title
+      Data.setTitle($scope.product.Title)
+
+      // Set gender filter to product.Gender
+      $scope.genderFilter = $scope.product.Gender;
+
+      // Randomize products to display below main product
+      $scope.products = $scope.shuffleArray($scope.products)
     })
+
+    // Get brands/subcategories/sucategories to pluralize from config.js to populate template
+
+    $scope.brandsArray = CONFIG.brandsArray;
+    $scope.vetementsSubcatsArray = CONFIG.vetementsSubcatsArray;
+    $scope.chaussuresSubcatsArray = CONFIG.chaussuresSubcatsArray;
+    $scope.accessoiresSubcatsArray = CONFIG.accessoiresSubcatsArray;
+    $scope.pluralizeArray = CONFIG.pluralizeArray;
+
+    // Filter by category and subcategory if set (unless category is shoes!!)
+
+    if($routeParams.subcat !== "subcat" && $routeParams.category !== "chaussures"){
+      $scope.subcat = $routeParams.subcat;
+    }
+
+    if($routeParams.category !== "category"){
+      $scope.category = $routeParams.category;
+    }
+
+    // If parameter is in pluralizeArray, return true
+
+    $scope.isPlural = function(subcategory){
+      if($scope.pluralizeArray.indexOf(subcategory) !== -1){
+        return true
+      }
+    }
+
+    // Get product from list of products
+
+    $scope.getProductID = function(productID){
+      $scope.products.forEach(function(product){
+        if(product._ArticleNumber == productID){
+          $scope.product = product;
+        }
+      });
+    }
+
+    /**
+     * Randomize array element order in-place.
+     * Using Fisher-Yates shuffle algorithm.
+     */
+    $scope.shuffleArray = function(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
 
   }]);

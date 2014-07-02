@@ -1,5 +1,9 @@
 <?php
 
+ini_set('memory_limit', '256M');
+
+
+
 echo "Preparing to update catalog...\n";
 
 // from blog post at http://outlandish.com/blog/xml-to-json/
@@ -32,7 +36,6 @@ function xmlToArray($xml, $options = array()) {
             $attributesArray[$attributeKey] = (string)$attribute;
         }
     }
- 
     //get child nodes from all namespaces
     $tagsArray = array();
     foreach ($namespaces as $prefix => $namespace) {
@@ -81,18 +84,23 @@ function xmlToArray($xml, $options = array()) {
     );
 }
 
+// Get XML document and write contents to data.xml
 
+//echo "Fetching XML document, hold on for just a moment...\n";
+//file_put_contents("data.xml", file_get_contents("http://productdata-download.affili.net/affilinet_products_783_345425.XML?auth=D2w7sdMqv6PRa6jgotXy&type=XML"));
 
-
+echo "Creating array...\n";
 
 $xmlNode = simplexml_load_file('data.xml');
 $json = xmlToArray($xmlNode);
 
-// Mouvement Etik code
+// Contents of XML have been written to associative array $json, begin formatting
 
-$counter = 0;
+//$counter = 0;
 
 $list = array();
+
+$counter = 0;
 
 // for each product associative array in json document
 
@@ -109,37 +117,47 @@ foreach($json['Products']['Product'] as $product){
 
             //create new array with select fields from each product associative array in products array
 
+            
             $list[$counter]['_ArticleNumber'] = $product['_ArticleNumber'];
-            $list[$counter]['Category'] = $product['Properties']['Property'][5]['_Text'];
+            $list[$counter]['Category'] = $product['CategoryPath']['ProductCategoryPath'];
+            $list[$counter]['Size'] = $product['Properties']['Property'][1]['_Text'];
             $list[$counter]['Price'] = $product['Price']['DisplayPrice'];
-            $list[$counter]['Details']['Title'] = $product['Details']['Title'];
-            $list[$counter]['Details']['DescriptionShort'] = $product['Details']['DescriptionShort'];
+            $list[$counter]['Title'] = $product['Details']['Title'];
+            $list[$counter]['DescriptionShort'] = $product['Details']['DescriptionShort'];
             $list[$counter]['ImageURL'] = $product['Images']['Img']['URL'];
-            $list[$counter]['Gender'] = $product['Properties']['Property'][1]['_Text'];
-            $list[$counter]['Color'] = $product['Properties']['Property'][2]['_Text'];
+            $list[$counter]['Gender'] = $product['Properties']['Property'][4]['_Text'];
+            $list[$counter]['Color'] = $product['Properties']['Property'][0]['_Text'];
+            $list[$counter]['Material'] = $product['Properties']['Property'][6]['_Text'];
             $list[$counter]['URL'] = $product['Deeplinks']['Product'];
+            
+
+            $counter++;
 
             // write individual product file with all fields of product associative array
-
+            /*
             $file = 'articles/'.$product['_ArticleNumber'].'.json'; 
             $handle = fopen($file, 'w') or die('Cannot open file:  '.$file);
             $data = json_encode($product, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
             fwrite($handle, $data);
             fclose($handle);
-
-            $counter++;
+            */
+            //$counter++;
         }
     }
 }
 
+echo "Writing new JSON file...\n";
+
 // write catalog array to file
 
-$my_file = 'running.json';
+$my_file = 'test.json';
 $handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
 $data = json_encode($list, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 fwrite($handle, $data);
 fclose($handle);
 
-echo "Finished updating catalog!!\n"
+echo "Finished update!!\n";
+
+echo "Using ".(memory_get_usage()/1024)."M of ".ini_get('memory_limit')." allowed\n";
 
 ?>
