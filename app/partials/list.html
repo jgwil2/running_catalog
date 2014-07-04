@@ -2,32 +2,32 @@
 	<div class="row">
 		<div class="col-md-2 col-s-2">
 			<div ng-show="category">
-				<h1><a href="/#">Boutique</a></h1>
+				<h1><a href="/#!">Boutique</a></h1>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h4>Rechercher par mot clé <span ng-show="category">dans <span ng-class="{capitalize: isBrand}">{{ subcat || category }}</span></span><span ng-show="isSubcategory">s</span>:</h4>
+					<h4>Rechercher par mot clé <span ng-show="category">dans <span ng-class="{capitalize: isBrand}">{{ subcat || category }}</span></span><span ng-show="isPlural(subcat)">s</span>:</h4>
 					<input ng-model="query" ng-change="resetPage()" class="form-control">
 				</div>
 				<div class="panel-body">
 					<h4>Rechercher par catégorie :</h4>
-					<p><a href="#/v&ecirc;tements">Vêtements</a></p>
+					<p><a href="#!/v&ecirc;tements">Vêtements</a></p>
 					<ul>
-						<li ng-repeat="subcategory in vetementsSubcatsArray"><a href="#/v&ecirc;tements/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+						<li ng-repeat="subcategory in vetementsSubcatsArray"><a href="#!/v&ecirc;tements/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
 					</ul>
-					<p><a href="#/chaussures">Chaussures</a></p>
+					<p><a href="#!/chaussures">Chaussures</a></p>
 					<ul>
-						<li ng-repeat="subcategory in chaussuresSubcatsArray"><a href="#/chaussures/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+						<li ng-repeat="subcategory in chaussuresSubcatsArray"><a href="#!/chaussures/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
 					</ul>
-					<p><a href="#/accessoires">Accessoires</a></p>
+					<p><a href="#!/accessoires">Accessoires</a></p>
 					<ul>
-						<li ng-repeat="subcategory in accessoiresSubcatsArray"><a href="#/accessoires/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
+						<li ng-repeat="subcategory in accessoiresSubcatsArray"><a href="#!/accessoires/{{subcategory}}">{{ subcategory | capitalize }}<span ng-if="isPlural(subcategory)">s</span></a></li>
 					</ul>
 				</div>
 				<div class="panel-body">
 					<h4>Rechercher par marque :</h4>
 					<div class="left">
-						<p ng-repeat="brand in brandsArray" class="capitalize"><a href="#/{{brand}}">{{ brand }}</a></p>
+						<p ng-repeat="brand in brandsArray" class="capitalize"><a href="#!/{{brand}}">{{ brand }}</a></p>
 					</div>
 				</div>
 				<div class="panel-body">
@@ -41,7 +41,7 @@
 					<a href=""><div class="color yellow" ng-model="color" ng-click="colorFunction('jaune')" ng-class="{selected: 'jaune' == color}"></div></a>
 					<a href=""><div class="color fuchsia" ng-model="color" ng-click="colorFunction('rose')" ng-class="{selected: 'rose' == color}"></div></a>
 					<a href=""><div class="color orange" ng-model="color" ng-click="colorFunction('orange')" ng-class="{selected: 'orange' == color}"></div></a>
-					<a href=""><div class="color purple" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lilas' == color}"></div></a>
+					<a href=""><div class="color purple" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lila' == color}"></div></a>
 					<a href=""><div class="color silver" ng-model="color" ng-click="colorFunction('argent')" ng-class="{selected: 'argent' == color}"></div></a>
 					<p><a href="" ng-show="color" ng-click="colorFunction('')">Voir toutes</a></p>
 				</div>
@@ -74,10 +74,10 @@
 			<ul>
 				<div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="col-md-4">
 					<li class="thumbnail fixheight">
-						<a href="#/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"><div class="popup"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"></div></a>
-						<h4><a href="#/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}">{{ product.Title }}</a></h4>
+						<a href="#!/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}" class="thumb"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"><div class="popup"><img ng-src="{{ product.ImageURL }}" alt="{{ product.Title }}"></div></a>
+						<h4><a href="#!/{{category || 'category'}}/{{subcat || 'subcat'}}/{{product._ArticleNumber}}">{{ product.Title }}</a></h4>
 						<p>{{ product.Category }}</p>
-						<p>{{ product.DescriptionShort }}...</p>
+						<p>{{ product.DescriptionShort | limitTo:100 }}...</p>
 						<p ng-show="product.Color">Couleur : {{ product.Color }}</p>
 						<p>{{ product.Material }}</p>
 						<p>{{ product.Price }}</p>

@@ -3,6 +3,7 @@ var catalogControllers = angular.module('catalogControllers', []);
 catalogControllers.controller('MainCtrl', ['$scope', 'Data',
   function($scope, Data){
     $scope.data = Data;
+    $scope.status = "ready";
   }]);
 
 catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG', 'Data',
@@ -10,11 +11,11 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
     // Main page
 
-    Data.setTitle('');
+    Data.setTitle('Boutique Course à Pied');
 
     $scope.controller = 'Catalog Controller';
 
-    $http.get('data/running.json').success(function(data){
+    $http.get('data/test.json').success(function(data){
       $scope.products = data;
     });
 
@@ -48,7 +49,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
     if($routeParams.category){
       $scope.category = $routeParams.category;
 
-      Data.setTitle($scope.category + ' | ');
+      Data.setTitle($scope.category);
 
       if($scope.brandsArray.indexOf($scope.category) !== -1){
         $scope.isBrand = true;
@@ -61,7 +62,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       $scope.subcat = $routeParams.subcat;
       $scope.isSubcategory = true;
 
-      Data.setTitle($scope.subcat + ($scope.isPlural($scope.subcat) ? 's' : '') + ' | ');
+      Data.setTitle($scope.subcat + ($scope.isPlural($scope.subcat) ? 's' : ''));
     }
 
     // If parameter is a brand, filter by Title field, otherwise filter by Category field
@@ -156,7 +157,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'D
 
     // Individual product
 
-    $http.get('data/running.json').success(function(data){
+    $http.get('data/test.json').success(function(data){
       $scope.products = data;
 
       // Get product ID from route parameter

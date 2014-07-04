@@ -2,7 +2,7 @@
 <html lang="en" ng-app="runningCatalogApp" ng-controller="MainCtrl">
 <head>
 	<meta charset="UTF-8">
-	<title>{{ data.title() | capitalize }}Running Catalog</title>
+	<title ng-bind="data.title() | capitalize">Boutique Course à pied</title>
 	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/app.css">
 	<script src="bower_components/angular/angular.min.js"></script>
@@ -12,9 +12,10 @@
 	<script src="js/config.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/filters.js"></script>
+
 </head>
 
-<body>
+<body data-status="{{ status }}">
 
 	<div ng-view></div>
 

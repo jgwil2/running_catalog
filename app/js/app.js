@@ -6,8 +6,9 @@ var runningCatalogApp = angular.module('runningCatalogApp', [
 	'Data'
 ]);
 
-runningCatalogApp.config(['$routeProvider',
-	function($routeProvider){
+runningCatalogApp.config(['$routeProvider', '$locationProvider',
+	function($routeProvider, $locationProvider){
+		$locationProvider.hashPrefix('!');
 		$routeProvider.
 			when('/', {
 				templateUrl: 'partials/list.html',
@@ -27,5 +28,5 @@ runningCatalogApp.config(['$routeProvider',
 			}).
 			otherwise({
 				redirectTo: '/'
-			})
+			});
 	}])
