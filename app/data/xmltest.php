@@ -1,10 +1,13 @@
 <?php
 
 //ini_set('memory_limit', '256M');
+date_default_timezone_set("Europe/Paris");
 echo "Memory usage on script start: ".(memory_get_usage()/1048576)."M \n";
 
-echo "Fetching XML document, hold on for just a moment...\n";
-file_put_contents("test.xml", file_get_contents("http://productdata-download.affili.net/affilinet_products_783_345425.XML?auth=D2w7sdMqv6PRa6jgotXy&type=XML"));
+//print_r(getopt('x:y:'));
+
+//echo "Fetching XML document, hold on for just a moment...\n";
+//file_put_contents("test.xml", file_get_contents("http://productdata-download.affili.net/affilinet_products_783_345425.XML?auth=D2w7sdMqv6PRa6jgotXy&type=XML"));
 
 // $xml object loads contents of XML document
 $xml = simplexml_load_file('test.xml');
@@ -13,13 +16,16 @@ $xml = simplexml_load_file('test.xml');
 $array = (array) $xml;
 
 // Call function to iterate array
-loopArray($array);
+
+loopArray($array, $argv[1]);
 
 
-function loopArray($array){
+function loopArray($array, $commandLineArg = null){
 	$list = array();
 	$counter = 0;
 	$currentTitle = "";
+
+	$sitemap = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://boutique.passionrunning.com/sitemap/0.9"></urlset>');
 
 	// Iterate the array corresponding to the XML file
 	foreach($array['Product'] as $product){
@@ -65,14 +71,37 @@ function loopArray($array){
 					else{
 						$list[$counter]->Title = (string) $currentTitle;
 					}
-				}	
+				}
+
+				if($commandLineArg == "writehtml"){
+					echo "Writing snapshot number $counter\n";
+					exec("phantomjs phantom/phantomjs-runner.js http://boutique.passionrunning.com/#\!/category/subcat/".$list[$counter]->_ArticleNumber." > phantom/snapshots/".$list[$counter]->_ArticleNumber.".html");
+				}
+
+				$url = $sitemap->addChild('url');
+				$url->addChild('loc', "http://boutique.passionrunning.com/#\!/category/subcat/".$list[$counter]->_ArticleNumber);
+				$url->addChild('lastmod', date("Y-m-d"));
+
+
 				// Next index of $list
 				$counter++;
 			}
 		}
 	}
+
 	echo "Writing ".$counter." items to disk\n";
 	writeFile($list);
+
+	echo "Writing sitemap.xml\n";
+	writeXmlFile($sitemap);
+}
+
+function writeXmlFile($xml){
+	$my_file = 'sitemap.xml';
+	$handle = fopen($my_file, 'w') or die('Cannot open file:  '.$my_file);
+	$data = $xml->asXML();
+	fwrite($handle, $data);
+	fclose($handle);
 }
 
 // Convert array to JSON and write to file 

@@ -1,0 +1,2396 @@
+<html dir="ltr" lang="fr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" class="ltr fr no-js ng-scope" ng-app="runningCatalogApp" ng-controller="MainCtrl"><!--<![endif]--><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+
+<title ng-bind="data.title() | capitalize" class="ng-binding">Vestes</title>
+<meta name="description" content="La boutique des passionnés de course à pied">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/app.css">
+
+<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+
+
+
+
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8784346-28', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body data-status="ready" style="">
+
+
+<div id="header">
+	<img class="spip_logos" alt="Boutique Course à pied" src="images/boutique-courseapied.png" width="328" height="102">
+	
+</div>	<div id="nav">
+<div class="nav">
+	<ul>
+		<li><a href="http://www.passionrunning.com">Accueil</a></li>
+	
+
+		
+		<li><a href="http://www.passionrunning.com/course-a-pied/">Course à pied</a></li>
+		
+		<li><a href="http://www.passionrunning.com/entrainement/">Entrainement</a></li>
+		
+		<li><a href="http://www.passionrunning.com/equipements/">Equipements</a></li>
+		
+		<li><a href="http://www.passionrunning.com/lecture/">Lecture</a></li>
+		
+		<li><a href="http://www.passionrunning.com/nutrition/">Nutrition</a></li>
+		
+		<li><a href="http://www.passionrunning.com/sante-blessure/">Santé / Blessure</a></li>
+		
+		<li class="btnboutique"><a href="http://boutique.passionrunning.com">La Boutique</a>
+		<ul>
+		<li><a href="http://boutique.passionrunning.com/#/v%C3%AAtements">Vêtements</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/chaussures">Chaussures</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/accessoires">Accessoires</a></li>
+		</ul></li>
+	</ul>
+	</div>
+</div>	
+
+
+
+<div id="rubrique">
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">
+
+		
+
+
+		
+			<div ng-show="category" class="ng-scope">
+		<div id="arbo"><div class="arbo"><a href="/#!">Boutique</a> &gt; <strong class="on"><!-- ngIf: category --><span ng-if="category" ng-class="{capitalize: isBrand}" class="ng-binding ng-scope">Veste<!-- ngIf: isPlural(subcat) --><span ng-if="isPlural(subcat)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcat) --></span><!-- end ngIf: category --></strong></div></div><!--.arbo-->
+</div>
+			
+
+
+<!-- gauche-->
+<div id="gauche" class="ng-scope">
+
+
+			<h1 ng-hide="category" class="ng-hide">La boutique passion running</h1>
+			
+			
+			
+			<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope">
+						<a href="" class="ng-binding">2</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+			<!-- // pagination -->
+			
+			
+			<br clear="all">
+			<div class="alert alert-warning ng-hide" ng-show="noArticles"><h4>Pas d'articles correspondants aux critères de recherche</h4></div>
+			<ul>
+			
+			
+			
+			
+				<!-- ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD082001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - adiVIZ High Beam Gilet </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/F0C227D86611DE659600A72D5D1C7B51.jpg" alt="Adidas - adiVIZ High Beam Gilet " src="http://i2.keller-sports.de/shop/products/665x665/F0C227D86611DE659600A72D5D1C7B51.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/F0C227D86611DE659600A72D5D1C7B51.jpg" alt="Adidas - adiVIZ High Beam Gilet " src="http://i2.keller-sports.de/shop/products/665x665/F0C227D86611DE659600A72D5D1C7B51.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La sécurité est aussi importante que le confort. Ce Gilet Adidas pour hommes sans manche est idéale ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD085001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - veste adiVIZ 1/2 Zip LS</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/21A5A2787B7BF8681621858F7EF22CB4.jpg" alt="Adidas - veste adiVIZ 1/2 Zip LS" src="http://i2.keller-sports.de/shop/products/665x665/21A5A2787B7BF8681621858F7EF22CB4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/21A5A2787B7BF8681621858F7EF22CB4.jpg" alt="Adidas - veste adiVIZ 1/2 Zip LS" src="http://i2.keller-sports.de/shop/products/665x665/21A5A2787B7BF8681621858F7EF22CB4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">CLIMAWARM? permet une isolation de la chaleur par temps froid. - Piping réfléchissant. - Logo réfléc...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD086001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste adiVIZ High Beam</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4BDDAE2D6DB453F1E27A33AC05AC82F2.jpg" alt="Adidas - Veste adiVIZ High Beam" src="http://i2.keller-sports.de/shop/products/665x665/4BDDAE2D6DB453F1E27A33AC05AC82F2.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4BDDAE2D6DB453F1E27A33AC05AC82F2.jpg" alt="Adidas - Veste adiVIZ High Beam" src="http://i2.keller-sports.de/shop/products/665x665/4BDDAE2D6DB453F1E27A33AC05AC82F2.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">139.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">WINDSTOPPER® vous protège du vent et permet une régulation de la transpiration optimale ainsi qu´une...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD104001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Sequencials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A854CD25D98276F698AED78746D9FD02.jpg" alt="Adidas - Veste Sequencials" src="http://i2.keller-sports.de/shop/products/665x665/A854CD25D98276F698AED78746D9FD02.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A854CD25D98276F698AED78746D9FD02.jpg" alt="Adidas - Veste Sequencials" src="http://i2.keller-sports.de/shop/products/665x665/A854CD25D98276F698AED78746D9FD02.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez vous des intempéries sans transpirer La veste Sequentials CP pour hommes assure une protect...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> orange</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD108001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6D7FE6CCA5F3251DE8A36BEF9F55CF5D.jpg" alt="Adidas -Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/6D7FE6CCA5F3251DE8A36BEF9F55CF5D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6D7FE6CCA5F3251DE8A36BEF9F55CF5D.jpg" alt="Adidas -Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/6D7FE6CCA5F3251DE8A36BEF9F55CF5D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">35.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Response Wind Veste  - FORMOTION?: Coupe ergonomique pour optimiser vos mouvements. - Poche à zip. -...</p>
+<p class="ng-binding">100% polyamide</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD145004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste AdiStar Track</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7A9C52A590F5AB4895D9B1735D80E4F0.jpg" alt="Adidas - Veste AdiStar Track" src="http://i2.keller-sports.de/shop/products/665x665/7A9C52A590F5AB4895D9B1735D80E4F0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7A9C52A590F5AB4895D9B1735D80E4F0.jpg" alt="Adidas - Veste AdiStar Track" src="http://i2.keller-sports.de/shop/products/665x665/7A9C52A590F5AB4895D9B1735D80E4F0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">60.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">adiSTAR Track Jacket  - FORMOTION: coupe ergonomique pour un mouvement linéaire pendant la course. -...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD146001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Supernova Gore WS</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A52AF6BD8C074FBDBB1A286892C994A6.jpg" alt="Adidas - Veste Supernova Gore WS" src="http://i2.keller-sports.de/shop/products/665x665/A52AF6BD8C074FBDBB1A286892C994A6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A52AF6BD8C074FBDBB1A286892C994A6.jpg" alt="Adidas - Veste Supernova Gore WS" src="http://i2.keller-sports.de/shop/products/665x665/A52AF6BD8C074FBDBB1A286892C994A6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">70.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Supernova GORE WS Jacket  - Détails réfléchissants. - WINDSTOPPER&nbsp;,offre une imperméabilité aux faib...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD151001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7507DAC086AAFF9977CC490F32D49715.jpg" alt="Adidas - Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/7507DAC086AAFF9977CC490F32D49715.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7507DAC086AAFF9977CC490F32D49715.jpg" alt="Adidas - Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/7507DAC086AAFF9977CC490F32D49715.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">54.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort absolu Le coupe-vent adidas RESPONSE? 3-Stripes est conçu avec la technologie CLIMACOOL®,qui...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD154001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Adizero Gore WS Softshell</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8A6997648D0626803094BB319CF1E5DF.jpg" alt="Adidas - Veste Adizero Gore WS Softshell" src="http://i2.keller-sports.de/shop/products/665x665/8A6997648D0626803094BB319CF1E5DF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8A6997648D0626803094BB319CF1E5DF.jpg" alt="Adidas - Veste Adizero Gore WS Softshell" src="http://i2.keller-sports.de/shop/products/665x665/8A6997648D0626803094BB319CF1E5DF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Restez au chaud en limitant la transpiration La veste adizero Gore WS Softshell permet de vous tenir...</p>
+<p class="ng-binding">92% polyester/8% élasthan</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD183001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Aktiv Cabriolet Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0D56FFA5840601851236E3A51C65D812.jpg" alt="Adidas - Veste Aktiv Cabriolet Wind" src="http://i2.keller-sports.de/shop/products/665x665/0D56FFA5840601851236E3A51C65D812.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0D56FFA5840601851236E3A51C65D812.jpg" alt="Adidas - Veste Aktiv Cabriolet Wind" src="http://i2.keller-sports.de/shop/products/665x665/0D56FFA5840601851236E3A51C65D812.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">CLIMALITE®: tissu léger et souple pour une excellente régulation de l?humidité....</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD199004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - T-shirt Trail Wind Block L/S 1/2 Zip</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/ECDE236E8350108B839E2E304E9C4AEF.jpg" alt="Adidas - T-shirt Trail Wind Block L/S 1/2 Zip" src="http://i2.keller-sports.de/shop/products/665x665/ECDE236E8350108B839E2E304E9C4AEF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/ECDE236E8350108B839E2E304E9C4AEF.jpg" alt="Adidas - T-shirt Trail Wind Block L/S 1/2 Zip" src="http://i2.keller-sports.de/shop/products/665x665/ECDE236E8350108B839E2E304E9C4AEF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Du confort même dans les pires situations  La veste adidas Trail Riot Wind Block Long Sleeve Half-Zi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD229001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response LS</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3D1C6A290E44A09AAE64DA3A938B01D6.jpg" alt="Adidas - Veste Response LS" src="http://i2.keller-sports.de/shop/products/665x665/3D1C6A290E44A09AAE64DA3A938B01D6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3D1C6A290E44A09AAE64DA3A938B01D6.jpg" alt="Adidas - Veste Response LS" src="http://i2.keller-sports.de/shop/products/665x665/3D1C6A290E44A09AAE64DA3A938B01D6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un maximum de performance Le t-shirt à manches longues Adidas est conçu avec la technologie FORMOTIO...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD236001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/F02CAFE0EBE2761FBCE9A6179A60C5C4.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/F02CAFE0EBE2761FBCE9A6179A60C5C4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/F02CAFE0EBE2761FBCE9A6179A60C5C4.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/F02CAFE0EBE2761FBCE9A6179A60C5C4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Response Wind Veste  - FORMOTION?: Coupe ergonomique pour optimiser vos mouvements. - Poche à zip. -...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD245002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste adiStar GoreVeste</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A7745A52E8D65DCDBAF6DF7C3EB2051A.jpg" alt="Adidas - Veste adiStar GoreVeste" src="http://i2.keller-sports.de/shop/products/665x665/A7745A52E8D65DCDBAF6DF7C3EB2051A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A7745A52E8D65DCDBAF6DF7C3EB2051A.jpg" alt="Adidas - Veste adiStar GoreVeste" src="http://i2.keller-sports.de/shop/products/665x665/A7745A52E8D65DCDBAF6DF7C3EB2051A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">169.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La veste Adistar Gore Textured Softshell pour hommes est parfaite pour courir par mauvais temps. Cet...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD250001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Sequentials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B37BC3565D21EF5903AE193445A8063C.jpg" alt="Adidas - Veste Sequentials" src="http://i2.keller-sports.de/shop/products/665x665/B37BC3565D21EF5903AE193445A8063C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B37BC3565D21EF5903AE193445A8063C.jpg" alt="Adidas - Veste Sequentials" src="http://i2.keller-sports.de/shop/products/665x665/B37BC3565D21EF5903AE193445A8063C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour un confort parfait  cette veste Adidas est une veste polyvalente qui permet de s´adapter au tem...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD256001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - T-shirt Sequ</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5A1974DCD9EEA091866ED85093E56269.jpg" alt="Adidas - T-shirt Sequ" src="http://i2.keller-sports.de/shop/products/665x665/5A1974DCD9EEA091866ED85093E56269.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5A1974DCD9EEA091866ED85093E56269.jpg" alt="Adidas - T-shirt Sequ" src="http://i2.keller-sports.de/shop/products/665x665/5A1974DCD9EEA091866ED85093E56269.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez vous des intempéries La veste Sequentials pour femmes assure une protection maximale par ma...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD260001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/35863F5DC27780F0249221818EE847D8.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/35863F5DC27780F0249221818EE847D8.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/35863F5DC27780F0249221818EE847D8.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/35863F5DC27780F0249221818EE847D8.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le vent ne vous empêchera plus d´aller courir avec cette veste. Le coupe-vent adidas Response 3-Stri...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> orange</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD266001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Trail Convertible</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D739F072953B2C3A7787C314C1129B9F.jpg" alt="Adidas - Veste Trail Convertible" src="http://i2.keller-sports.de/shop/products/665x665/D739F072953B2C3A7787C314C1129B9F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D739F072953B2C3A7787C314C1129B9F.jpg" alt="Adidas - Veste Trail Convertible" src="http://i2.keller-sports.de/shop/products/665x665/D739F072953B2C3A7787C314C1129B9F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">99.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour une course au sec Cette veste de running de la marque Adidas pour Hommes est idéale pour le tra...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD275001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Sequentialsentials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6445B286FF56744033443CA0552D189C.jpg" alt="Adidas - Veste Sequentialsentials" src="http://i2.keller-sports.de/shop/products/665x665/6445B286FF56744033443CA0552D189C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6445B286FF56744033443CA0552D189C.jpg" alt="Adidas - Veste Sequentialsentials" src="http://i2.keller-sports.de/shop/products/665x665/6445B286FF56744033443CA0552D189C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La veste Sequentials pour femmes assure une protection maximale par mauvais temps. Elle combine un t...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD285001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7046093FA6E8FF124AD950C770C0A43C.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/7046093FA6E8FF124AD950C770C0A43C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7046093FA6E8FF124AD950C770C0A43C.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/7046093FA6E8FF124AD950C770C0A43C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sortez par tous les temps Ne laissez pas la météo ruiner vos efforts avec cette veste de running fem...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD296002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response DS Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/37DD7A6C8F06AD40D3E2112291A8090E.jpg" alt="Adidas - Veste Response DS Wind" src="http://i2.keller-sports.de/shop/products/665x665/37DD7A6C8F06AD40D3E2112291A8090E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/37DD7A6C8F06AD40D3E2112291A8090E.jpg" alt="Adidas - Veste Response DS Wind" src="http://i2.keller-sports.de/shop/products/665x665/37DD7A6C8F06AD40D3E2112291A8090E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez-vous du vent et de la pluie  Le vent ne vous empêchera plus d´aller courir avec cette veste...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD317002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Aktiv Cabriolet Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/F79BD6A72384554520D8F56C50951F9B.jpg" alt="Adidas - Veste Aktiv Cabriolet Wind" src="http://i2.keller-sports.de/shop/products/665x665/F79BD6A72384554520D8F56C50951F9B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/F79BD6A72384554520D8F56C50951F9B.jpg" alt="Adidas - Veste Aktiv Cabriolet Wind" src="http://i2.keller-sports.de/shop/products/665x665/F79BD6A72384554520D8F56C50951F9B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Parfait pour la course à pied,lecoupe-vent adidas Aktiv Cabriolet pour hommes est fabriqué en tissuc...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD336001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste SMT</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/BD27708B3269CE2658362E38701F7BDA.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/BD27708B3269CE2658362E38701F7BDA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/BD27708B3269CE2658362E38701F7BDA.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/BD27708B3269CE2658362E38701F7BDA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Cette veste vous accompagnera lors de toutes vos sorties sportives par temps de pluie ou vent léger....</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD338001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Supernova Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0D06CA0681D9506A0951DD2C99FE9FA9.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/0D06CA0681D9506A0951DD2C99FE9FA9.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0D06CA0681D9506A0951DD2C99FE9FA9.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/0D06CA0681D9506A0951DD2C99FE9FA9.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">124.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La Veste Adidas Supernova Gore sera votre meilleure amie pendant toutes vos courses extérieures en b...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD353001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste SMT</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/27726F3F4CF7217ACAE6444E2D3A1DEE.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/27726F3F4CF7217ACAE6444E2D3A1DEE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/27726F3F4CF7217ACAE6444E2D3A1DEE.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/27726F3F4CF7217ACAE6444E2D3A1DEE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Résistez au froid et à la pluie La veste de Running SMT pour femmes vous permettra de résister aux i...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD355001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Supernova Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/40DF622D1EC7AB3CF03AD3B8AD20B536.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/40DF622D1EC7AB3CF03AD3B8AD20B536.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/40DF622D1EC7AB3CF03AD3B8AD20B536.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/40DF622D1EC7AB3CF03AD3B8AD20B536.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">124.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez-vous efficacement par mauvais temps en portant la veste Adidas Supernova Gore. Cette veste ...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD356001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1404AE9CF8FEFF071AE407000D8AF179.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/1404AE9CF8FEFF071AE407000D8AF179.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1404AE9CF8FEFF071AE407000D8AF179.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/1404AE9CF8FEFF071AE407000D8AF179.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Résistez même au vent et à la pluie La veste RESPONSE WIND est idéale pour les entrainements quotidi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD364004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste à capuche AKTIV Clima Proof</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/426849685B027F8E8ADD48575242D245.jpg" alt="Adidas - Veste à capuche AKTIV Clima Proof" src="http://i2.keller-sports.de/shop/products/665x665/426849685B027F8E8ADD48575242D245.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/426849685B027F8E8ADD48575242D245.jpg" alt="Adidas - Veste à capuche AKTIV Clima Proof" src="http://i2.keller-sports.de/shop/products/665x665/426849685B027F8E8ADD48575242D245.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez-vous des intempéries Cette veste Hooded Clima Proof pour femmes vous permettra de sortir pa...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD402001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Midseason</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/239F40577FC71899F1576213A96F4FE0.jpg" alt="Adidas - Veste Midseason" src="http://i2.keller-sports.de/shop/products/665x665/239F40577FC71899F1576213A96F4FE0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/239F40577FC71899F1576213A96F4FE0.jpg" alt="Adidas - Veste Midseason" src="http://i2.keller-sports.de/shop/products/665x665/239F40577FC71899F1576213A96F4FE0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">74.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour vos entrainements,optez pour la célèbre marque Adidas Cette veste de running Adidas sera parfai...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD414001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste à capuche Essentials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3D21C042A5DE9D72CF7A3CA8D1701E5C.jpg" alt="Adidas - Veste à capuche Essentials" src="http://i2.keller-sports.de/shop/products/665x665/3D21C042A5DE9D72CF7A3CA8D1701E5C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3D21C042A5DE9D72CF7A3CA8D1701E5C.jpg" alt="Adidas - Veste à capuche Essentials" src="http://i2.keller-sports.de/shop/products/665x665/3D21C042A5DE9D72CF7A3CA8D1701E5C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Optez pour le confort et la performance Le haut de survêtement adidas Essentials 3-Stripes Hooded po...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD417001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste à capuche Prime</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/17DDE058B396F7E8111DEEB5A099D971.jpg" alt="Adidas - Veste à capuche Prime" src="http://i2.keller-sports.de/shop/products/665x665/17DDE058B396F7E8111DEEB5A099D971.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/17DDE058B396F7E8111DEEB5A099D971.jpg" alt="Adidas - Veste à capuche Prime" src="http://i2.keller-sports.de/shop/products/665x665/17DDE058B396F7E8111DEEB5A099D971.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">54.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour un confort maximum pendant les entraînements. La veste à capuche adidas Prime pour femmes est c...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD426001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - veste PRIME</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/86A8693049A86693D7BE9BEF74ED7062.jpg" alt="Adidas - veste PRIME" src="http://i2.keller-sports.de/shop/products/665x665/86A8693049A86693D7BE9BEF74ED7062.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/86A8693049A86693D7BE9BEF74ED7062.jpg" alt="Adidas - veste PRIME" src="http://i2.keller-sports.de/shop/products/665x665/86A8693049A86693D7BE9BEF74ED7062.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Style simple et classique La veste Prime est un parfait exemple de simplicité et de style. Le tissu ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD428002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste à capuche Seasonal Favourite Tritonal</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1533387F3AD3C16C572EA1FB33471930.jpg" alt="Adidas - Veste à capuche Seasonal Favourite Tritonal" src="http://i2.keller-sports.de/shop/products/665x665/1533387F3AD3C16C572EA1FB33471930.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1533387F3AD3C16C572EA1FB33471930.jpg" alt="Adidas - Veste à capuche Seasonal Favourite Tritonal" src="http://i2.keller-sports.de/shop/products/665x665/1533387F3AD3C16C572EA1FB33471930.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ce sweat capuche pour Hommes Adidas se porte à n´importe quelle occasion.  Léger et design,ce sweat ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD436001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response DS Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/758DD66078AD65B270D2885E106BA507.jpg" alt="Adidas - Veste Response DS Wind" src="http://i2.keller-sports.de/shop/products/665x665/758DD66078AD65B270D2885E106BA507.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/758DD66078AD65B270D2885E106BA507.jpg" alt="Adidas - Veste Response DS Wind" src="http://i2.keller-sports.de/shop/products/665x665/758DD66078AD65B270D2885E106BA507.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne laissez plus les conditions météos vous démotiver Le veste Adidas Response DS Wind pourhommes est...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD439001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Adizero Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/43EF9B0C389091C184985D35EA53DD77.jpg" alt="Adidas - Veste Adizero Gore" src="http://i2.keller-sports.de/shop/products/665x665/43EF9B0C389091C184985D35EA53DD77.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/43EF9B0C389091C184985D35EA53DD77.jpg" alt="Adidas - Veste Adizero Gore" src="http://i2.keller-sports.de/shop/products/665x665/43EF9B0C389091C184985D35EA53DD77.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">129.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Coupe vente et protège contre la pluie Cette veste de la marque Adidas pour femmes est excellente po...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD441004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste AKTIV ClimaProof</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B56252CDB32D76BB31F4DB5F554FE7B8.jpg" alt="Adidas - Veste AKTIV ClimaProof" src="http://i2.keller-sports.de/shop/products/665x665/B56252CDB32D76BB31F4DB5F554FE7B8.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B56252CDB32D76BB31F4DB5F554FE7B8.jpg" alt="Adidas - Veste AKTIV ClimaProof" src="http://i2.keller-sports.de/shop/products/665x665/B56252CDB32D76BB31F4DB5F554FE7B8.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Hommes Veste à capuche Aktiv Climaproof Courez pour votre bien-être et celui du monde entier en port...</p>
+<p class="ng-binding">polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD444002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Trail Hybrid 1/2 Zip Thermal LS</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B12CFA3B890D572BED86579570351549.jpg" alt="Adidas - Veste Trail Hybrid 1/2 Zip Thermal LS" src="http://i2.keller-sports.de/shop/products/665x665/B12CFA3B890D572BED86579570351549.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B12CFA3B890D572BED86579570351549.jpg" alt="Adidas - Veste Trail Hybrid 1/2 Zip Thermal LS" src="http://i2.keller-sports.de/shop/products/665x665/B12CFA3B890D572BED86579570351549.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Hommes Veste thermique demi-zip Trail Hybrid Cette veste pour hommes est dotée de la technologie cli...</p>
+<p class="ng-binding">polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD448001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste SMT</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A4D61759C11E9E2D38071A8D05AAF8A0.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/A4D61759C11E9E2D38071A8D05AAF8A0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A4D61759C11E9E2D38071A8D05AAF8A0.jpg" alt="Adidas - Veste SMT" src="http://i2.keller-sports.de/shop/products/665x665/A4D61759C11E9E2D38071A8D05AAF8A0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Maximum de confort Cette veste pour femmes vous protegera contre le vent grâce à sa protection Clima...</p>
+<p class="ng-binding">polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD449001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Supernova Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9344B4A6BFFF1669556E0A7FB9DA2A8D.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/9344B4A6BFFF1669556E0A7FB9DA2A8D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9344B4A6BFFF1669556E0A7FB9DA2A8D.jpg" alt="Adidas - Veste Supernova Gore" src="http://i2.keller-sports.de/shop/products/665x665/9344B4A6BFFF1669556E0A7FB9DA2A8D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">124.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Une grande liberté de mouvement Protégez-vous du vent et de la pluie pendant vos footings en portant...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD455003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Veste à capuche AKTIV Hoody</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/F6F350A412A646E9ABA3F04C31FC7859.jpg" alt="Adidas -Veste à capuche AKTIV Hoody" src="http://i2.keller-sports.de/shop/products/665x665/F6F350A412A646E9ABA3F04C31FC7859.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/F6F350A412A646E9ABA3F04C31FC7859.jpg" alt="Adidas -Veste à capuche AKTIV Hoody" src="http://i2.keller-sports.de/shop/products/665x665/F6F350A412A646E9ABA3F04C31FC7859.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un maintien au frais et au sec  Ce pull à capuche Adidas Aktiv pour femmes est dotée de la technolog...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD456001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste AKTIV Hooded ClimaProof</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E5777BBC1BE1132CAE329DE66E4EF333.jpg" alt="Adidas - Veste AKTIV Hooded ClimaProof" src="http://i2.keller-sports.de/shop/products/665x665/E5777BBC1BE1132CAE329DE66E4EF333.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E5777BBC1BE1132CAE329DE66E4EF333.jpg" alt="Adidas - Veste AKTIV Hooded ClimaProof" src="http://i2.keller-sports.de/shop/products/665x665/E5777BBC1BE1132CAE329DE66E4EF333.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Restez au sec Cette veste à capuche pour femmes est dotée de la technologie Climaproof® assurant un ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD470003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Adizero Slim</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DFB2EF9852AE8A4CD367545164258FBF.jpg" alt="Adidas - Veste Adizero Slim" src="http://i2.keller-sports.de/shop/products/665x665/DFB2EF9852AE8A4CD367545164258FBF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DFB2EF9852AE8A4CD367545164258FBF.jpg" alt="Adidas - Veste Adizero Slim" src="http://i2.keller-sports.de/shop/products/665x665/DFB2EF9852AE8A4CD367545164258FBF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Veste Adizero Slim Hommes - M...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD478002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste AK Hood</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2BD06A85165A391C10185F9A596E0DD7.jpg" alt="Adidas - Veste AK Hood" src="http://i2.keller-sports.de/shop/products/665x665/2BD06A85165A391C10185F9A596E0DD7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2BD06A85165A391C10185F9A596E0DD7.jpg" alt="Adidas - Veste AK Hood" src="http://i2.keller-sports.de/shop/products/665x665/2BD06A85165A391C10185F9A596E0DD7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour rester au sec Avec cette veste à capuche près du corps Adidas pour Hommes,donnez le meilleur de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD483002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/531DA43D8E1064DA0A4CD5064AE36EE7.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/531DA43D8E1064DA0A4CD5064AE36EE7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/531DA43D8E1064DA0A4CD5064AE36EE7.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/531DA43D8E1064DA0A4CD5064AE36EE7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Conçu pour vous protéger Avec cette veste Adidas pour hommes ne laissez pas la météo ruiner vos effo...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD498001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Veste à capuche Aktiv Hoody</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6C4312B350277937CDA94C23C60A3560.jpg" alt="Adidas -Veste à capuche Aktiv Hoody" src="http://i2.keller-sports.de/shop/products/665x665/6C4312B350277937CDA94C23C60A3560.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6C4312B350277937CDA94C23C60A3560.jpg" alt="Adidas -Veste à capuche Aktiv Hoody" src="http://i2.keller-sports.de/shop/products/665x665/6C4312B350277937CDA94C23C60A3560.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour rester au sec Avec cette veste près du corps Adidas pour femmes,donnez le meilleur de vous-même...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD502001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CD8DE940C8BAAF76DCA4A45B1151CC2F.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/CD8DE940C8BAAF76DCA4A45B1151CC2F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CD8DE940C8BAAF76DCA4A45B1151CC2F.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/CD8DE940C8BAAF76DCA4A45B1151CC2F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Restez au chaud sans risquer la surchauffe Glissez-vous dans cette veste de survêtement femmes pour ...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD504001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Adizero Slim Track</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7F69235CA24EFBB89596CB680F7DA833.jpg" alt="Adidas - Veste Adizero Slim Track" src="http://i2.keller-sports.de/shop/products/665x665/7F69235CA24EFBB89596CB680F7DA833.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7F69235CA24EFBB89596CB680F7DA833.jpg" alt="Adidas - Veste Adizero Slim Track" src="http://i2.keller-sports.de/shop/products/665x665/7F69235CA24EFBB89596CB680F7DA833.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Chaleur et confort  Cette veste Adidas pour femme vous gardera au chaud quand vous courrez dans le f...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD508002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Veste à capuche Response Icon Hoodie</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/54B20CA7FE32DFC08345A74A6020B202.jpg" alt="Adidas -Veste à capuche Response Icon Hoodie" src="http://i2.keller-sports.de/shop/products/665x665/54B20CA7FE32DFC08345A74A6020B202.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/54B20CA7FE32DFC08345A74A6020B202.jpg" alt="Adidas -Veste à capuche Response Icon Hoodie" src="http://i2.keller-sports.de/shop/products/665x665/54B20CA7FE32DFC08345A74A6020B202.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Une protection parfaite Ultra-tendance,ce sweat-shirt de running t´aide à avancer tout en restant à ...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> orange</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD518001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Adizero Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E5FD8CD091571A46E8E975D18B51376E.jpg" alt="Adidas - Adizero Gore" src="http://i2.keller-sports.de/shop/products/665x665/E5FD8CD091571A46E8E975D18B51376E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E5FD8CD091571A46E8E975D18B51376E.jpg" alt="Adidas - Adizero Gore" src="http://i2.keller-sports.de/shop/products/665x665/E5FD8CD091571A46E8E975D18B51376E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">129.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Coupe vente et protège contre la pluie Cette veste de lamarque Adidas pour femmes est excellente pou...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD521001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv Hood Herren Laufjacke (grün) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0150B795A55C21D58F4DB43435C73509.jpg" alt="Adidas - Aktiv Hood Herren Laufjacke (grün) " src="http://i2.keller-sports.de/shop/products/665x665/0150B795A55C21D58F4DB43435C73509.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0150B795A55C21D58F4DB43435C73509.jpg" alt="Adidas - Aktiv Hood Herren Laufjacke (grün) " src="http://i2.keller-sports.de/shop/products/665x665/0150B795A55C21D58F4DB43435C73509.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour rester au sec Avec cette veste à capuche près du corps Adidas pour Hommes,donnez le meilleur de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD527001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv Damen Laufhoody (lila) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9168A972076B2A4ECBBAE8C97EFC5365.jpg" alt="Adidas - Aktiv Damen Laufhoody (lila) " src="http://i2.keller-sports.de/shop/products/665x665/9168A972076B2A4ECBBAE8C97EFC5365.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9168A972076B2A4ECBBAE8C97EFC5365.jpg" alt="Adidas - Aktiv Damen Laufhoody (lila) " src="http://i2.keller-sports.de/shop/products/665x665/9168A972076B2A4ECBBAE8C97EFC5365.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour rester au sec Avec ce sweat à capuche Adidas pour femmes,donnez le meilleur de vous-même tout e...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD532004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Response Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/25642C1F12D6DADBADB3C25CEA500B0F.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/25642C1F12D6DADBADB3C25CEA500B0F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/25642C1F12D6DADBADB3C25CEA500B0F.jpg" alt="Adidas - Veste Response Wind" src="http://i2.keller-sports.de/shop/products/665x665/25642C1F12D6DADBADB3C25CEA500B0F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Une protection maximale !   La veste Adidas ? Response Wind Femmes impressionne par son look et par ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD538002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - SMT Damen Laufjacke (lila) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E9B2ECFD808930F7C184DA0721CC4DB1.jpg" alt="Adidas - SMT Damen Laufjacke (lila) " src="http://i2.keller-sports.de/shop/products/665x665/E9B2ECFD808930F7C184DA0721CC4DB1.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E9B2ECFD808930F7C184DA0721CC4DB1.jpg" alt="Adidas - SMT Damen Laufjacke (lila) " src="http://i2.keller-sports.de/shop/products/665x665/E9B2ECFD808930F7C184DA0721CC4DB1.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Maximum de confort Cette veste pour femmes vous protegera contre le vent grâce à sa protection Clima...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD569001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste à capuche Aktiv Ribbon</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Adidas - Veste à capuche Aktiv Ribbon"><div class="popup"><img ng-src="" alt="Adidas - Veste à capuche Aktiv Ribbon"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Veste à capuche Aktiv Ribbon Femmes (rose/noir) - XS...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAD571001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Veste Aktiv Fleece</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Adidas - Veste Aktiv Fleece"><div class="popup"><img ng-src="" alt="Adidas - Veste Aktiv Fleece"></div></div><br>
+
+
+<div class="prixarticle ng-binding">54.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Veste Aktiv Fleece Femmes (noir) - XS...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS126001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste L2 Convertible</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9E119336BE1B09F4320D3DD81B8C73EC.jpg" alt="Asics - Veste L2 Convertible" src="http://i2.keller-sports.de/shop/products/665x665/9E119336BE1B09F4320D3DD81B8C73EC.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9E119336BE1B09F4320D3DD81B8C73EC.jpg" alt="Asics - Veste L2 Convertible" src="http://i2.keller-sports.de/shop/products/665x665/9E119336BE1B09F4320D3DD81B8C73EC.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">45.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Donnez-vous les moyens d´être le plus rapide La nouvelle vestede Running Asics Level 2 Convertible v...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS181001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste coupe-vent Level 1 Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/69AC791F7BD2008891F1E1188409FDAE.jpg" alt="Asics - Veste coupe-vent Level 1 Gore" src="http://i2.keller-sports.de/shop/products/665x665/69AC791F7BD2008891F1E1188409FDAE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/69AC791F7BD2008891F1E1188409FDAE.jpg" alt="Asics - Veste coupe-vent Level 1 Gore" src="http://i2.keller-sports.de/shop/products/665x665/69AC791F7BD2008891F1E1188409FDAE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">139.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sortez par tous les temps La nouvelle veste Asics Level 1 Gore Windstopper pour hommes sera vous pro...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS189001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Level 2 Convertible</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9000F8D818396352DC1F2B73A61BC069.jpg" alt="Asics -Veste Level 2 Convertible" src="http://i2.keller-sports.de/shop/products/665x665/9000F8D818396352DC1F2B73A61BC069.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9000F8D818396352DC1F2B73A61BC069.jpg" alt="Asics -Veste Level 2 Convertible" src="http://i2.keller-sports.de/shop/products/665x665/9000F8D818396352DC1F2B73A61BC069.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Donnez-vous les moyens d´être le plus rapide La nouvelle veste de Running Asics Level 2 Convertible ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS195001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Fuji Packable</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8AA6271B668B26922440B14B024736CD.jpg" alt="Asics -Veste Fuji Packable" src="http://i2.keller-sports.de/shop/products/665x665/8AA6271B668B26922440B14B024736CD.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8AA6271B668B26922440B14B024736CD.jpg" alt="Asics -Veste Fuji Packable" src="http://i2.keller-sports.de/shop/products/665x665/8AA6271B668B26922440B14B024736CD.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Allez oú vous voulez... et par tous les temps Asics vous propose cette veste de de Running Fuji Pack...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS204001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Level 2 Winter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A5E4693E2E7C2CF0E57A13F3A9BFA313.jpg" alt="Asics -Veste Level 2 Winter" src="http://i2.keller-sports.de/shop/products/665x665/A5E4693E2E7C2CF0E57A13F3A9BFA313.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A5E4693E2E7C2CF0E57A13F3A9BFA313.jpg" alt="Asics -Veste Level 2 Winter" src="http://i2.keller-sports.de/shop/products/665x665/A5E4693E2E7C2CF0E57A13F3A9BFA313.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne laisser pas le froid gâcher votre plaisir de courir  Asics passe au niveau 2 afin de vous protége...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS209001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CA6E362D6B328524629F352C70A871D6.jpg" alt="Asics -Veste" src="http://i2.keller-sports.de/shop/products/665x665/CA6E362D6B328524629F352C70A871D6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CA6E362D6B328524629F352C70A871D6.jpg" alt="Asics -Veste" src="http://i2.keller-sports.de/shop/products/665x665/CA6E362D6B328524629F352C70A871D6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">139.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sortez par tous les temps  La veste de running Asics Gore Windstopper est idéale pour courir dans to...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS222001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Fuji Packable</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/44322961DF87B11B8A60452B062E15A8.jpg" alt="Asics -Veste Fuji Packable" src="http://i2.keller-sports.de/shop/products/665x665/44322961DF87B11B8A60452B062E15A8.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/44322961DF87B11B8A60452B062E15A8.jpg" alt="Asics -Veste Fuji Packable" src="http://i2.keller-sports.de/shop/products/665x665/44322961DF87B11B8A60452B062E15A8.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Courez au sec et au chaud  Cette veste Asics Fuji Packable de trail sera idéale pour toutes vos sort...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS228001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste à capuche Level 2</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5BF1EBF58596CA28E9E35CD4C8F07E29.jpg" alt="Asics - Veste à capuche Level 2" src="http://i2.keller-sports.de/shop/products/665x665/5BF1EBF58596CA28E9E35CD4C8F07E29.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5BF1EBF58596CA28E9E35CD4C8F07E29.jpg" alt="Asics - Veste à capuche Level 2" src="http://i2.keller-sports.de/shop/products/665x665/5BF1EBF58596CA28E9E35CD4C8F07E29.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Préparez-vous à affronter l´hiver  Afin d´affronter l´hiver,Asics vous propose ce sweat à capuche co...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS230001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Level 2 Winter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2AA7787E7302495B5C6423E73ADF101F.jpg" alt="Asics -Veste Level 2 Winter" src="http://i2.keller-sports.de/shop/products/665x665/2AA7787E7302495B5C6423E73ADF101F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2AA7787E7302495B5C6423E73ADF101F.jpg" alt="Asics -Veste Level 2 Winter" src="http://i2.keller-sports.de/shop/products/665x665/2AA7787E7302495B5C6423E73ADF101F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protégez-vous de l´hiver  La veste de Running Level 2 Winter est résistante au vent et à la pluie. F...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS279001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/84BAB864CA58E31D1F83F5DFD31E0082.jpg" alt="Asics -Veste" src="http://i2.keller-sports.de/shop/products/665x665/84BAB864CA58E31D1F83F5DFD31E0082.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/84BAB864CA58E31D1F83F5DFD31E0082.jpg" alt="Asics -Veste" src="http://i2.keller-sports.de/shop/products/665x665/84BAB864CA58E31D1F83F5DFD31E0082.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">129.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La performance alliée au confort Améliorez vos performances et courez même par temps de pluie dans c...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS288001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Fuji Gore</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5B8E465705682FF753A793CA4D863DAD.jpg" alt="Asics -Veste Fuji Gore" src="http://i2.keller-sports.de/shop/products/665x665/5B8E465705682FF753A793CA4D863DAD.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5B8E465705682FF753A793CA4D863DAD.jpg" alt="Asics -Veste Fuji Gore" src="http://i2.keller-sports.de/shop/products/665x665/5B8E465705682FF753A793CA4D863DAD.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">249.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Protection complète imperméable et coupe-vent Peu importe la météo,la veste FUJI GORE-TEX® zippée et...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS296002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Fuji</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/47D75BB4BE32135B3B18587C9A5256FF.jpg" alt="Asics - Veste Fuji" src="http://i2.keller-sports.de/shop/products/665x665/47D75BB4BE32135B3B18587C9A5256FF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/47D75BB4BE32135B3B18587C9A5256FF.jpg" alt="Asics - Veste Fuji" src="http://i2.keller-sports.de/shop/products/665x665/47D75BB4BE32135B3B18587C9A5256FF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Optez pour le confort et la performance La Veste Fuji offre un ajustement parfait et une excellente ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS297003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Fuji 1/2 Zip</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4EA590B85308C3FC83A2A2A55CA1D925.jpg" alt="Asics -Veste Fuji 1/2 Zip" src="http://i2.keller-sports.de/shop/products/665x665/4EA590B85308C3FC83A2A2A55CA1D925.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4EA590B85308C3FC83A2A2A55CA1D925.jpg" alt="Asics -Veste Fuji 1/2 Zip" src="http://i2.keller-sports.de/shop/products/665x665/4EA590B85308C3FC83A2A2A55CA1D925.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">49.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Améliorer vos performances avec ce maillot léger demi-zippé Améliorervos performances avec le MAILLO...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS320001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics -Veste Gore Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5EEE2B770532E67D768381EDF8D0F04F.jpg" alt="Asics -Veste Gore Wind" src="http://i2.keller-sports.de/shop/products/665x665/5EEE2B770532E67D768381EDF8D0F04F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5EEE2B770532E67D768381EDF8D0F04F.jpg" alt="Asics -Veste Gore Wind" src="http://i2.keller-sports.de/shop/products/665x665/5EEE2B770532E67D768381EDF8D0F04F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">139.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Restez au chaud  Pour vos entraînements et vos compétitions par temps venteux et pluvieux,offrez-vou...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS326001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Reflective </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B189A4F88A3A2C9399A8C5DA7DC5DE3A.jpg" alt="Asics - Veste Reflective " src="http://i2.keller-sports.de/shop/products/665x665/B189A4F88A3A2C9399A8C5DA7DC5DE3A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B189A4F88A3A2C9399A8C5DA7DC5DE3A.jpg" alt="Asics - Veste Reflective " src="http://i2.keller-sports.de/shop/products/665x665/B189A4F88A3A2C9399A8C5DA7DC5DE3A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">17.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Assurer une visibilité optimale pour vos courses dans des conditions de faible luminosité Léger et r...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS334001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Speed Wind</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/96ABB75595652EB769E35949E0BA281B.jpg" alt="Asics - Veste Speed Wind" src="http://i2.keller-sports.de/shop/products/665x665/96ABB75595652EB769E35949E0BA281B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/96ABB75595652EB769E35949E0BA281B.jpg" alt="Asics - Veste Speed Wind" src="http://i2.keller-sports.de/shop/products/665x665/96ABB75595652EB769E35949E0BA281B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">129.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Veste coupe-vent: un maximum de chaleur pour vous protéger du froid Conçue avec la technologie Motio...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS353001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Featherweight</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/857A2BBAC812058190B04C030F1F654E.jpg" alt="Asics - Veste Featherweight" src="http://i2.keller-sports.de/shop/products/665x665/857A2BBAC812058190B04C030F1F654E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/857A2BBAC812058190B04C030F1F654E.jpg" alt="Asics - Veste Featherweight" src="http://i2.keller-sports.de/shop/products/665x665/857A2BBAC812058190B04C030F1F654E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Affrontez le mauvais temps grâce à cette veste! Cette veste coupe-vent est très légère et résistante...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS375001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Speed</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/33766F5DF1E3A44EC3C9F032911B09FF.jpg" alt="Asics - Veste Speed" src="http://i2.keller-sports.de/shop/products/665x665/33766F5DF1E3A44EC3C9F032911B09FF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/33766F5DF1E3A44EC3C9F032911B09FF.jpg" alt="Asics - Veste Speed" src="http://i2.keller-sports.de/shop/products/665x665/33766F5DF1E3A44EC3C9F032911B09FF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">129.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Une veste de running flexible et polyvalente Cette veste légère est munie de manches amovibles: vous...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS385001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Convertible</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/26F37FBD43080032C32B95ED624B88EA.jpg" alt="Asics - Veste Convertible" src="http://i2.keller-sports.de/shop/products/665x665/26F37FBD43080032C32B95ED624B88EA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/26F37FBD43080032C32B95ED624B88EA.jpg" alt="Asics - Veste Convertible" src="http://i2.keller-sports.de/shop/products/665x665/26F37FBD43080032C32B95ED624B88EA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">99.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Affrontez la pluie et le vent avec cette veste de running! La veste convertible de Asics est une ves...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/veste/RBEAS386002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Veste Feather Weight</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/90C99E48454155A4D8E13259E9F37DF9.jpg" alt="Asics - Veste Feather Weight" src="http://i2.keller-sports.de/shop/products/665x665/90C99E48454155A4D8E13259E9F37DF9.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/90C99E48454155A4D8E13259E9F37DF9.jpg" alt="Asics - Veste Feather Weight" src="http://i2.keller-sports.de/shop/products/665x665/90C99E48454155A4D8E13259E9F37DF9.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Affrontez le mauvais temps grâce à cette veste! Cette veste coupe-vent est très légère et résistante...</p>
+<p class="ng-binding">polyamide</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize -->
+				
+		
+
+
+
+		
+		
+			<br clear="all">
+			
+			
+			
+				<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope">
+						<a href="" class="ng-binding">2</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+				<!-- // pagination -->
+				
+				
+			
+			
+			
+	
+</ul></div><!--//gauche-->
+
+			<!--droite-->
+			<div id="droite" class="ng-scope">
+			
+		
+				<div class="panel-body">
+				
+				<div class="titre-top">
+<h4>Mot clé </h4>
+
+<div class="stripe-line"></div>
+</div>
+<span ng-show="category" class="">dans catégorie:  <span ng-class="{capitalize: isBrand}" class="ng-binding">veste</span></span><span ng-show="isPlural(subcat)" class="">s</span>
+<input ng-model="query" ng-change="resetPage()" class="form-control ng-pristine ng-valid">
+				</div>
+				
+				
+				
+		 
+		
+		
+				
+				
+				
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Catégorie</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+
+<ul class="navigation">
+<li class="toggleSubMenu titrerub"><a href="#!/vêtements"><strong>Vêtements</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/veste" class="ng-binding">Veste<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/collant" class="ng-binding">Collant<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/t-shirt" class="ng-binding">T-shirt<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/short" class="ng-binding">Short<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/sous-vêtements &amp; chaussettes" class="ng-binding">Sous-vêtements &amp; chaussettes<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/pantalon" class="ng-binding">Pantalon<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/casquette" class="ng-binding">Casquette<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray -->
+					</ul>
+					
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/chaussures"><strong>Chaussures</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/trail" class="ng-binding">Trail<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/piste" class="ng-binding">Piste<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/compétition" class="ng-binding">Compétition<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/stable" class="ng-binding">Stable<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/nature" class="ng-binding">Nature<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray -->
+					</ul>
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/accessoires"><strong>Accessoires</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac à dos" class="ng-binding">Sac à dos<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/cardio" class="ng-binding">Cardio<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/bouteille" class="ng-binding">Bouteille<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/gilet" class="ng-binding">Gilet<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac" class="ng-binding">Sac<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray -->
+					</ul>
+					
+					</ul>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Marque</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<div class="left">
+						<!-- ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/adidas" class="ng-binding">adidas</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/asics" class="ng-binding">asics</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/mizuno" class="ng-binding">mizuno</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nathan" class="ng-binding">nathan</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/new balance" class="ng-binding">new balance</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nike" class="ng-binding">nike</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/polar" class="ng-binding">polar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/powerbar" class="ng-binding">powerbar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/puma" class="ng-binding">puma</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/saucony" class="ng-binding">saucony</a></p><!-- end ngRepeat: brand in brandsArray -->
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				<div class="panel-body">
+				
+								<div class="panel-body">
+	<div class="titre-top">
+<h4 class="ng-binding">Couleur </h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					
+					<a href=""><div ng-model="color" class="color white ng-pristine ng-valid" ng-click="colorFunction('blanc')" ng-class="{selected: 'blanc' == color}"></div></a>
+					<a href=""><div class="color black ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('noir')" ng-class="{selected: 'noir' == color}"></div></a>
+					<a href=""><div class="color gray ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('gris')" ng-class="{selected: 'gris' == color}"></div></a>
+					<a href=""><div class="color red ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rouge')" ng-class="{selected: 'rouge' == color}"></div></a>
+					<a href=""><div class="color blue ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('bleu')" ng-class="{selected: 'bleu' == color}"></div></a>
+					<a href=""><div class="color olive ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('vert')" ng-class="{selected: 'vert' == color}"></div></a>
+					<a href=""><div class="color yellow ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('jaune')" ng-class="{selected: 'jaune' == color}"></div></a>
+					<a href=""><div class="color fuchsia ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rose')" ng-class="{selected: 'rose' == color}"></div></a>
+					<a href=""><div class="color orange ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('orange')" ng-class="{selected: 'orange' == color}"></div></a>
+					<a href=""><div class="color purple ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lila' == color}"></div></a>
+					<a href=""><div class="color silver ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('argent')" ng-class="{selected: 'argent' == color}"></div></a>
+					<p><a href="" ng-show="color" ng-click="colorFunction('')" class="ng-hide">Voir toutes</a></p>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+			
+<div class="titre-top">
+<h4>Pour</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<p><input type="checkbox" ng-model="hommes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Hommes</p>
+					<p><input type="checkbox" ng-model="femmes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Femmes</p>
+				</div>
+				
+				
+			</div>
+			<!--//droite-->
+
+			</div></div></div>
+	
+	</div>
+	
+	<div id="footer">
+<div class="footer">
+
+</div>
+</div>	
+
+
+
+
+
+
+
+</body></html>

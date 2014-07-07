@@ -1,0 +1,2396 @@
+<html dir="ltr" lang="fr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" class="ltr fr no-js ng-scope" ng-app="runningCatalogApp" ng-controller="MainCtrl"><!--<![endif]--><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+
+<title ng-bind="data.title() | capitalize" class="ng-binding">Shorts</title>
+<meta name="description" content="La boutique des passionnés de course à pied">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/app.css">
+
+<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+
+
+
+
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8784346-28', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body data-status="ready" style="">
+
+
+<div id="header">
+	<img class="spip_logos" alt="Boutique Course à pied" src="images/boutique-courseapied.png" width="328" height="102">
+	
+</div>	<div id="nav">
+<div class="nav">
+	<ul>
+		<li><a href="http://www.passionrunning.com">Accueil</a></li>
+	
+
+		
+		<li><a href="http://www.passionrunning.com/course-a-pied/">Course à pied</a></li>
+		
+		<li><a href="http://www.passionrunning.com/entrainement/">Entrainement</a></li>
+		
+		<li><a href="http://www.passionrunning.com/equipements/">Equipements</a></li>
+		
+		<li><a href="http://www.passionrunning.com/lecture/">Lecture</a></li>
+		
+		<li><a href="http://www.passionrunning.com/nutrition/">Nutrition</a></li>
+		
+		<li><a href="http://www.passionrunning.com/sante-blessure/">Santé / Blessure</a></li>
+		
+		<li class="btnboutique"><a href="http://boutique.passionrunning.com">La Boutique</a>
+		<ul>
+		<li><a href="http://boutique.passionrunning.com/#/v%C3%AAtements">Vêtements</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/chaussures">Chaussures</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/accessoires">Accessoires</a></li>
+		</ul></li>
+	</ul>
+	</div>
+</div>	
+
+
+
+<div id="rubrique">
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">
+
+		
+
+
+		
+			<div ng-show="category" class="ng-scope">
+		<div id="arbo"><div class="arbo"><a href="/#!">Boutique</a> &gt; <strong class="on"><!-- ngIf: category --><span ng-if="category" ng-class="{capitalize: isBrand}" class="ng-binding ng-scope">Short<!-- ngIf: isPlural(subcat) --><span ng-if="isPlural(subcat)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcat) --></span><!-- end ngIf: category --></strong></div></div><!--.arbo-->
+</div>
+			
+
+
+<!-- gauche-->
+<div id="gauche" class="ng-scope">
+
+
+			<h1 ng-hide="category" class="ng-hide">La boutique passion running</h1>
+			
+			
+			
+			<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope">
+						<a href="" class="ng-binding">2</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+			<!-- // pagination -->
+			
+			
+			<br clear="all">
+			<div class="alert alert-warning ng-hide" ng-show="noArticles"><h4>Pas d'articles correspondants aux critères de recherche</h4></div>
+			<ul>
+			
+			
+			
+			
+				<!-- ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD155001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Pantalon Adizero 6 Short</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/73B5EEF27C63ADBE373D1B963254555C.jpg" alt="Adidas - Pantalon Adizero 6 Short" src="http://i2.keller-sports.de/shop/products/665x665/73B5EEF27C63ADBE373D1B963254555C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/73B5EEF27C63ADBE373D1B963254555C.jpg" alt="Adidas - Pantalon Adizero 6 Short" src="http://i2.keller-sports.de/shop/products/665x665/73B5EEF27C63ADBE373D1B963254555C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">30.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">adizero 6 Short F  - FORMOTION: Coupe ergonomique pour un mouvement linéaire pendant la course. - CL...</p>
+<p class="ng-binding">100% polyamide</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD184002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Marathon 10</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/30B124E5F806045556DC0E086294D1A6.jpg" alt="Adidas - Short Marathon 10" src="http://i2.keller-sports.de/shop/products/665x665/30B124E5F806045556DC0E086294D1A6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/30B124E5F806045556DC0E086294D1A6.jpg" alt="Adidas - Short Marathon 10" src="http://i2.keller-sports.de/shop/products/665x665/30B124E5F806045556DC0E086294D1A6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short adidas Marathon 10 pour femmes est parfait pour s´entraîner à fond,tout en restant au frais...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD200002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Response 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/75C97FF5F3E65B9F72BE6A9AFB3677B2.jpg" alt="Adidas - Short Response 7" src="http://i2.keller-sports.de/shop/products/665x665/75C97FF5F3E65B9F72BE6A9AFB3677B2.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/75C97FF5F3E65B9F72BE6A9AFB3677B2.jpg" alt="Adidas - Short Response 7" src="http://i2.keller-sports.de/shop/products/665x665/75C97FF5F3E65B9F72BE6A9AFB3677B2.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short coupe ample adidas Response 3-Stripes 7-Inch pour hommes offre un confort maximum pendant l...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD201001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Supernova 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/65D5FF8F836AD930F7CF2BFF11E8FED4.jpg" alt="Adidas - Short Supernova 7" src="http://i2.keller-sports.de/shop/products/665x665/65D5FF8F836AD930F7CF2BFF11E8FED4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/65D5FF8F836AD930F7CF2BFF11E8FED4.jpg" alt="Adidas - Short Supernova 7" src="http://i2.keller-sports.de/shop/products/665x665/65D5FF8F836AD930F7CF2BFF11E8FED4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short coupe ample adidas Response 3-Stripes 7-Inch pour hommes offre un confort maximum pendant l...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD203001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Adizero 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/311CFB4DC6C3160F01B263524C06D592.jpg" alt="Adidas - Short Adizero 7" src="http://i2.keller-sports.de/shop/products/665x665/311CFB4DC6C3160F01B263524C06D592.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/311CFB4DC6C3160F01B263524C06D592.jpg" alt="Adidas - Short Adizero 7" src="http://i2.keller-sports.de/shop/products/665x665/311CFB4DC6C3160F01B263524C06D592.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">49.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short coupe longue adidas adiZero? 7-Inch est un modèle léger et confortable,parfait pour le spor...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD206002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Aktiv Grete</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D52CFEC3C982EA9B806C32894D7836C6.jpg" alt="Adidas - Short Aktiv Grete" src="http://i2.keller-sports.de/shop/products/665x665/D52CFEC3C982EA9B806C32894D7836C6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D52CFEC3C982EA9B806C32894D7836C6.jpg" alt="Adidas - Short Aktiv Grete" src="http://i2.keller-sports.de/shop/products/665x665/D52CFEC3C982EA9B806C32894D7836C6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short adidas Marathon 10 Grete pour femmes a été créé en l´honneur de la grande marathonienne Gre...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD230001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Response</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1C45F06866EAB63A6EC027A11C798935.jpg" alt="Adidas - Short Response" src="http://i2.keller-sports.de/shop/products/665x665/1C45F06866EAB63A6EC027A11C798935.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1C45F06866EAB63A6EC027A11C798935.jpg" alt="Adidas - Short Response" src="http://i2.keller-sports.de/shop/products/665x665/1C45F06866EAB63A6EC027A11C798935.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le collant court adidas Response 3-Stripes pour hommes assure un confort maximum. Ce collant de cour...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD262001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Aktiv Grete</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FAC8EB30EA12991826639E63ADD76CD6.jpg" alt="Adidas - Short Aktiv Grete" src="http://i2.keller-sports.de/shop/products/665x665/FAC8EB30EA12991826639E63ADD76CD6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FAC8EB30EA12991826639E63ADD76CD6.jpg" alt="Adidas - Short Aktiv Grete" src="http://i2.keller-sports.de/shop/products/665x665/FAC8EB30EA12991826639E63ADD76CD6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short adidas Marathon 10 Grete pour femmes a été créé en l´honneur de la grande marathonienne Gre...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD267001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short SuperNova 5 hommes </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8F14E9A00683565182E7060121F2FAB5.jpg" alt="Adidas - Short SuperNova 5 hommes " src="http://i2.keller-sports.de/shop/products/665x665/8F14E9A00683565182E7060121F2FAB5.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8F14E9A00683565182E7060121F2FAB5.jpg" alt="Adidas - Short SuperNova 5 hommes " src="http://i2.keller-sports.de/shop/products/665x665/8F14E9A00683565182E7060121F2FAB5.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short Hommes Supernova  Surpassez-vous avec le short adidas Supernova.   &gt; CLIMACOOL® : assure une r...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD273001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Response 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/74ED8C9E1D7CB3EC5A48E2AA217E51D6.jpg" alt="Adidas - Short Response 7" src="http://i2.keller-sports.de/shop/products/665x665/74ED8C9E1D7CB3EC5A48E2AA217E51D6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/74ED8C9E1D7CB3EC5A48E2AA217E51D6.jpg" alt="Adidas - Short Response 7" src="http://i2.keller-sports.de/shop/products/665x665/74ED8C9E1D7CB3EC5A48E2AA217E51D6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short coupe ample adidas Response 3-Stripes 7-Inch pour hommes offre un confort maximum pendant l...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD279001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - T-shirt Sequentials SS</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A54B15400207802C81F09CC704E56F3E.jpg" alt="Adidas - T-shirt Sequentials SS" src="http://i2.keller-sports.de/shop/products/665x665/A54B15400207802C81F09CC704E56F3E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A54B15400207802C81F09CC704E56F3E.jpg" alt="Adidas - T-shirt Sequentials SS" src="http://i2.keller-sports.de/shop/products/665x665/A54B15400207802C81F09CC704E56F3E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sequentials Short Sleeve  &gt; CLIMACOOL®: permet une régulation de la chaleur et de lhumidité grâce à ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD286001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Response 2 en 1</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CA641662922E24D7D986EE23FE02A9AE.jpg" alt="Adidas - Short Response 2 en 1" src="http://i2.keller-sports.de/shop/products/665x665/CA641662922E24D7D986EE23FE02A9AE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CA641662922E24D7D986EE23FE02A9AE.jpg" alt="Adidas - Short Response 2 en 1" src="http://i2.keller-sports.de/shop/products/665x665/CA641662922E24D7D986EE23FE02A9AE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short coupe ample adidas Response 3-Stripes 2-In1 pour femmes offre un confort maximum pendant l´...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD318001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Pantalon Supernova 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8D096D2AAF36C2C4BAE2C496FAE84656.jpg" alt="Adidas - Pantalon Supernova 7" src="http://i2.keller-sports.de/shop/products/665x665/8D096D2AAF36C2C4BAE2C496FAE84656.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8D096D2AAF36C2C4BAE2C496FAE84656.jpg" alt="Adidas - Pantalon Supernova 7" src="http://i2.keller-sports.de/shop/products/665x665/8D096D2AAF36C2C4BAE2C496FAE84656.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Surpassez-vous avec le short adidas Supernova 7-Inch pour hommes. Ce short de course est conçu avec ...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD324001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Marathon 10</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0A75EC3B279409743FAD021D491D7E17.jpg" alt="Adidas - Short Marathon 10" src="http://i2.keller-sports.de/shop/products/665x665/0A75EC3B279409743FAD021D491D7E17.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0A75EC3B279409743FAD021D491D7E17.jpg" alt="Adidas - Short Marathon 10" src="http://i2.keller-sports.de/shop/products/665x665/0A75EC3B279409743FAD021D491D7E17.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le shortadidas Marathon&nbsp;10 pour femmes est parfait pour s´entraîner à fond,touten restant au frais e...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD331004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Pantalon Split</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FC9C855A06F81AEDA7DCB4270E740364.jpg" alt="Adidas - Pantalon Split" src="http://i2.keller-sports.de/shop/products/665x665/FC9C855A06F81AEDA7DCB4270E740364.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FC9C855A06F81AEDA7DCB4270E740364.jpg" alt="Adidas - Pantalon Split" src="http://i2.keller-sports.de/shop/products/665x665/FC9C855A06F81AEDA7DCB4270E740364.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Split Short  - CLIMALITE: tissu léger et mou pour une meilleur gestion de lhumidité. - CLIMACOOL: év...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD344001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Pantalon AKTIV Shorts 3 Stripes 8inch</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D0E8024E9E289E4B222F85F2870649E7.jpg" alt="Adidas - Pantalon AKTIV Shorts 3 Stripes 8inch" src="http://i2.keller-sports.de/shop/products/665x665/D0E8024E9E289E4B222F85F2870649E7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D0E8024E9E289E4B222F85F2870649E7.jpg" alt="Adidas - Pantalon AKTIV Shorts 3 Stripes 8inch" src="http://i2.keller-sports.de/shop/products/665x665/D0E8024E9E289E4B222F85F2870649E7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short pour tous vos entrainements  Ce short AKTIV 3 Stripes deviendra votre accessoire indispensa...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD351001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">false</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3F92357001568ABEAB9390493C7D0A53.jpg" alt="false" src="http://i2.keller-sports.de/shop/products/665x665/3F92357001568ABEAB9390493C7D0A53.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3F92357001568ABEAB9390493C7D0A53.jpg" alt="false" src="http://i2.keller-sports.de/shop/products/665x665/3F92357001568ABEAB9390493C7D0A53.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Votre allié pour vos entrainements  La sueur ne va plus vous atteindre lorsque vous porterez le shor...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD371001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Pantalon Adizero 6inch</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/42DF3999B343A06409F666512E3856F0.jpg" alt="Adidas - Pantalon Adizero 6inch" src="http://i2.keller-sports.de/shop/products/665x665/42DF3999B343A06409F666512E3856F0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/42DF3999B343A06409F666512E3856F0.jpg" alt="Adidas - Pantalon Adizero 6inch" src="http://i2.keller-sports.de/shop/products/665x665/42DF3999B343A06409F666512E3856F0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne laissez pas la transpiration vous ralentir. Le short pour femmes Adidas Adizero est fabriqué avec...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD373005">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short adiZero</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/C598DFFE0E1E0D4D38522417164657F0.jpg" alt="Adidas - Short adiZero" src="http://i2.keller-sports.de/shop/products/665x665/C598DFFE0E1E0D4D38522417164657F0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/C598DFFE0E1E0D4D38522417164657F0.jpg" alt="Adidas - Short adiZero" src="http://i2.keller-sports.de/shop/products/665x665/C598DFFE0E1E0D4D38522417164657F0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Superbe Short Adizero Hommes pour vos entrainements Ce short adiZero pour hommes possède deux poches...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD400001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Supernova 7 Inch</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/BE5B94725CD22718BF5DAED3C0F593A8.jpg" alt="Adidas - Short Supernova 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/BE5B94725CD22718BF5DAED3C0F593A8.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/BE5B94725CD22718BF5DAED3C0F593A8.jpg" alt="Adidas - Short Supernova 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/BE5B94725CD22718BF5DAED3C0F593A8.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Surpassez-vous avec le short adidas Supernova pour hommes.  Ce short de course est conçu avec CLIMAC...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD401001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Marathon 10 Mesh Unlined</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9102542B6626B515A4B32416D2FC31C6.jpg" alt="Adidas - Short Marathon 10 Mesh Unlined" src="http://i2.keller-sports.de/shop/products/665x665/9102542B6626B515A4B32416D2FC31C6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9102542B6626B515A4B32416D2FC31C6.jpg" alt="Adidas - Short Marathon 10 Mesh Unlined" src="http://i2.keller-sports.de/shop/products/665x665/9102542B6626B515A4B32416D2FC31C6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Superbe short Marathon 10 Fabriqué en tissu ClimaLite® évacuant parfaitement la transpiration,ce sho...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD430001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - short Techfit Preperation Seasonal Tight</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/852BF680B1C2CCE6AEE47F412F3FBD25.jpg" alt="Adidas - short Techfit Preperation Seasonal Tight" src="http://i2.keller-sports.de/shop/products/665x665/852BF680B1C2CCE6AEE47F412F3FBD25.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/852BF680B1C2CCE6AEE47F412F3FBD25.jpg" alt="Adidas - short Techfit Preperation Seasonal Tight" src="http://i2.keller-sports.de/shop/products/665x665/852BF680B1C2CCE6AEE47F412F3FBD25.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Optimiser vos performances  Le collant court adidas TechfitPreparation Seasonal pour hommes assure u...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD469001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short TechFit Preparation</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CCE436D69BD14BC7519182C939C2D1ED.jpg" alt="Adidas - Short TechFit Preparation" src="http://i2.keller-sports.de/shop/products/665x665/CCE436D69BD14BC7519182C939C2D1ED.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CCE436D69BD14BC7519182C939C2D1ED.jpg" alt="Adidas - Short TechFit Preparation" src="http://i2.keller-sports.de/shop/products/665x665/CCE436D69BD14BC7519182C939C2D1ED.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">54.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un collant élégant et confortable Pour plus de maintien et de confort pendant les longues séances d´...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD474002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas Short Supernova 7 Inch</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DAD08303B8B20DCB842D5FF5A6CBDC1E.jpg" alt="Adidas Short Supernova 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/DAD08303B8B20DCB842D5FF5A6CBDC1E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DAD08303B8B20DCB842D5FF5A6CBDC1E.jpg" alt="Adidas Short Supernova 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/DAD08303B8B20DCB842D5FF5A6CBDC1E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Une chaussure pour aller de l?avant Ce short de course homme est spécialement conçu pour rester frai...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD486002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Shorte Response 7 Inch</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/41A29BE4B9ED3331677426BAD8D21A1C.jpg" alt="Adidas - Shorte Response 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/41A29BE4B9ED3331677426BAD8D21A1C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/41A29BE4B9ED3331677426BAD8D21A1C.jpg" alt="Adidas - Shorte Response 7 Inch" src="http://i2.keller-sports.de/shop/products/665x665/41A29BE4B9ED3331677426BAD8D21A1C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Parfait pour vos footings Cours en toute confiance avec le short 7-Inch Response. Ce short de runnin...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD499004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Short Aktiv 3/4 Tights</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Pantalons</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4BD64608EECE7DD61181BAA3064C19BA.jpg" alt="Adidas -Short Aktiv 3/4 Tights" src="http://i2.keller-sports.de/shop/products/665x665/4BD64608EECE7DD61181BAA3064C19BA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4BD64608EECE7DD61181BAA3064C19BA.jpg" alt="Adidas -Short Aktiv 3/4 Tights" src="http://i2.keller-sports.de/shop/products/665x665/4BD64608EECE7DD61181BAA3064C19BA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne vous souciez plus de la transpiration Le collant 3/4 adidas Aktiv pour femmes vous permettra de c...</p>
+<p class="ng-binding">90% polyester /10% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD506001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Aktiv M10</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0A5DD40F6C6E9EA08C38E9DA057CF742.jpg" alt="Adidas - Short Aktiv M10" src="http://i2.keller-sports.de/shop/products/665x665/0A5DD40F6C6E9EA08C38E9DA057CF742.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0A5DD40F6C6E9EA08C38E9DA057CF742.jpg" alt="Adidas - Short Aktiv M10" src="http://i2.keller-sports.de/shop/products/665x665/0A5DD40F6C6E9EA08C38E9DA057CF742.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un short idéal pour s´entrainer Le short adidas Aktiv Marathon 10 pour femmes est parfait pour s´ent...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bunt</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD510003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Short collant Response 3/4 Tights</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Pantalons</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0BC6D7196A604093D421E824729A4F25.jpg" alt="Adidas -Short collant Response 3/4 Tights" src="http://i2.keller-sports.de/shop/products/665x665/0BC6D7196A604093D421E824729A4F25.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0BC6D7196A604093D421E824729A4F25.jpg" alt="Adidas -Short collant Response 3/4 Tights" src="http://i2.keller-sports.de/shop/products/665x665/0BC6D7196A604093D421E824729A4F25.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un collant féminin et confortable Le collant 3/4 de running pour femmes a été conçu pour vous apport...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD517002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Short Marathon 10 Energy</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/00882B590F67FD622C289C3AD8E9B47D.jpg" alt="Adidas -Short Marathon 10 Energy" src="http://i2.keller-sports.de/shop/products/665x665/00882B590F67FD622C289C3AD8E9B47D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/00882B590F67FD622C289C3AD8E9B47D.jpg" alt="Adidas -Short Marathon 10 Energy" src="http://i2.keller-sports.de/shop/products/665x665/00882B590F67FD622C289C3AD8E9B47D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Femmes Short Marathon 10  Le short de running pour femmes Marathon 10 combine confort et performance...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD522001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv Short Sleeve Herren Laufshirt (dunkelblau) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D83B832AA362E1DC38F9371AE87AC0F9.jpg" alt="Adidas - Aktiv Short Sleeve Herren Laufshirt (dunkelblau) " src="http://i2.keller-sports.de/shop/products/665x665/D83B832AA362E1DC38F9371AE87AC0F9.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D83B832AA362E1DC38F9371AE87AC0F9.jpg" alt="Adidas - Aktiv Short Sleeve Herren Laufshirt (dunkelblau) " src="http://i2.keller-sports.de/shop/products/665x665/D83B832AA362E1DC38F9371AE87AC0F9.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Activez-vous Grâce à son tissu respirant Climalite®,ce T-shirt de running hommes évacue efficacement...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD523001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv Neverstop Knit 10 Herren Laufshort (dunkelblau) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/17B57024A1C90DBDEB866ADB0DCEB72D.jpg" alt="Adidas - Aktiv Neverstop Knit 10 Herren Laufshort (dunkelblau) " src="http://i2.keller-sports.de/shop/products/665x665/17B57024A1C90DBDEB866ADB0DCEB72D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/17B57024A1C90DBDEB866ADB0DCEB72D.jpg" alt="Adidas - Aktiv Neverstop Knit 10 Herren Laufshort (dunkelblau) " src="http://i2.keller-sports.de/shop/products/665x665/17B57024A1C90DBDEB866ADB0DCEB72D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">42.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Multifonctionnalité !   La nouvelle série active d´Adidas   Avantages  &gt; ClimaLite ® - la technologi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD525002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Response Short Tights Herren Laufshort (schwarz) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/79A7BFF99A88A6D39B0C143F48A5115A.jpg" alt="Adidas - Response Short Tights Herren Laufshort (schwarz) " src="http://i2.keller-sports.de/shop/products/665x665/79A7BFF99A88A6D39B0C143F48A5115A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/79A7BFF99A88A6D39B0C143F48A5115A.jpg" alt="Adidas - Response Short Tights Herren Laufshort (schwarz) " src="http://i2.keller-sports.de/shop/products/665x665/79A7BFF99A88A6D39B0C143F48A5115A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Comme une seconde peau Conçu pour agir comme une seconde peau,le collant court Response hommes est r...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD528002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv Short Sleeve Damen Laufshirt (dunkelblau/grün) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A384BA77237A92D42195C8372B9A1535.jpg" alt="Adidas - Aktiv Short Sleeve Damen Laufshirt (dunkelblau/grün) " src="http://i2.keller-sports.de/shop/products/665x665/A384BA77237A92D42195C8372B9A1535.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A384BA77237A92D42195C8372B9A1535.jpg" alt="Adidas - Aktiv Short Sleeve Damen Laufshirt (dunkelblau/grün) " src="http://i2.keller-sports.de/shop/products/665x665/A384BA77237A92D42195C8372B9A1535.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Aktiv Short Sleeve Damen Laufshirt (dunkelblau/grün) - S...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD535002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Marathon 10 Clima Damen Laufshort (lila) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5FB0F3486041330F1AF027DFDF349C51.jpg" alt="Adidas - Marathon 10 Clima Damen Laufshort (lila) " src="http://i2.keller-sports.de/shop/products/665x665/5FB0F3486041330F1AF027DFDF349C51.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5FB0F3486041330F1AF027DFDF349C51.jpg" alt="Adidas - Marathon 10 Clima Damen Laufshort (lila) " src="http://i2.keller-sports.de/shop/products/665x665/5FB0F3486041330F1AF027DFDF349C51.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Spécial longue distance Ce short femmes est spécialement fait pour les courses longues distances. Fa...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD537001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Aktiv M10 Damen Laufshort (grün/gelb) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/77AA7C1D0EA3871D7DA930C1E7A74092.jpg" alt="Adidas - Aktiv M10 Damen Laufshort (grün/gelb) " src="http://i2.keller-sports.de/shop/products/665x665/77AA7C1D0EA3871D7DA930C1E7A74092.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/77AA7C1D0EA3871D7DA930C1E7A74092.jpg" alt="Adidas - Aktiv M10 Damen Laufshort (grün/gelb) " src="http://i2.keller-sports.de/shop/products/665x665/77AA7C1D0EA3871D7DA930C1E7A74092.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Spécial longue distance Ce short femmes est spécialement fait pour les courses longues distances. Fa...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAD585001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Short Marathon 10</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Adidas - Short Marathon 10"><div class="popup"><img ng-src="" alt="Adidas - Short Marathon 10"></div></div><br>
+
+
+<div class="prixarticle ng-binding">37.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Spécial longue distance Ce short femmes est spécialement fait pour les courses longues distances. Fa...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS149001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Ayami</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FF1A244F0CFF0BD18154776FBF3FBB91.jpg" alt="Asics - Short Ayami" src="http://i2.keller-sports.de/shop/products/665x665/FF1A244F0CFF0BD18154776FBF3FBB91.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FF1A244F0CFF0BD18154776FBF3FBB91.jpg" alt="Asics - Short Ayami" src="http://i2.keller-sports.de/shop/products/665x665/FF1A244F0CFF0BD18154776FBF3FBB91.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">20.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ayami Short Femme  - Léger,short avec élastique intérieur et une excellente respirabilité. - Poche a...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS164003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Woven</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9D3D1E558838D406113D0382022B5FC5.jpg" alt="Asics - Short Woven" src="http://i2.keller-sports.de/shop/products/665x665/9D3D1E558838D406113D0382022B5FC5.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9D3D1E558838D406113D0382022B5FC5.jpg" alt="Asics - Short Woven" src="http://i2.keller-sports.de/shop/products/665x665/9D3D1E558838D406113D0382022B5FC5.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short 2-en-1 léger et respirant. Empiècements en MESH pour un managementde lhumidité optimal. Poche ...</p>
+<p class="ng-binding">88% polyester/12% élastha</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS321004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/69229EEAA94ECE54ADE0D00925488649.jpg" alt="Asics - Short 7" src="http://i2.keller-sports.de/shop/products/665x665/69229EEAA94ECE54ADE0D00925488649.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/69229EEAA94ECE54ADE0D00925488649.jpg" alt="Asics - Short 7" src="http://i2.keller-sports.de/shop/products/665x665/69229EEAA94ECE54ADE0D00925488649.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Alliez confort et performances Le short Asics 7 assure le confort nécessaire vous permettant d´améli...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS335001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Pantalon Core Balance Sprinter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/F3A6E6D315E6ECAD9F5E2B2E5A2BA309.jpg" alt="Asics - Pantalon Core Balance Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/F3A6E6D315E6ECAD9F5E2B2E5A2BA309.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/F3A6E6D315E6ECAD9F5E2B2E5A2BA309.jpg" alt="Asics - Pantalon Core Balance Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/F3A6E6D315E6ECAD9F5E2B2E5A2BA309.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short de sprint qu´il vous faut! Le short Asics Core Balance sprinter pour homme est un short de ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS336001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Collant IM (mi-genoux)</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3BE9EEFF90CE683D5B811E6F9AAE12BF.jpg" alt="Asics - Collant IM (mi-genoux)" src="http://i2.keller-sports.de/shop/products/665x665/3BE9EEFF90CE683D5B811E6F9AAE12BF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3BE9EEFF90CE683D5B811E6F9AAE12BF.jpg" alt="Asics - Collant IM (mi-genoux)" src="http://i2.keller-sports.de/shop/products/665x665/3BE9EEFF90CE683D5B811E6F9AAE12BF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">74.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le collant qui offre une liberté de mouvement incroyable Au niveau de la taille,la technologie Core ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS340001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Speed 7</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3F2E88D1AE42E7931F0CFF5BA0D54122.jpg" alt="Asics - Short Speed 7" src="http://i2.keller-sports.de/shop/products/665x665/3F2E88D1AE42E7931F0CFF5BA0D54122.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3F2E88D1AE42E7931F0CFF5BA0D54122.jpg" alt="Asics - Short Speed 7" src="http://i2.keller-sports.de/shop/products/665x665/3F2E88D1AE42E7931F0CFF5BA0D54122.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de sport réfléchissant: un short de course aéré Ce short possède des imprimés réfléchissants q...</p>
+<p class="ng-binding">88% polyester/12% élastha</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS354001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Adrenaline Sprinter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E29B913A04DA257B50508E0ACD0F3A57.jpg" alt="Asics - Short Adrenaline Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/E29B913A04DA257B50508E0ACD0F3A57.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E29B913A04DA257B50508E0ACD0F3A57.jpg" alt="Asics - Short Adrenaline Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/E29B913A04DA257B50508E0ACD0F3A57.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un collant pour courir toujours plus vite! L´adrénaline Sprinter Homme Asics est un short de course ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS359001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Pace Woven</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/EF8A6FBB33F22312CDA6C78B48DCE699.jpg" alt="Asics - Short Pace Woven" src="http://i2.keller-sports.de/shop/products/665x665/EF8A6FBB33F22312CDA6C78B48DCE699.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/EF8A6FBB33F22312CDA6C78B48DCE699.jpg" alt="Asics - Short Pace Woven" src="http://i2.keller-sports.de/shop/products/665x665/EF8A6FBB33F22312CDA6C78B48DCE699.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un short de running aéré et confortable Ce short de running vous apporte une liberté de mouvement to...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS362001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Soukai Woven</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5DB2D51E273CE96CF6E5E9CBF2C5A45A.jpg" alt="Asics - Short Soukai Woven" src="http://i2.keller-sports.de/shop/products/665x665/5DB2D51E273CE96CF6E5E9CBF2C5A45A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5DB2D51E273CE96CF6E5E9CBF2C5A45A.jpg" alt="Asics - Short Soukai Woven" src="http://i2.keller-sports.de/shop/products/665x665/5DB2D51E273CE96CF6E5E9CBF2C5A45A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de running: un short aéré et confortable Fabriqué dans une matière légère et extensible à l´in...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS370001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Fuji Sprinter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7FB6AB01C3985727E9E088DA3F5DDAAC.jpg" alt="Asics - Short Fuji Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/7FB6AB01C3985727E9E088DA3F5DDAAC.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7FB6AB01C3985727E9E088DA3F5DDAAC.jpg" alt="Asics - Short Fuji Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/7FB6AB01C3985727E9E088DA3F5DDAAC.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Léger et confortable  Ce cuissard de running pour hommes offre un soutien musculaire idéal pour vos ...</p>
+<p class="ng-binding">90% polyester /10% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS376001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Collant IM Leg Balance (mi-genoux)</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1B6CCD032EE0F9554CB71088F0D34354.jpg" alt="Asics - Collant IM Leg Balance (mi-genoux)" src="http://i2.keller-sports.de/shop/products/665x665/1B6CCD032EE0F9554CB71088F0D34354.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1B6CCD032EE0F9554CB71088F0D34354.jpg" alt="Asics - Collant IM Leg Balance (mi-genoux)" src="http://i2.keller-sports.de/shop/products/665x665/1B6CCD032EE0F9554CB71088F0D34354.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">74.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Des collants de running qui permettent une meilleure posture et un maximum de confort Les panneaux é...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS387001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Pace Woven 3</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B896705E7BA14A1225653F7F97E24B4D.jpg" alt="Asics - Short Pace Woven 3" src="http://i2.keller-sports.de/shop/products/665x665/B896705E7BA14A1225653F7F97E24B4D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B896705E7BA14A1225653F7F97E24B4D.jpg" alt="Asics - Short Pace Woven 3" src="http://i2.keller-sports.de/shop/products/665x665/B896705E7BA14A1225653F7F97E24B4D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short pour faire sensation! Le Short Asics Pace Woven Short est un short de course court avec un ...</p>
+<p class="ng-binding">88% polyester / 12% élast</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS389001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Woven 5,5</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/72D19C75E7B330532DEFA37FE7D86C30.jpg" alt="Asics - Short Woven 5,5" src="http://i2.keller-sports.de/shop/products/665x665/72D19C75E7B330532DEFA37FE7D86C30.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/72D19C75E7B330532DEFA37FE7D86C30.jpg" alt="Asics - Short Woven 5,5" src="http://i2.keller-sports.de/shop/products/665x665/72D19C75E7B330532DEFA37FE7D86C30.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un short de course conçu pour une liberté de mouvement et un confort optimal  Grâce à son tissu doux...</p>
+<p class="ng-binding">88% polyester / 12% élast</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEAS390001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Short Adrenaline Sprinter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/96467975781E2275DF51B21AC5D6B1B1.jpg" alt="Asics - Short Adrenaline Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/96467975781E2275DF51B21AC5D6B1B1.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/96467975781E2275DF51B21AC5D6B1B1.jpg" alt="Asics - Short Adrenaline Sprinter" src="http://i2.keller-sports.de/shop/products/665x665/96467975781E2275DF51B21AC5D6B1B1.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Courez en toute liberté grâce au collant running Sprinter Conçus pour améliorer vos performances,ces...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEMI059001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Short Square Leg</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2896D1E790E26FE953984AF6964E910B.jpg" alt="Mizuno - Short Square Leg" src="http://i2.keller-sports.de/shop/products/665x665/2896D1E790E26FE953984AF6964E910B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2896D1E790E26FE953984AF6964E910B.jpg" alt="Mizuno - Short Square Leg" src="http://i2.keller-sports.de/shop/products/665x665/2896D1E790E26FE953984AF6964E910B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">40.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Haute Performance Ce short Mizuno Square Leg pour Hommes est confortable et super léger,idéal pour v...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEMI074001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Short Drylite Hazard Square 5.5</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/857B511364AA2BC65783C0F6384F6E58.jpg" alt="Mizuno - Short Drylite Hazard Square 5.5" src="http://i2.keller-sports.de/shop/products/665x665/857B511364AA2BC65783C0F6384F6E58.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/857B511364AA2BC65783C0F6384F6E58.jpg" alt="Mizuno - Short Drylite Hazard Square 5.5" src="http://i2.keller-sports.de/shop/products/665x665/857B511364AA2BC65783C0F6384F6E58.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">40.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de sport léger et confortable. Conçu pour la pratique du running,sa coupe droite et confortabl...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBEMI085001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Short Drylite Active Square 3.5</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E8E86DDB6095D229EBBB44CB670C5FBE.jpg" alt="Mizuno - Short Drylite Active Square 3.5" src="http://i2.keller-sports.de/shop/products/665x665/E8E86DDB6095D229EBBB44CB670C5FBE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E8E86DDB6095D229EBBB44CB670C5FBE.jpg" alt="Mizuno - Short Drylite Active Square 3.5" src="http://i2.keller-sports.de/shop/products/665x665/E8E86DDB6095D229EBBB44CB670C5FBE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">35.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort optimal Ce Short de running pour femme est très léger . Culotte intégrée permettant de rédui...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI044001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Collant Stretch Woven</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Pantalons</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/52E44ED9AA0D7911F573EB0AE6E960B4.jpg" alt="Nike - Collant Stretch Woven" src="http://i2.keller-sports.de/shop/products/665x665/52E44ED9AA0D7911F573EB0AE6E960B4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/52E44ED9AA0D7911F573EB0AE6E960B4.jpg" alt="Nike - Collant Stretch Woven" src="http://i2.keller-sports.de/shop/products/665x665/52E44ED9AA0D7911F573EB0AE6E960B4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">47.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Laissez vous séduire par le short  Nike Stretch Woven,un basique indispensable qui évacue la transpi...</p>
+<p class="ng-binding">86% polyester / 14% elast</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI100001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Tempo noir</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/683EE46D1E3D464EE172F9254A5F90B5.jpg" alt="Nike - Short Tempo noir" src="http://i2.keller-sports.de/shop/products/665x665/683EE46D1E3D464EE172F9254A5F90B5.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/683EE46D1E3D464EE172F9254A5F90B5.jpg" alt="Nike - Short Tempo noir" src="http://i2.keller-sports.de/shop/products/665x665/683EE46D1E3D464EE172F9254A5F90B5.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">24.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short Nike Tempo offre une taille basse pour plus de confort,ainsi qu´une taille élastique avec u...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI168001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Collant Core Tight</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Pantalons</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6CA5A1B1D1FF784996E8AFF111389FA6.jpg" alt="Nike - Collant Core Tight" src="http://i2.keller-sports.de/shop/products/665x665/6CA5A1B1D1FF784996E8AFF111389FA6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6CA5A1B1D1FF784996E8AFF111389FA6.jpg" alt="Nike - Collant Core Tight" src="http://i2.keller-sports.de/shop/products/665x665/6CA5A1B1D1FF784996E8AFF111389FA6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le collant d´entraînement Nike Pro - Core Compression pour Homme est un vêtement de sport high-tech,...</p>
+<p class="ng-binding">84% polyester/ 16% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI185001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short SW Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D6BFD1E742E746E32A52447967B78CBB.jpg" alt="Nike - Short SW Running" src="http://i2.keller-sports.de/shop/products/665x665/D6BFD1E742E746E32A52447967B78CBB.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D6BFD1E742E746E32A52447967B78CBB.jpg" alt="Nike - Short SW Running" src="http://i2.keller-sports.de/shop/products/665x665/D6BFD1E742E746E32A52447967B78CBB.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">35.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de course à pied Nike 23&amp;nbsp,cm&amp;nbsp,: ventilationstratégiqueSi vous recherchez un short ultr...</p>
+<p class="ng-binding">100% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI223001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short 7 Tempo 2-en-1</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CABE82F8324B5F3F105A3639B44B8E83.jpg" alt="Nike - Short 7 Tempo 2-en-1" src="http://i2.keller-sports.de/shop/products/665x665/CABE82F8324B5F3F105A3639B44B8E83.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CABE82F8324B5F3F105A3639B44B8E83.jpg" alt="Nike - Short 7 Tempo 2-en-1" src="http://i2.keller-sports.de/shop/products/665x665/CABE82F8324B5F3F105A3639B44B8E83.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">25.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short de course à pied deux en un Nike Tempo 18 cm pour homme vous permet daméliorer vos performa...</p>
+<p class="ng-binding">90% polyester /10% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI225001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short9 SW Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9FCF4BC5AEE902813FFC38DBB59974A0.jpg" alt="Nike - Short9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/9FCF4BC5AEE902813FFC38DBB59974A0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9FCF4BC5AEE902813FFC38DBB59974A0.jpg" alt="Nike - Short9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/9FCF4BC5AEE902813FFC38DBB59974A0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">30.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de course à pied Nike 23 cm : ventilation stratégique  Si vous recherchez un short ultra-léger...</p>
+<p class="ng-binding">90% polyester /10% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI326004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short 9 SW Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/20AAD17E46211AE550778173E0F8D0E7.jpg" alt="Nike - Short 9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/20AAD17E46211AE550778173E0F8D0E7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/20AAD17E46211AE550778173E0F8D0E7.jpg" alt="Nike - Short 9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/20AAD17E46211AE550778173E0F8D0E7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de course à pied Nike 23&amp;nbsp,cm&amp;nbsp,: ventilationstratégiqueSi vous recherchez un short ultr...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI334001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/115E617C4B90A2A4255120B4E4868687.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/115E617C4B90A2A4255120B4E4868687.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/115E617C4B90A2A4255120B4E4868687.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/115E617C4B90A2A4255120B4E4868687.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short Nike Twisted Tempo : lexcellence de la performance au quotidien  Nouvelle version dun vêtement...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI339004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Twisted Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/0BF98FE7B524E6129E7021700D1A1F4C.jpg" alt="Nike - Short Twisted Tempo" src="http://i2.keller-sports.de/shop/products/665x665/0BF98FE7B524E6129E7021700D1A1F4C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/0BF98FE7B524E6129E7021700D1A1F4C.jpg" alt="Nike - Short Twisted Tempo" src="http://i2.keller-sports.de/shop/products/665x665/0BF98FE7B524E6129E7021700D1A1F4C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short Nike Twisted Tempo : lexcellence de la performance au quotidien  Nouvelle version dun vêtement...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI346001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Tempo 7 2-en-1</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/55315AE0D1C7D7C486F6D0FFC4C715A7.jpg" alt="Nike - Short Tempo 7 2-en-1" src="http://i2.keller-sports.de/shop/products/665x665/55315AE0D1C7D7C486F6D0FFC4C715A7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/55315AE0D1C7D7C486F6D0FFC4C715A7.jpg" alt="Nike - Short Tempo 7 2-en-1" src="http://i2.keller-sports.de/shop/products/665x665/55315AE0D1C7D7C486F6D0FFC4C715A7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">49.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short Nike 18 cm Two-in-One : tenue de compression intégré  Avec son short de compression intégré of...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI348004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short 7 Laser 2-en-1 Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7E0A3304D95D44ED820A1EBDA2E36B0D.jpg" alt="Nike - Short 7 Laser 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/7E0A3304D95D44ED820A1EBDA2E36B0D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7E0A3304D95D44ED820A1EBDA2E36B0D.jpg" alt="Nike - Short 7 Laser 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/7E0A3304D95D44ED820A1EBDA2E36B0D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de course à pied Nike 2-en-1 Laser : pour plus de maintien et d´aération  Conçu pour offrir un...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI362003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short 9 SW Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1108E3D8CFA0BC16E32E0431C02EE174.jpg" alt="Nike - Short 9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/1108E3D8CFA0BC16E32E0431C02EE174.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1108E3D8CFA0BC16E32E0431C02EE174.jpg" alt="Nike - Short 9 SW Running" src="http://i2.keller-sports.de/shop/products/665x665/1108E3D8CFA0BC16E32E0431C02EE174.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short de course à pied Nike 23&amp;nbsp,cm&amp;nbsp,: ventilationstratégiqueSi vous recherchez un short ultr...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI366001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike -Short 2-en-1 Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D4FF227F1289F8DB25B17EFCE3BD05EF.jpg" alt="Nike -Short 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/D4FF227F1289F8DB25B17EFCE3BD05EF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D4FF227F1289F8DB25B17EFCE3BD05EF.jpg" alt="Nike -Short 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/D4FF227F1289F8DB25B17EFCE3BD05EF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour un confort et des performances hors du commun Le short de course tempo pour femmes associe un l...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI383004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E3CE268446F684EE92202020D5C8A9BA.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/E3CE268446F684EE92202020D5C8A9BA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E3CE268446F684EE92202020D5C8A9BA.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/E3CE268446F684EE92202020D5C8A9BA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Avantages :  - Le tissu Dri-FIT élimine la transpiration pour vous permettre de rester au sec et dêt...</p>
+<p class="ng-binding">92% polyester/8% spandex</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI531001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CD929E90F7222046552591E23218BF2F.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/CD929E90F7222046552591E23218BF2F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CD929E90F7222046552591E23218BF2F.jpg" alt="Nike - Short Tempo" src="http://i2.keller-sports.de/shop/products/665x665/CD929E90F7222046552591E23218BF2F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short de course à pied Nike Tempo pour Femme dispose d´un slip intégré pour un maximum de confort...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI533001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short 2-en-1 Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8384D28CA24788CE6699167B8490F68B.jpg" alt="Nike - Short 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/8384D28CA24788CE6699167B8490F68B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8384D28CA24788CE6699167B8490F68B.jpg" alt="Nike - Short 2-en-1 Tempo" src="http://i2.keller-sports.de/shop/products/665x665/8384D28CA24788CE6699167B8490F68B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le short de course à pied 2 en 1 Tempo&nbsp; vous met en valeur grâce à un tissu anti-transpiration et de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI543001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short Printed Tempo</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D64F12E0E13FFF10223BB0ACEB7FFC7C.jpg" alt="Nike - Short Printed Tempo" src="http://i2.keller-sports.de/shop/products/665x665/D64F12E0E13FFF10223BB0ACEB7FFC7C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D64F12E0E13FFF10223BB0ACEB7FFC7C.jpg" alt="Nike - Short Printed Tempo" src="http://i2.keller-sports.de/shop/products/665x665/D64F12E0E13FFF10223BB0ACEB7FFC7C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Short Nike Tempo: performances et belle allure.  Ce n´est pas étonnant que le short de course à pied...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI558001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short SW 9 Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3B54CA01CB4348232EB29C4FBCC57ADE.jpg" alt="Nike - Short SW 9 Running" src="http://i2.keller-sports.de/shop/products/665x665/3B54CA01CB4348232EB29C4FBCC57ADE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3B54CA01CB4348232EB29C4FBCC57ADE.jpg" alt="Nike - Short SW 9 Running" src="http://i2.keller-sports.de/shop/products/665x665/3B54CA01CB4348232EB29C4FBCC57ADE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort garanti Le short de course à pied Nike vous assure un confort extrême ainsi qu´une évacuatio...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI562001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Short SW 2-en-1 Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CDD5DB45F4138007542F671D0B1DECC0.jpg" alt="Nike - Short SW 2-en-1 Running" src="http://i2.keller-sports.de/shop/products/665x665/CDD5DB45F4138007542F671D0B1DECC0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CDD5DB45F4138007542F671D0B1DECC0.jpg" alt="Nike - Short SW 2-en-1 Running" src="http://i2.keller-sports.de/shop/products/665x665/CDD5DB45F4138007542F671D0B1DECC0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Performance anti-transpiration et maintien Le short de course à pied deux-en-un Nike 23 cm SW Two-in...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI569001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Pantalon Engineered Print Tight</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Pantalons</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DA44383CB363BF4351E54DD2519FAA6F.jpg" alt="Nike - Pantalon Engineered Print Tight" src="http://i2.keller-sports.de/shop/products/665x665/DA44383CB363BF4351E54DD2519FAA6F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DA44383CB363BF4351E54DD2519FAA6F.jpg" alt="Nike - Pantalon Engineered Print Tight" src="http://i2.keller-sports.de/shop/products/665x665/DA44383CB363BF4351E54DD2519FAA6F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">84.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort et maintien Le Short de course à pied Nike Engineered&nbsp; Print Tight Hommes fournit un ajustem...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI580001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike -</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; T-shirts et hauts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D518FD83622082141512412F1DAB9E4B.jpg" alt="Nike -" src="http://i2.keller-sports.de/shop/products/665x665/D518FD83622082141512412F1DAB9E4B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D518FD83622082141512412F1DAB9E4B.jpg" alt="Nike -" src="http://i2.keller-sports.de/shop/products/665x665/D518FD83622082141512412F1DAB9E4B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">69.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort personnalisé pour tenir la distance La jupe de course à pied Nike Rival Stretch Woven pour F...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/short/RBENI588002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Pantalon Tempo Boy Short</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Shorts</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E34A25CE4C58BE73D2BA6162E5891488.jpg" alt="Nike - Pantalon Tempo Boy Short" src="http://i2.keller-sports.de/shop/products/665x665/E34A25CE4C58BE73D2BA6162E5891488.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E34A25CE4C58BE73D2BA6162E5891488.jpg" alt="Nike - Pantalon Tempo Boy Short" src="http://i2.keller-sports.de/shop/products/665x665/E34A25CE4C58BE73D2BA6162E5891488.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ce short offre une silhouette affinée et un toucher agréable. Le short de course à pied Nike Tempo 5...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize -->
+				
+		
+
+
+
+		
+		
+			<br clear="all">
+			
+			
+			
+				<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope">
+						<a href="" class="ng-binding">2</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+				<!-- // pagination -->
+				
+				
+			
+			
+			
+	
+</ul></div><!--//gauche-->
+
+			<!--droite-->
+			<div id="droite" class="ng-scope">
+			
+		
+				<div class="panel-body">
+				
+				<div class="titre-top">
+<h4>Mot clé </h4>
+
+<div class="stripe-line"></div>
+</div>
+<span ng-show="category" class="">dans catégorie:  <span ng-class="{capitalize: isBrand}" class="ng-binding">short</span></span><span ng-show="isPlural(subcat)" class="">s</span>
+<input ng-model="query" ng-change="resetPage()" class="form-control ng-pristine ng-valid">
+				</div>
+				
+				
+				
+		 
+		
+		
+				
+				
+				
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Catégorie</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+
+<ul class="navigation">
+<li class="toggleSubMenu titrerub"><a href="#!/vêtements"><strong>Vêtements</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/veste" class="ng-binding">Veste<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/collant" class="ng-binding">Collant<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/t-shirt" class="ng-binding">T-shirt<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/short" class="ng-binding">Short<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/sous-vêtements &amp; chaussettes" class="ng-binding">Sous-vêtements &amp; chaussettes<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/pantalon" class="ng-binding">Pantalon<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/casquette" class="ng-binding">Casquette<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray -->
+					</ul>
+					
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/chaussures"><strong>Chaussures</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/trail" class="ng-binding">Trail<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/piste" class="ng-binding">Piste<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/compétition" class="ng-binding">Compétition<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/stable" class="ng-binding">Stable<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/nature" class="ng-binding">Nature<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray -->
+					</ul>
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/accessoires"><strong>Accessoires</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac à dos" class="ng-binding">Sac à dos<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/cardio" class="ng-binding">Cardio<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/bouteille" class="ng-binding">Bouteille<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/gilet" class="ng-binding">Gilet<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac" class="ng-binding">Sac<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray -->
+					</ul>
+					
+					</ul>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Marque</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<div class="left">
+						<!-- ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/adidas" class="ng-binding">adidas</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/asics" class="ng-binding">asics</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/mizuno" class="ng-binding">mizuno</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nathan" class="ng-binding">nathan</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/new balance" class="ng-binding">new balance</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nike" class="ng-binding">nike</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/polar" class="ng-binding">polar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/powerbar" class="ng-binding">powerbar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/puma" class="ng-binding">puma</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/saucony" class="ng-binding">saucony</a></p><!-- end ngRepeat: brand in brandsArray -->
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				<div class="panel-body">
+				
+								<div class="panel-body">
+	<div class="titre-top">
+<h4 class="ng-binding">Couleur </h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					
+					<a href=""><div ng-model="color" class="color white ng-pristine ng-valid" ng-click="colorFunction('blanc')" ng-class="{selected: 'blanc' == color}"></div></a>
+					<a href=""><div class="color black ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('noir')" ng-class="{selected: 'noir' == color}"></div></a>
+					<a href=""><div class="color gray ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('gris')" ng-class="{selected: 'gris' == color}"></div></a>
+					<a href=""><div class="color red ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rouge')" ng-class="{selected: 'rouge' == color}"></div></a>
+					<a href=""><div class="color blue ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('bleu')" ng-class="{selected: 'bleu' == color}"></div></a>
+					<a href=""><div class="color olive ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('vert')" ng-class="{selected: 'vert' == color}"></div></a>
+					<a href=""><div class="color yellow ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('jaune')" ng-class="{selected: 'jaune' == color}"></div></a>
+					<a href=""><div class="color fuchsia ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rose')" ng-class="{selected: 'rose' == color}"></div></a>
+					<a href=""><div class="color orange ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('orange')" ng-class="{selected: 'orange' == color}"></div></a>
+					<a href=""><div class="color purple ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lila' == color}"></div></a>
+					<a href=""><div class="color silver ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('argent')" ng-class="{selected: 'argent' == color}"></div></a>
+					<p><a href="" ng-show="color" ng-click="colorFunction('')" class="ng-hide">Voir toutes</a></p>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+			
+<div class="titre-top">
+<h4>Pour</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<p><input type="checkbox" ng-model="hommes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Hommes</p>
+					<p><input type="checkbox" ng-model="femmes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Femmes</p>
+				</div>
+				
+				
+			</div>
+			<!--//droite-->
+
+			</div></div></div>
+	
+	</div>
+	
+	<div id="footer">
+<div class="footer">
+
+</div>
+</div>	
+
+
+
+
+
+
+
+</body></html>

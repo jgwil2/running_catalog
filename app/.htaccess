@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI}  ^/$
+RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)/(.*)/(.*)$
+RewriteRule ^(.*)$ data/phantom/snapshots/%3.html [NC,L]
+RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)/(.*)$
+RewriteRule ^(.*)$ data/phantom/snapshots/%2.html [NC,L]
+RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)$
+RewriteRule ^(.*)$ data/phantom/snapshots/%1.html [NC,L]

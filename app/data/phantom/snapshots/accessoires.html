@@ -1,0 +1,1664 @@
+<html dir="ltr" lang="fr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" class="ltr fr no-js ng-scope" ng-app="runningCatalogApp" ng-controller="MainCtrl"><!--<![endif]--><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+
+<title ng-bind="data.title() | capitalize" class="ng-binding">Accessoires</title>
+<meta name="description" content="La boutique des passionnés de course à pied">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/app.css">
+
+<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+
+
+
+
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8784346-28', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body data-status="ready" style="">
+
+
+<div id="header">
+	<img class="spip_logos" alt="Boutique Course à pied" src="images/boutique-courseapied.png" width="328" height="102">
+	
+</div>	<div id="nav">
+<div class="nav">
+	<ul>
+		<li><a href="http://www.passionrunning.com">Accueil</a></li>
+	
+
+		
+		<li><a href="http://www.passionrunning.com/course-a-pied/">Course à pied</a></li>
+		
+		<li><a href="http://www.passionrunning.com/entrainement/">Entrainement</a></li>
+		
+		<li><a href="http://www.passionrunning.com/equipements/">Equipements</a></li>
+		
+		<li><a href="http://www.passionrunning.com/lecture/">Lecture</a></li>
+		
+		<li><a href="http://www.passionrunning.com/nutrition/">Nutrition</a></li>
+		
+		<li><a href="http://www.passionrunning.com/sante-blessure/">Santé / Blessure</a></li>
+		
+		<li class="btnboutique"><a href="http://boutique.passionrunning.com">La Boutique</a>
+		<ul>
+		<li><a href="http://boutique.passionrunning.com/#/v%C3%AAtements">Vêtements</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/chaussures">Chaussures</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/accessoires">Accessoires</a></li>
+		</ul></li>
+	</ul>
+	</div>
+</div>	
+
+
+
+<div id="rubrique">
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">
+
+		
+
+
+		
+			<div ng-show="category" class="ng-scope">
+		<div id="arbo"><div class="arbo"><a href="/#!">Boutique</a> &gt; <strong class="on"><!-- ngIf: category --><span ng-if="category" ng-class="{capitalize: isBrand}" class="ng-binding ng-scope">Accessoires<!-- ngIf: isPlural(subcat) --></span><!-- end ngIf: category --></strong></div></div><!--.arbo-->
+</div>
+			
+
+
+<!-- gauche-->
+<div id="gauche" class="ng-scope">
+
+
+			<h1 ng-hide="category" class="ng-hide">La boutique passion running</h1>
+			
+			
+			
+			<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}" class="disabled">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+			<!-- // pagination -->
+			
+			
+			<br clear="all">
+			<div class="alert alert-warning ng-hide" ng-show="noArticles"><h4>Pas d'articles correspondants aux critères de recherche</h4></div>
+			<ul>
+			
+			
+			
+			
+				<!-- ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUAD013001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Ceinture à Bouteille </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CDE53AF6B388BCD683561F7E66677955.jpg" alt="Adidas - Ceinture à Bouteille " src="http://i2.keller-sports.de/shop/products/665x665/CDE53AF6B388BCD683561F7E66677955.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CDE53AF6B388BCD683561F7E66677955.jpg" alt="Adidas - Ceinture à Bouteille " src="http://i2.keller-sports.de/shop/products/665x665/CDE53AF6B388BCD683561F7E66677955.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">19.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Ceinture à Bouteille Cette ceinture vous permet de gardervotre bouteille d´eau à portée de ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUAD017001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Ceinture Young Urban (rose)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Adidas - Ceinture Young Urban (rose)"><div class="popup"><img ng-src="" alt="Adidas - Ceinture Young Urban (rose)"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Ceinture Young Urban (rose)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUAS005001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Pochette MP3</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/72CCD59A7C49E0F7A502D546A63A4FC6.jpg" alt="Asics - Pochette MP3" src="http://i2.keller-sports.de/shop/products/665x665/72CCD59A7C49E0F7A502D546A63A4FC6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/72CCD59A7C49E0F7A502D546A63A4FC6.jpg" alt="Asics - Pochette MP3" src="http://i2.keller-sports.de/shop/products/665x665/72CCD59A7C49E0F7A502D546A63A4FC6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">17.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Emportez votre musique  La pochette mp3 Asics noire est le compagnon indispensable de ceux qui aimen...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUAS007001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Ceinture porte</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/48259FA5BA6943DBF4379CF64D6FEECB.jpg" alt="Asics - Ceinture porte" src="http://i2.keller-sports.de/shop/products/665x665/48259FA5BA6943DBF4379CF64D6FEECB.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/48259FA5BA6943DBF4379CF64D6FEECB.jpg" alt="Asics - Ceinture porte" src="http://i2.keller-sports.de/shop/products/665x665/48259FA5BA6943DBF4379CF64D6FEECB.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">19.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Soyez sûr d´être bien équipé! Cette ceinture porte-bouteille peut recevoir une grande bouteille. Grâ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUAS008001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Sac à dos léger (noir)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6B6A6C270CCC8C1B600400F6EAAF1D8B.jpg" alt="Asics - Sac à dos léger (noir)" src="http://i2.keller-sports.de/shop/products/665x665/6B6A6C270CCC8C1B600400F6EAAF1D8B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6B6A6C270CCC8C1B600400F6EAAF1D8B.jpg" alt="Asics - Sac à dos léger (noir)" src="http://i2.keller-sports.de/shop/products/665x665/6B6A6C270CCC8C1B600400F6EAAF1D8B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">54.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un sac à dos de course léger,solide et confortable Ce sac à dos léger vous permet de rester hydraté ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUGA004001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Garmin - Forerunner 210</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6689B0CBB12B62BCFECC0B75AF9EC182.jpg" alt="Garmin - Forerunner 210" src="http://i2.keller-sports.de/shop/products/665x665/6689B0CBB12B62BCFECC0B75AF9EC182.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6689B0CBB12B62BCFECC0B75AF9EC182.jpg" alt="Garmin - Forerunner 210" src="http://i2.keller-sports.de/shop/products/665x665/6689B0CBB12B62BCFECC0B75AF9EC182.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">179.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Eregistrez vos parcours afin de vous surpasser à chaque entrainement  Cette montre GPS sera parfaite...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUGA008001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Garmin - Fenix Performer Bundle + Ceinture cardio</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2695D2E42C717C914C04D19B77265BCF.jpg" alt="Garmin - Fenix Performer Bundle + Ceinture cardio" src="http://i2.keller-sports.de/shop/products/665x665/2695D2E42C717C914C04D19B77265BCF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2695D2E42C717C914C04D19B77265BCF.jpg" alt="Garmin - Fenix Performer Bundle + Ceinture cardio" src="http://i2.keller-sports.de/shop/products/665x665/2695D2E42C717C914C04D19B77265BCF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">379.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Superbe montre GPS avec altimètre,baromètre et boussole  Cette montre GPS sera parfaite pour la prat...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUGA009001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Garmin - Cardio Fréquencemètre Premium (2013)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/006DEAB6E708F322C515E96A626B0041.jpg" alt="Garmin - Cardio Fréquencemètre Premium (2013)" src="http://i2.keller-sports.de/shop/products/665x665/006DEAB6E708F322C515E96A626B0041.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/006DEAB6E708F322C515E96A626B0041.jpg" alt="Garmin - Cardio Fréquencemètre Premium (2013)" src="http://i2.keller-sports.de/shop/products/665x665/006DEAB6E708F322C515E96A626B0041.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.99 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sangle souple de poitrine de fréquence cardiaque Travailler efficacement avec cette enregistreur de ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUGA020001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Garmin - Forerunner 220 (noire et rouge)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/11229CF1A9979260A8A54EB903BA7185.jpg" alt="Garmin - Forerunner 220 (noire et rouge)" src="http://i2.keller-sports.de/shop/products/665x665/11229CF1A9979260A8A54EB903BA7185.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/11229CF1A9979260A8A54EB903BA7185.jpg" alt="Garmin - Forerunner 220 (noire et rouge)" src="http://i2.keller-sports.de/shop/products/665x665/11229CF1A9979260A8A54EB903BA7185.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">249.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un compagnon de course haut en couleur doté de fonctions connectées La Forerunner 220 vous encourage...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUGA021001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Garmin - Montre Forerunner 620 (noir/bleu)   ceinture cardiofréquence</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/45510AE7E64B049071E3AF19994AB330.jpg" alt="Garmin - Montre Forerunner 620 (noir/bleu)   ceinture cardiofréquence" src="http://i2.keller-sports.de/shop/products/665x665/45510AE7E64B049071E3AF19994AB330.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/45510AE7E64B049071E3AF19994AB330.jpg" alt="Garmin - Montre Forerunner 620 (noir/bleu)   ceinture cardiofréquence" src="http://i2.keller-sports.de/shop/products/665x665/45510AE7E64B049071E3AF19994AB330.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">449.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Votre entraineur se trouve à votre poignet. La montre GPS avec écran tactile et en couleur haute rés...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI011001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Nike+ Ipod Sensor Rcvr Kit</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/557302F5678C50F8EDACA5C7EFB0DF7E.jpg" alt="Nike - Nike+ Ipod Sensor Rcvr Kit" src="http://i2.keller-sports.de/shop/products/665x665/557302F5678C50F8EDACA5C7EFB0DF7E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/557302F5678C50F8EDACA5C7EFB0DF7E.jpg" alt="Nike - Nike+ Ipod Sensor Rcvr Kit" src="http://i2.keller-sports.de/shop/products/665x665/557302F5678C50F8EDACA5C7EFB0DF7E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">24.61 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Cours au rythme de tes musiques préférées!  Nike+ te permet d´écouter de la musique et de suivre tes...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI019001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Sac à dos Cheyenne Vapor </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2894E3DCF9574088724F9E28AE8C2298.jpg" alt="Nike - Sac à dos Cheyenne Vapor " src="http://i2.keller-sports.de/shop/products/665x665/2894E3DCF9574088724F9E28AE8C2298.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2894E3DCF9574088724F9E28AE8C2298.jpg" alt="Nike - Sac à dos Cheyenne Vapor " src="http://i2.keller-sports.de/shop/products/665x665/2894E3DCF9574088724F9E28AE8C2298.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sac à dos Nike Cheyenne : confort et protection révolutionnaires  Le sac à dos de course à pied Nike...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI022001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Cheyenne Vapor Running</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B3529F160229708A2AC0D469438CFE04.jpg" alt="Nike - Cheyenne Vapor Running" src="http://i2.keller-sports.de/shop/products/665x665/B3529F160229708A2AC0D469438CFE04.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B3529F160229708A2AC0D469438CFE04.jpg" alt="Nike - Cheyenne Vapor Running" src="http://i2.keller-sports.de/shop/products/665x665/B3529F160229708A2AC0D469438CFE04.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort et rangement innovants Léger et peu encombrant,le sac à dos de course à pied Nike CheyenneVa...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI023001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Ceinture Lightweight 2 Bouteilles</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DD13367BB8715B91C24A5E968836F54B.jpg" alt="Nike - Ceinture Lightweight 2 Bouteilles" src="http://i2.keller-sports.de/shop/products/665x665/DD13367BB8715B91C24A5E968836F54B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DD13367BB8715B91C24A5E968836F54B.jpg" alt="Nike - Ceinture Lightweight 2 Bouteilles" src="http://i2.keller-sports.de/shop/products/665x665/DD13367BB8715B91C24A5E968836F54B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ceinture Nike d´hydratation Confortable avec une large ceinture élastique avec boucle,cette ceinture...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI024002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Pochette réfléchissante</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FF4B71672887723FFE60F5CB1EC29A63.jpg" alt="Nike - Pochette réfléchissante" src="http://i2.keller-sports.de/shop/products/665x665/FF4B71672887723FFE60F5CB1EC29A63.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FF4B71672887723FFE60F5CB1EC29A63.jpg" alt="Nike - Pochette réfléchissante" src="http://i2.keller-sports.de/shop/products/665x665/FF4B71672887723FFE60F5CB1EC29A63.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pochette Nike Performance réfléchissante Le soleil brille,l´air est chaud,vous vous préparez pour vo...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI025001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Bandeau Speed Performance</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2CFFEE3F92B81DB9BA38BA7F6CEF7D03.jpg" alt="Nike - Bandeau Speed Performance" src="http://i2.keller-sports.de/shop/products/665x665/2CFFEE3F92B81DB9BA38BA7F6CEF7D03.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2CFFEE3F92B81DB9BA38BA7F6CEF7D03.jpg" alt="Nike - Bandeau Speed Performance" src="http://i2.keller-sports.de/shop/products/665x665/2CFFEE3F92B81DB9BA38BA7F6CEF7D03.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Bandeau Nike Swoosh : confortable et anti-transpirant Le bandeau Nike Swoosh est en coton doux et co...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI026001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Nike+ Sportwatch GPS W/FPD</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/61E974FD1167A6E3465507AD301B71D0.jpg" alt="Nike - Nike+ Sportwatch GPS W/FPD" src="http://i2.keller-sports.de/shop/products/665x665/61E974FD1167A6E3465507AD301B71D0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/61E974FD1167A6E3465507AD301B71D0.jpg" alt="Nike - Nike+ Sportwatch GPS W/FPD" src="http://i2.keller-sports.de/shop/products/665x665/61E974FD1167A6E3465507AD301B71D0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">169.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne perdez pas de temps Il ne donne pas que le temps.&nbsp; vous permet de rester motivé et informé grâce ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI027001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Montre de sport Nike+ GPS (avec capteur)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7F9C64B841BCF40A6243C9B486CF7D6D.jpg" alt="Nike - Montre de sport Nike+ GPS (avec capteur)" src="http://i2.keller-sports.de/shop/products/665x665/7F9C64B841BCF40A6243C9B486CF7D6D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7F9C64B841BCF40A6243C9B486CF7D6D.jpg" alt="Nike - Montre de sport Nike+ GPS (avec capteur)" src="http://i2.keller-sports.de/shop/products/665x665/7F9C64B841BCF40A6243C9B486CF7D6D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">169.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Montre de sport Nike+ GPS optimisée par TomTom® : vous ne courrez jamais seul La technologie GPS s´a...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI028001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Sac Cheyenne Vapor II</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CE0173D7F4D5333C9016916AEB0F1DAC.jpg" alt="Nike - Sac Cheyenne Vapor II" src="http://i2.keller-sports.de/shop/products/665x665/CE0173D7F4D5333C9016916AEB0F1DAC.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CE0173D7F4D5333C9016916AEB0F1DAC.jpg" alt="Nike - Sac Cheyenne Vapor II" src="http://i2.keller-sports.de/shop/products/665x665/CE0173D7F4D5333C9016916AEB0F1DAC.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort innovant et protection  Léger et peu encombrant,le sac à dos de course à pied Nike Cheyenne ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI030001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike- Ceinture Lightweight Hydration Belt 2 Bottle</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9C2A97E6362F673BC1708AB9E6747538.jpg" alt="Nike- Ceinture Lightweight Hydration Belt 2 Bottle" src="http://i2.keller-sports.de/shop/products/665x665/9C2A97E6362F673BC1708AB9E6747538.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9C2A97E6362F673BC1708AB9E6747538.jpg" alt="Nike- Ceinture Lightweight Hydration Belt 2 Bottle" src="http://i2.keller-sports.de/shop/products/665x665/9C2A97E6362F673BC1708AB9E6747538.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Hydratez-vous autant et où que vous voulez Cette ceinture d´hydratation Nike vous permettra de vous ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNI031001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Montre GPS Nike (noir/rouge)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2CE7C62820A3FD2F7DEFE08980831587.jpg" alt="Nike - Montre GPS Nike (noir/rouge)" src="http://i2.keller-sports.de/shop/products/665x665/2CE7C62820A3FD2F7DEFE08980831587.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2CE7C62820A3FD2F7DEFE08980831587.jpg" alt="Nike - Montre GPS Nike (noir/rouge)" src="http://i2.keller-sports.de/shop/products/665x665/2CE7C62820A3FD2F7DEFE08980831587.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">168.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nike - Montre GPS Nike (noir/rouge)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT014001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Booster Belt</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/EB6EB0D458DD27C93CB8BCB870E3EDA1.jpg" alt="Nathan - Booster Belt" src="http://i2.keller-sports.de/shop/products/665x665/EB6EB0D458DD27C93CB8BCB870E3EDA1.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/EB6EB0D458DD27C93CB8BCB870E3EDA1.jpg" alt="Nathan - Booster Belt" src="http://i2.keller-sports.de/shop/products/665x665/EB6EB0D458DD27C93CB8BCB870E3EDA1.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">13.50 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Porte bouteilles de compétition facile à installer et doté d´un système unique de fixation qui vous ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT027001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Sonic Boom pour iPod nano</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/045865FC554F6278028FF8875F0E201C.jpg" alt="Nathan - Sonic Boom pour iPod nano" src="http://i2.keller-sports.de/shop/products/665x665/045865FC554F6278028FF8875F0E201C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/045865FC554F6278028FF8875F0E201C.jpg" alt="Nathan - Sonic Boom pour iPod nano" src="http://i2.keller-sports.de/shop/products/665x665/045865FC554F6278028FF8875F0E201C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">20.67 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Spécialement concu pour l´ Ipod Nano (non inclus),pour emmener le multimédia avec vous lors de votre...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT031002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Manches Réflechissantes noires </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/51A65BE8CA8B47EEA9AD2E5CB3FEE659.jpg" alt="Nathan - Manches Réflechissantes noires " src="http://i2.keller-sports.de/shop/products/665x665/51A65BE8CA8B47EEA9AD2E5CB3FEE659.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/51A65BE8CA8B47EEA9AD2E5CB3FEE659.jpg" alt="Nathan - Manches Réflechissantes noires " src="http://i2.keller-sports.de/shop/products/665x665/51A65BE8CA8B47EEA9AD2E5CB3FEE659.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">16.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Manches de compression très réfléchissantes pour être mieu vu dans l´obscurité.Petite poche du côté ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT033002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Gilet Streak </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6AECE2A6CBFAA6503DD3C7E48D42CD14.jpg" alt="Nathan - Gilet Streak " src="http://i2.keller-sports.de/shop/products/665x665/6AECE2A6CBFAA6503DD3C7E48D42CD14.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6AECE2A6CBFAA6503DD3C7E48D42CD14.jpg" alt="Nathan - Gilet Streak " src="http://i2.keller-sports.de/shop/products/665x665/6AECE2A6CBFAA6503DD3C7E48D42CD14.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Des portions réfléchissantes sur les deux côtés vous offrent une sécurité optimale pour vos courses ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT055001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Bouteille Fire &amp; Ice </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DF619F8BB60543FBD7F20013789E9B41.jpg" alt="Nathan - Bouteille Fire &amp; Ice " src="http://i2.keller-sports.de/shop/products/665x665/DF619F8BB60543FBD7F20013789E9B41.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DF619F8BB60543FBD7F20013789E9B41.jpg" alt="Nathan - Bouteille Fire &amp; Ice " src="http://i2.keller-sports.de/shop/products/665x665/DF619F8BB60543FBD7F20013789E9B41.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La bouteille que vous recherchez - la température que vous aimez Nouvelle bouteille avec double couc...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT058001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Sac à dos Minimist</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/ECB3D678B1BA576E0F04AC123FC107D9.jpg" alt="Nathan - Sac à dos Minimist" src="http://i2.keller-sports.de/shop/products/665x665/ECB3D678B1BA576E0F04AC123FC107D9.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/ECB3D678B1BA576E0F04AC123FC107D9.jpg" alt="Nathan - Sac à dos Minimist" src="http://i2.keller-sports.de/shop/products/665x665/ECB3D678B1BA576E0F04AC123FC107D9.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">64.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Sac de running unisexe Nathan Minimist : le sac à dos idéal pour l´entrainement  Ce sac Nathan Minim...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT059001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Sac X</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CA5F87510B2A0F5E6FAD6D92B89DF311.jpg" alt="Nathan - Sac X" src="http://i2.keller-sports.de/shop/products/665x665/CA5F87510B2A0F5E6FAD6D92B89DF311.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CA5F87510B2A0F5E6FAD6D92B89DF311.jpg" alt="Nathan - Sac X" src="http://i2.keller-sports.de/shop/products/665x665/CA5F87510B2A0F5E6FAD6D92B89DF311.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour vos sorties sur longues distances...hydratez vous Ce sac est parfait pour les longues sorties. ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT063001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Gourde Triangle </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D0F1EA19029875269666B458BA2B285D.jpg" alt="Nathan - Gourde Triangle " src="http://i2.keller-sports.de/shop/products/665x665/D0F1EA19029875269666B458BA2B285D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D0F1EA19029875269666B458BA2B285D.jpg" alt="Nathan - Gourde Triangle " src="http://i2.keller-sports.de/shop/products/665x665/D0F1EA19029875269666B458BA2B285D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Gourde Triangle - bleu (650ml)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT065001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Poche spéciale pour gourde Intensity</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B009774A6426F915FDE4A9367289E1A3.jpg" alt="Nathan - Poche spéciale pour gourde Intensity" src="http://i2.keller-sports.de/shop/products/665x665/B009774A6426F915FDE4A9367289E1A3.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B009774A6426F915FDE4A9367289E1A3.jpg" alt="Nathan - Poche spéciale pour gourde Intensity" src="http://i2.keller-sports.de/shop/products/665x665/B009774A6426F915FDE4A9367289E1A3.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">89.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Poche spéciale pour gourde Intensity Femmes - gris (2L)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT068001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Gourde Mercury 2 </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/AFF7EF8BC46FA1D94031F98038F633EB.jpg" alt="Nathan - Gourde Mercury 2 " src="http://i2.keller-sports.de/shop/products/665x665/AFF7EF8BC46FA1D94031F98038F633EB.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/AFF7EF8BC46FA1D94031F98038F633EB.jpg" alt="Nathan - Gourde Mercury 2 " src="http://i2.keller-sports.de/shop/products/665x665/AFF7EF8BC46FA1D94031F98038F633EB.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Gourde Mercury 2 - noir (600ml)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT074001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Lacets (rose)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B3189DD9BDD4597E7EA4FE3B13877D8A.jpg" alt="Nathan - Lacets (rose)" src="http://i2.keller-sports.de/shop/products/665x665/B3189DD9BDD4597E7EA4FE3B13877D8A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B3189DD9BDD4597E7EA4FE3B13877D8A.jpg" alt="Nathan - Lacets (rose)" src="http://i2.keller-sports.de/shop/products/665x665/B3189DD9BDD4597E7EA4FE3B13877D8A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">10.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Lacets (rose)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT076001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Gourde Streamline Frosted Tritan </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/C9CECC95541F0448A8B4B2903187B035.jpg" alt="Nathan - Gourde Streamline Frosted Tritan " src="http://i2.keller-sports.de/shop/products/665x665/C9CECC95541F0448A8B4B2903187B035.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/C9CECC95541F0448A8B4B2903187B035.jpg" alt="Nathan - Gourde Streamline Frosted Tritan " src="http://i2.keller-sports.de/shop/products/665x665/C9CECC95541F0448A8B4B2903187B035.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">19.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Gourde Streamline Frosted Tritan - jaune (750ml)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUNT077001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nathan - Gourde BigShot Narrow Mouth Tritan </h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/38871DD8ABCF34F7F156723F0A2D0280.jpg" alt="Nathan - Gourde BigShot Narrow Mouth Tritan " src="http://i2.keller-sports.de/shop/products/665x665/38871DD8ABCF34F7F156723F0A2D0280.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/38871DD8ABCF34F7F156723F0A2D0280.jpg" alt="Nathan - Gourde BigShot Narrow Mouth Tritan " src="http://i2.keller-sports.de/shop/products/665x665/38871DD8ABCF34F7F156723F0A2D0280.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">12.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nathan - Gourde BigShot Narrow Mouth Tritan - bleu (1L)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPB015001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">PowerBar - Barre énergétique Fraise</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4CBE155C83AE53F9EABA30AB0B5114F0.jpg" alt="PowerBar - Barre énergétique Fraise" src="http://i2.keller-sports.de/shop/products/665x665/4CBE155C83AE53F9EABA30AB0B5114F0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4CBE155C83AE53F9EABA30AB0B5114F0.jpg" alt="PowerBar - Barre énergétique Fraise" src="http://i2.keller-sports.de/shop/products/665x665/4CBE155C83AE53F9EABA30AB0B5114F0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">1.40 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Faire du sport en pleine nature,c´est ce qu´il y a de mieux! C´est pourquoi PowerBar a mélangé les m...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPB047001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Powerbar - Protéines Plus 92% Vanille,600g</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/241145193C80A575F7609D7857429387.jpg" alt="Powerbar - Protéines Plus 92% Vanille,600g" src="http://i2.keller-sports.de/shop/products/665x665/241145193C80A575F7609D7857429387.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/241145193C80A575F7609D7857429387.jpg" alt="Powerbar - Protéines Plus 92% Vanille,600g" src="http://i2.keller-sports.de/shop/products/665x665/241145193C80A575F7609D7857429387.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Formule très recherchée à base de quatre sources protéiniques différentes (petit-lait,lait,soja,acid...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPO005001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Polar - FT40 computer noir</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/EAA04FAF660E947A83BE873F22FA296A.jpg" alt="Polar - FT40 computer noir" src="http://i2.keller-sports.de/shop/products/665x665/EAA04FAF660E947A83BE873F22FA296A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/EAA04FAF660E947A83BE873F22FA296A.jpg" alt="Polar - FT40 computer noir" src="http://i2.keller-sports.de/shop/products/665x665/EAA04FAF660E947A83BE873F22FA296A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">109.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un indicateur clair pour votre entraînement  Pour les sportifs actifs qui souhaitent une orientation...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPO014001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Polar - Montre RS300X Orange</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/EF53730276596EBC470279E8EC7F7754.jpg" alt="Polar - Montre RS300X Orange" src="http://i2.keller-sports.de/shop/products/665x665/EF53730276596EBC470279E8EC7F7754.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/EF53730276596EBC470279E8EC7F7754.jpg" alt="Polar - Montre RS300X Orange" src="http://i2.keller-sports.de/shop/products/665x665/EF53730276596EBC470279E8EC7F7754.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">109.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Destiné aux athlètes amateurs qui recherchent des fonctions cardios et chrono essentielles. Cette mo...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> orange</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPO015001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Polar - Cardiofréquencemètre RS300X Noir</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/24E3DEEA15BEEC8D714742575AD962A0.jpg" alt="Polar - Cardiofréquencemètre RS300X Noir" src="http://i2.keller-sports.de/shop/products/665x665/24E3DEEA15BEEC8D714742575AD962A0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/24E3DEEA15BEEC8D714742575AD962A0.jpg" alt="Polar - Cardiofréquencemètre RS300X Noir" src="http://i2.keller-sports.de/shop/products/665x665/24E3DEEA15BEEC8D714742575AD962A0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">109.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Destiné aux athlètes amateurs qui recherchent des fonctions cardios et chrono essentielles. Cettemon...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUPO016001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Polar - Montre RC3 GPS Orange</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3C97F24413391E0888CBCD7190CAF183.jpg" alt="Polar - Montre RC3 GPS Orange" src="http://i2.keller-sports.de/shop/products/665x665/3C97F24413391E0888CBCD7190CAF183.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3C97F24413391E0888CBCD7190CAF183.jpg" alt="Polar - Montre RC3 GPS Orange" src="http://i2.keller-sports.de/shop/products/665x665/3C97F24413391E0888CBCD7190CAF183.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">229.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Des fonctions essentielles dans un format compact. Cette montre offre une multitude de fonctions com...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> orange</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSU001001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Suunto - Montre Ambit2 R   ceinture poitrine HR (noir)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/48F256A87807699A72593AAFF5D40437.jpg" alt="Suunto - Montre Ambit2 R   ceinture poitrine HR (noir)" src="http://i2.keller-sports.de/shop/products/665x665/48F256A87807699A72593AAFF5D40437.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/48F256A87807699A72593AAFF5D40437.jpg" alt="Suunto - Montre Ambit2 R   ceinture poitrine HR (noir)" src="http://i2.keller-sports.de/shop/products/665x665/48F256A87807699A72593AAFF5D40437.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">299.99 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre GPS   Cet accessoire est indispensable pour les coureurs ! Le GPS intégré indique votre it...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUTT001001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">TomTom - Montre GPS (noir/vert)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4D2D96E3CD3900B37B552DEC21A5C304.jpg" alt="TomTom - Montre GPS (noir/vert)" src="http://i2.keller-sports.de/shop/products/665x665/4D2D96E3CD3900B37B552DEC21A5C304.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4D2D96E3CD3900B37B552DEC21A5C304.jpg" alt="TomTom - Montre GPS (noir/vert)" src="http://i2.keller-sports.de/shop/products/665x665/4D2D96E3CD3900B37B552DEC21A5C304.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">169.99 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Bien plus qu´une montre La montre de running GPS TomTom vous offre bien plus qu?une simple montre de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUUP001001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Ultimate Performance - Sac à dos running Windermere 2Litres Blase</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D054374FDDB89DD38DFAAAE6E8C8D7F5.jpg" alt="Ultimate Performance - Sac à dos running Windermere 2Litres Blase" src="http://i2.keller-sports.de/shop/products/665x665/D054374FDDB89DD38DFAAAE6E8C8D7F5.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D054374FDDB89DD38DFAAAE6E8C8D7F5.jpg" alt="Ultimate Performance - Sac à dos running Windermere 2Litres Blase" src="http://i2.keller-sports.de/shop/products/665x665/D054374FDDB89DD38DFAAAE6E8C8D7F5.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">44.99 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Le Windermere 2 litres sera parfait pour toutes vos sorties Ce sac Ultimate Performance d´une conten...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG001001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre PC 3.11 (noir)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/059455FA705CBBAA2CDD0011C40AF24C.jpg" alt="Sigma - Montre PC 3.11 (noir)" src="http://i2.keller-sports.de/shop/products/665x665/059455FA705CBBAA2CDD0011C40AF24C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/059455FA705CBBAA2CDD0011C40AF24C.jpg" alt="Sigma - Montre PC 3.11 (noir)" src="http://i2.keller-sports.de/shop/products/665x665/059455FA705CBBAA2CDD0011C40AF24C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">36.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG003001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre PC 10.11 (gris)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/EDEDFCF6CA692367DF10C1F7E431E8CA.jpg" alt="Sigma - Montre PC 10.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/EDEDFCF6CA692367DF10C1F7E431E8CA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/EDEDFCF6CA692367DF10C1F7E431E8CA.jpg" alt="Sigma - Montre PC 10.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/EDEDFCF6CA692367DF10C1F7E431E8CA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">46.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG005001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre PC 15.11 (gris)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7904419925775571E4AC4B15593349DE.jpg" alt="Sigma - Montre PC 15.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/7904419925775571E4AC4B15593349DE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7904419925775571E4AC4B15593349DE.jpg" alt="Sigma - Montre PC 15.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/7904419925775571E4AC4B15593349DE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">57.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG007001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre PC 22.13 (rose)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/C73ADCAAEDDA3F04D908036ED9C5D8BF.jpg" alt="Sigma - Montre PC 22.13 (rose)" src="http://i2.keller-sports.de/shop/products/665x665/C73ADCAAEDDA3F04D908036ED9C5D8BF.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/C73ADCAAEDDA3F04D908036ED9C5D8BF.jpg" alt="Sigma - Montre PC 22.13 (rose)" src="http://i2.keller-sports.de/shop/products/665x665/C73ADCAAEDDA3F04D908036ED9C5D8BF.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">59.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG009001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre PC 12.09 (gris)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/4EE45FAE6661BBB1645E0A5374D7EEF1.jpg" alt="Sigma - Montre PC 12.09 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/4EE45FAE6661BBB1645E0A5374D7EEF1.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/4EE45FAE6661BBB1645E0A5374D7EEF1.jpg" alt="Sigma - Montre PC 12.09 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/4EE45FAE6661BBB1645E0A5374D7EEF1.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">109.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/accessoires/subcat/RZUSG010001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Sigma - Montre RC 14.11 (gris)</h2>
+	<p class="category ng-binding">Catégorie: Accessoires de running &gt; Running</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A85A213E73CE32EF9D64E6F347F94E42.jpg" alt="Sigma - Montre RC 14.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/A85A213E73CE32EF9D64E6F347F94E42.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A85A213E73CE32EF9D64E6F347F94E42.jpg" alt="Sigma - Montre RC 14.11 (gris)" src="http://i2.keller-sports.de/shop/products/665x665/A85A213E73CE32EF9D64E6F347F94E42.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">149.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La montre running   Cet accessoire est indispensable pour les coureurs ! Vos sessions de running dev...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize -->
+				
+		
+
+
+
+		
+		
+			<br clear="all">
+			
+			
+			
+				<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}" class="disabled">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+				<!-- // pagination -->
+				
+				
+			
+			
+			
+	
+</ul></div><!--//gauche-->
+
+			<!--droite-->
+			<div id="droite" class="ng-scope">
+			
+		
+				<div class="panel-body">
+				
+				<div class="titre-top">
+<h4>Mot clé </h4>
+
+<div class="stripe-line"></div>
+</div>
+<span ng-show="category" class="">dans catégorie:  <span ng-class="{capitalize: isBrand}" class="ng-binding">accessoires</span></span><span ng-show="isPlural(subcat)" class="ng-hide">s</span>
+<input ng-model="query" ng-change="resetPage()" class="form-control ng-pristine ng-valid">
+				</div>
+				
+				
+				
+		 
+		
+		
+				
+				
+				
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Catégorie</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+
+<ul class="navigation">
+<li class="toggleSubMenu titrerub"><a href="#!/vêtements"><strong>Vêtements</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/veste" class="ng-binding">Veste<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/collant" class="ng-binding">Collant<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/t-shirt" class="ng-binding">T-shirt<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/short" class="ng-binding">Short<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/sous-vêtements &amp; chaussettes" class="ng-binding">Sous-vêtements &amp; chaussettes<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/pantalon" class="ng-binding">Pantalon<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/casquette" class="ng-binding">Casquette<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray -->
+					</ul>
+					
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/chaussures"><strong>Chaussures</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/trail" class="ng-binding">Trail<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/piste" class="ng-binding">Piste<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/compétition" class="ng-binding">Compétition<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/stable" class="ng-binding">Stable<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/nature" class="ng-binding">Nature<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray -->
+					</ul>
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/accessoires"><strong>Accessoires</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac à dos" class="ng-binding">Sac à dos<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/cardio" class="ng-binding">Cardio<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/bouteille" class="ng-binding">Bouteille<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/gilet" class="ng-binding">Gilet<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac" class="ng-binding">Sac<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray -->
+					</ul>
+					
+					</ul>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Marque</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<div class="left">
+						<!-- ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/adidas" class="ng-binding">adidas</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/asics" class="ng-binding">asics</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/mizuno" class="ng-binding">mizuno</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nathan" class="ng-binding">nathan</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/new balance" class="ng-binding">new balance</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nike" class="ng-binding">nike</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/polar" class="ng-binding">polar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/powerbar" class="ng-binding">powerbar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/puma" class="ng-binding">puma</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/saucony" class="ng-binding">saucony</a></p><!-- end ngRepeat: brand in brandsArray -->
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				<div class="panel-body">
+				
+								<div class="panel-body">
+	<div class="titre-top">
+<h4 class="ng-binding">Couleur </h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					
+					<a href=""><div ng-model="color" class="color white ng-pristine ng-valid" ng-click="colorFunction('blanc')" ng-class="{selected: 'blanc' == color}"></div></a>
+					<a href=""><div class="color black ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('noir')" ng-class="{selected: 'noir' == color}"></div></a>
+					<a href=""><div class="color gray ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('gris')" ng-class="{selected: 'gris' == color}"></div></a>
+					<a href=""><div class="color red ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rouge')" ng-class="{selected: 'rouge' == color}"></div></a>
+					<a href=""><div class="color blue ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('bleu')" ng-class="{selected: 'bleu' == color}"></div></a>
+					<a href=""><div class="color olive ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('vert')" ng-class="{selected: 'vert' == color}"></div></a>
+					<a href=""><div class="color yellow ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('jaune')" ng-class="{selected: 'jaune' == color}"></div></a>
+					<a href=""><div class="color fuchsia ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rose')" ng-class="{selected: 'rose' == color}"></div></a>
+					<a href=""><div class="color orange ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('orange')" ng-class="{selected: 'orange' == color}"></div></a>
+					<a href=""><div class="color purple ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lila' == color}"></div></a>
+					<a href=""><div class="color silver ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('argent')" ng-class="{selected: 'argent' == color}"></div></a>
+					<p><a href="" ng-show="color" ng-click="colorFunction('')" class="ng-hide">Voir toutes</a></p>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+			
+<div class="titre-top">
+<h4>Pour</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<p><input type="checkbox" ng-model="hommes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Hommes</p>
+					<p><input type="checkbox" ng-model="femmes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Femmes</p>
+				</div>
+				
+				
+			</div>
+			<!--//droite-->
+
+			</div></div></div>
+	
+	</div>
+	
+	<div id="footer">
+<div class="footer">
+
+</div>
+</div>	
+
+
+
+
+
+
+
+</body></html>

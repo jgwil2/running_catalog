@@ -1,0 +1,1720 @@
+<html dir="ltr" lang="fr" xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" class="ltr fr no-js ng-scope" ng-app="runningCatalogApp" ng-controller="MainCtrl"><!--<![endif]--><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+
+<title ng-bind="data.title() | capitalize" class="ng-binding">Sous-vêtements &amp; chaussettes</title>
+<meta name="description" content="La boutique des passionnés de course à pied">
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/app.css">
+
+<link href="http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz" rel="stylesheet" type="text/css">
+<script async="" src="//www.google-analytics.com/analytics.js"></script><script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></script>
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.min.js"></script>
+	<script src="js/services.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/filters.js"></script>
+
+
+
+
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-8784346-28', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+</head>
+<body data-status="ready" style="">
+
+
+<div id="header">
+	<img class="spip_logos" alt="Boutique Course à pied" src="images/boutique-courseapied.png" width="328" height="102">
+	
+</div>	<div id="nav">
+<div class="nav">
+	<ul>
+		<li><a href="http://www.passionrunning.com">Accueil</a></li>
+	
+
+		
+		<li><a href="http://www.passionrunning.com/course-a-pied/">Course à pied</a></li>
+		
+		<li><a href="http://www.passionrunning.com/entrainement/">Entrainement</a></li>
+		
+		<li><a href="http://www.passionrunning.com/equipements/">Equipements</a></li>
+		
+		<li><a href="http://www.passionrunning.com/lecture/">Lecture</a></li>
+		
+		<li><a href="http://www.passionrunning.com/nutrition/">Nutrition</a></li>
+		
+		<li><a href="http://www.passionrunning.com/sante-blessure/">Santé / Blessure</a></li>
+		
+		<li class="btnboutique"><a href="http://boutique.passionrunning.com">La Boutique</a>
+		<ul>
+		<li><a href="http://boutique.passionrunning.com/#/v%C3%AAtements">Vêtements</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/chaussures">Chaussures</a></li>
+		<li><a href="http://boutique.passionrunning.com/#/accessoires">Accessoires</a></li>
+		</ul></li>
+	</ul>
+	</div>
+</div>	
+
+
+
+<div id="rubrique">
+
+	<!-- ngView:  --><div ng-view="" class="ng-scope">
+
+		
+
+
+		
+			<div ng-show="category" class="ng-scope">
+		<div id="arbo"><div class="arbo"><a href="/#!">Boutique</a> &gt; <strong class="on"><!-- ngIf: category --><span ng-if="category" ng-class="{capitalize: isBrand}" class="ng-binding ng-scope">Sous-vêtements &amp; chaussettes<!-- ngIf: isPlural(subcat) --></span><!-- end ngIf: category --></strong></div></div><!--.arbo-->
+</div>
+			
+
+
+<!-- gauche-->
+<div id="gauche" class="ng-scope">
+
+
+			<h1 ng-hide="category" class="ng-hide">La boutique passion running</h1>
+			
+			
+			
+			<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}" class="disabled">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+			<!-- // pagination -->
+			
+			
+			<br clear="all">
+			<div class="alert alert-warning ng-hide" ng-show="noArticles"><h4>Pas d'articles correspondants aux critères de recherche</h4></div>
+			<ul>
+			
+			
+			
+			
+				<!-- ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD051001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière miCoach Essentials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7AC99FF1A21B5939489B39C3F3E6715E.jpg" alt="Adidas - Brassière miCoach Essentials" src="http://i2.keller-sports.de/shop/products/665x665/7AC99FF1A21B5939489B39C3F3E6715E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7AC99FF1A21B5939489B39C3F3E6715E.jpg" alt="Adidas - Brassière miCoach Essentials" src="http://i2.keller-sports.de/shop/products/665x665/7AC99FF1A21B5939489B39C3F3E6715E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">40.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La brassière adidas Supernova? Seamless Glide,conçue avec une construction sans coutures pour limite...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD069001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Chaussettes Running Half Crew (1 paire) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1B4236AAE7978765B1BE64739EFA98DD.jpg" alt="Adidas - Chaussettes Running Half Crew (1 paire) " src="http://i2.keller-sports.de/shop/products/665x665/1B4236AAE7978765B1BE64739EFA98DD.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1B4236AAE7978765B1BE64739EFA98DD.jpg" alt="Adidas - Chaussettes Running Half Crew (1 paire) " src="http://i2.keller-sports.de/shop/products/665x665/1B4236AAE7978765B1BE64739EFA98DD.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">12.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Socquettes Half-Cushioned Idéales pour la course à pied,les socquettes Adidas Half-Cushioned offrent...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD118001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière Modern Classicse</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg" alt="Adidas - Brassière Modern Classicse" src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg" alt="Adidas - Brassière Modern Classicse" src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">25.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Modern Classics  Bra Women  - CLIMALITE ®: tissu léger et doux pour une régulation de lhumidité exce...</p>
+<p class="ng-binding">84% polyester/ 16% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD118002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Modern Classics Brassière blanc</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg" alt="Adidas - Modern Classics Brassière blanc" src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg" alt="Adidas - Modern Classics Brassière blanc" src="http://i2.keller-sports.de/shop/products/665x665/E6C504803E88866E9472A5E4F146D3FA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">25.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Modern Classics  Bra Women  - CLIMALITE ®: tissu léger et doux pour une régulation de lhumidité exce...</p>
+<p class="ng-binding">84% polyester/ 16% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD278001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas -Brassière Sequentials</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A73F7DADD9FF1FDBA526A1F3B9DFFA49.jpg" alt="Adidas -Brassière Sequentials" src="http://i2.keller-sports.de/shop/products/665x665/A73F7DADD9FF1FDBA526A1F3B9DFFA49.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A73F7DADD9FF1FDBA526A1F3B9DFFA49.jpg" alt="Adidas -Brassière Sequentials" src="http://i2.keller-sports.de/shop/products/665x665/A73F7DADD9FF1FDBA526A1F3B9DFFA49.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Modern Sequentials Brassière Femmes  - CLIMALITE ®: tissu léger et doux pour une régulation de lhumi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rose</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD295001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - T-shirt Adizero Crop</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9DF8490F96AE9251964652A82DBE805C.jpg" alt="Adidas - T-shirt Adizero Crop" src="http://i2.keller-sports.de/shop/products/665x665/9DF8490F96AE9251964652A82DBE805C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9DF8490F96AE9251964652A82DBE805C.jpg" alt="Adidas - T-shirt Adizero Crop" src="http://i2.keller-sports.de/shop/products/665x665/9DF8490F96AE9251964652A82DBE805C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Adidas - Running shirt Crop Top Adizero femmes  Repoussez vos limites pendant les entraînements grâc...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD322001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière SuperNova Racer</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FE73B745A103B8B11559BD3F48CCE6C7.jpg" alt="Adidas - Brassière SuperNova Racer" src="http://i2.keller-sports.de/shop/products/665x665/FE73B745A103B8B11559BD3F48CCE6C7.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FE73B745A103B8B11559BD3F48CCE6C7.jpg" alt="Adidas - Brassière SuperNova Racer" src="http://i2.keller-sports.de/shop/products/665x665/FE73B745A103B8B11559BD3F48CCE6C7.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Conçue pour offrir un soutien maximum,labrassière adidas Supernova? Racer est dotée de la technologi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD374003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Chaussettes HC Ankle (1 paire) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D17C4CE1C478D65E6D5DCA70B4FF21B2.jpg" alt="Adidas - Chaussettes HC Ankle (1 paire) " src="http://i2.keller-sports.de/shop/products/665x665/D17C4CE1C478D65E6D5DCA70B4FF21B2.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D17C4CE1C478D65E6D5DCA70B4FF21B2.jpg" alt="Adidas - Chaussettes HC Ankle (1 paire) " src="http://i2.keller-sports.de/shop/products/665x665/D17C4CE1C478D65E6D5DCA70B4FF21B2.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">12.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne négligez pas les chaussettes Les chaussettes sont un élément que nous pouvons parfois négliger. E...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD380002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Chaussettes ANKLE PLAIN (3 paires) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/51B3315A8858BEC947560EBF6988C05D.jpg" alt="Adidas - Chaussettes ANKLE PLAIN (3 paires) " src="http://i2.keller-sports.de/shop/products/665x665/51B3315A8858BEC947560EBF6988C05D.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/51B3315A8858BEC947560EBF6988C05D.jpg" alt="Adidas - Chaussettes ANKLE PLAIN (3 paires) " src="http://i2.keller-sports.de/shop/products/665x665/51B3315A8858BEC947560EBF6988C05D.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">8.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne négligez pas un détail essentiel... vos chaussettes  Ces chaussettes de running sont composées d´...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu foncé</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD409001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière Supernova Racer</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D6755C0974E5E47C90D3F288F643655A.jpg" alt="Adidas - Brassière Supernova Racer" src="http://i2.keller-sports.de/shop/products/665x665/D6755C0974E5E47C90D3F288F643655A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D6755C0974E5E47C90D3F288F643655A.jpg" alt="Adidas - Brassière Supernova Racer" src="http://i2.keller-sports.de/shop/products/665x665/D6755C0974E5E47C90D3F288F643655A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Brassière Supernova Racer pour Femmes Conçue pour offrir un soutien maximum,la brassière adidas Supe...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD416001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière 3 Stripes Padded BH </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/10B8A0D1E2F62BBCD052C6CF12BF6734.jpg" alt="Adidas - Brassière 3 Stripes Padded BH " src="http://i2.keller-sports.de/shop/products/665x665/10B8A0D1E2F62BBCD052C6CF12BF6734.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/10B8A0D1E2F62BBCD052C6CF12BF6734.jpg" alt="Adidas - Brassière 3 Stripes Padded BH " src="http://i2.keller-sports.de/shop/products/665x665/10B8A0D1E2F62BBCD052C6CF12BF6734.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Restez au frais et au sec Grâce son soutient optimal,cette brassière sera idéale pour vos sorties de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD450001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière Stronger bh</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/020AC39413C7FA96B706BB831ABEE776.jpg" alt="Adidas - Brassière Stronger bh" src="http://i2.keller-sports.de/shop/products/665x665/020AC39413C7FA96B706BB831ABEE776.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/020AC39413C7FA96B706BB831ABEE776.jpg" alt="Adidas - Brassière Stronger bh" src="http://i2.keller-sports.de/shop/products/665x665/020AC39413C7FA96B706BB831ABEE776.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">47.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un confort absolu Le brassière de running adidas est conçue en tissu alliant maintien,douceur et éla...</p>
+<p class="ng-binding">90% polyester /10% élasth</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> lila</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD515002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - Brassière Supernova Racer</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A5673630A08A8576EAE6CD0BA991E96B.jpg" alt="Adidas - Brassière Supernova Racer" src="http://i2.keller-sports.de/shop/products/665x665/A5673630A08A8576EAE6CD0BA991E96B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A5673630A08A8576EAE6CD0BA991E96B.jpg" alt="Adidas - Brassière Supernova Racer" src="http://i2.keller-sports.de/shop/products/665x665/A5673630A08A8576EAE6CD0BA991E96B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Soutient et confort grâce à la brassière Supernova La brassière adidas Supernova? Racer est dotée de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAD595001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Adidas - 3 paires de Chaussettes Ankle Plain (bleu/blanc/bleu foncé) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/9E14E64ED0A55A3127C96ECADEA535FA.jpg" alt="Adidas - 3 paires de Chaussettes Ankle Plain (bleu/blanc/bleu foncé) " src="http://i2.keller-sports.de/shop/products/665x665/9E14E64ED0A55A3127C96ECADEA535FA.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/9E14E64ED0A55A3127C96ECADEA535FA.jpg" alt="Adidas - 3 paires de Chaussettes Ankle Plain (bleu/blanc/bleu foncé) " src="http://i2.keller-sports.de/shop/products/665x665/9E14E64ED0A55A3127C96ECADEA535FA.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">8.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne négligez pas un détail essentiel... vos chaussettes Ces chaussettes de running sont composées d´u...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding ng-hide"><strong>Couleur :</strong> </p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS019003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes Kayano blanc/noir IV 47</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6888467F1A423F55BB48548033871B19.jpg" alt="Asics - Chaussettes Kayano blanc/noir IV 47" src="http://i2.keller-sports.de/shop/products/665x665/6888467F1A423F55BB48548033871B19.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6888467F1A423F55BB48548033871B19.jpg" alt="Asics - Chaussettes Kayano blanc/noir IV 47" src="http://i2.keller-sports.de/shop/products/665x665/6888467F1A423F55BB48548033871B19.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">9.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Chaussettes de running très fonctionnelles,adaptées aux GEL-Kayano. Constitués de matiéres légères,e...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS179003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Crew Chaussettes </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/453E2BB0DEC954BB7D9973AF1E6793E6.jpg" alt="Asics - Crew Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/453E2BB0DEC954BB7D9973AF1E6793E6.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/453E2BB0DEC954BB7D9973AF1E6793E6.jpg" alt="Asics - Crew Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/453E2BB0DEC954BB7D9973AF1E6793E6.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">14.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne négligez pas vos chaussettes Les chaussettes de course à pied ASICS Crew Sock sont idéales pour v...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS264001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes 2000 Series Quarter </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/5FE128AE0A7BF2BB3E5BCCE647EB70F3.jpg" alt="Asics - Chaussettes 2000 Series Quarter " src="http://i2.keller-sports.de/shop/products/665x665/5FE128AE0A7BF2BB3E5BCCE647EB70F3.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/5FE128AE0A7BF2BB3E5BCCE647EB70F3.jpg" alt="Asics - Chaussettes 2000 Series Quarter " src="http://i2.keller-sports.de/shop/products/665x665/5FE128AE0A7BF2BB3E5BCCE647EB70F3.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">9.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ergonomie et absorption des chocs exceptionnels Conçues pour complémenter vos chaussures ASICS GEL-2...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS302002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes Trail </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6B8A23B0BA976BB7CEC3651B0FC72D66.jpg" alt="Asics - Chaussettes Trail " src="http://i2.keller-sports.de/shop/products/665x665/6B8A23B0BA976BB7CEC3651B0FC72D66.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6B8A23B0BA976BB7CEC3651B0FC72D66.jpg" alt="Asics - Chaussettes Trail " src="http://i2.keller-sports.de/shop/products/665x665/6B8A23B0BA976BB7CEC3651B0FC72D66.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">17.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ne négligez pas les chaussettes  Les chaussettes de Trail Asics pour hommes sont minces,respirantes ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS316001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes (3 paires) Crew </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/66573B1E73A22C81955BFCBF51E72556.jpg" alt="Asics - Chaussettes (3 paires) Crew " src="http://i2.keller-sports.de/shop/products/665x665/66573B1E73A22C81955BFCBF51E72556.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/66573B1E73A22C81955BFCBF51E72556.jpg" alt="Asics - Chaussettes (3 paires) Crew " src="http://i2.keller-sports.de/shop/products/665x665/66573B1E73A22C81955BFCBF51E72556.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">8.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Gardez vos pieds au sec Les chaussettes de course à pied ASICS 3PPK Crew Sock noires unisex (Collect...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS327001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes Winter Running </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/89A32EDAD8B231E00B76A0627360A4EB.jpg" alt="Asics - Chaussettes Winter Running " src="http://i2.keller-sports.de/shop/products/665x665/89A32EDAD8B231E00B76A0627360A4EB.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/89A32EDAD8B231E00B76A0627360A4EB.jpg" alt="Asics - Chaussettes Winter Running " src="http://i2.keller-sports.de/shop/products/665x665/89A32EDAD8B231E00B76A0627360A4EB.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">17.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort,santé et performances en Hiver Les chaussettes de courses Asics ont été spécialement conçu p...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS395002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes 2200 Series </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/DD224C535CAF4E6EB0A1CC1503B6666C.jpg" alt="Asics - Chaussettes 2200 Series " src="http://i2.keller-sports.de/shop/products/665x665/DD224C535CAF4E6EB0A1CC1503B6666C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/DD224C535CAF4E6EB0A1CC1503B6666C.jpg" alt="Asics - Chaussettes 2200 Series " src="http://i2.keller-sports.de/shop/products/665x665/DD224C535CAF4E6EB0A1CC1503B6666C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">49.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Excellent soutien pendant et après votre course Ces chaussettes de compression pour hommes à hauteur...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEAS401001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Asics - Chaussettes 2000 Series Quarter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E48862649A0834EFBE2BF13B4B706B8C.jpg" alt="Asics - Chaussettes 2000 Series Quarter" src="http://i2.keller-sports.de/shop/products/665x665/E48862649A0834EFBE2BF13B4B706B8C.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E48862649A0834EFBE2BF13B4B706B8C.jpg" alt="Asics - Chaussettes 2000 Series Quarter" src="http://i2.keller-sports.de/shop/products/665x665/E48862649A0834EFBE2BF13B4B706B8C.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">9.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Ergonomie et absorption des chocs exceptionnels Conçuespour complémenter vos chaussures ASICS GEL-20...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEMI001002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Running triple (6er Pack) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/51E60C7089EC9CE3DBA588015CB47E2E.jpg" alt="Mizuno - Running triple (6er Pack) " src="http://i2.keller-sports.de/shop/products/665x665/51E60C7089EC9CE3DBA588015CB47E2E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/51E60C7089EC9CE3DBA588015CB47E2E.jpg" alt="Mizuno - Running triple (6er Pack) " src="http://i2.keller-sports.de/shop/products/665x665/51E60C7089EC9CE3DBA588015CB47E2E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">79.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Les chaussettes parfaites pour se sentir bien pendant votre course,6 paires dans cet article!...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEMI002001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Running Triple Pack </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2C8D4EDFAB29698439932ABFEED617E0.jpg" alt="Mizuno - Running Triple Pack " src="http://i2.keller-sports.de/shop/products/665x665/2C8D4EDFAB29698439932ABFEED617E0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2C8D4EDFAB29698439932ABFEED617E0.jpg" alt="Mizuno - Running Triple Pack " src="http://i2.keller-sports.de/shop/products/665x665/2C8D4EDFAB29698439932ABFEED617E0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">10.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Des chaussettes trés agréables et adaptées à la course à pied.   - 3 paires....</p>
+<p class="ng-binding">62% nylon/ 38% polyester</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEMI084001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Brassière Drylite Active</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg" alt="Mizuno - Brassière Drylite Active" src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg" alt="Mizuno - Brassière Drylite Active" src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">30.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Brassière polyvalente offrant un très bon maintien Cette brassière Mizuno Drylite Active vous apport...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEMI087001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno -Chaussettes Drylite Trail 1/2 </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/1F44D654F2F85EC5E973DEF71B327318.jpg" alt="Mizuno -Chaussettes Drylite Trail 1/2 " src="http://i2.keller-sports.de/shop/products/665x665/1F44D654F2F85EC5E973DEF71B327318.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/1F44D654F2F85EC5E973DEF71B327318.jpg" alt="Mizuno -Chaussettes Drylite Trail 1/2 " src="http://i2.keller-sports.de/shop/products/665x665/1F44D654F2F85EC5E973DEF71B327318.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">15.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pratique du trail   Les chaussettes Drylite Trail 1/2 vont procureront tout le confort nécessaire po...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bunt</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI058004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes lang Elite Run Cush Comp KN HI blancXL</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/E2AC7D9C61050C7C5EFA180FB09489BE.jpg" alt="Nike - Chaussettes lang Elite Run Cush Comp KN HI blancXL" src="http://i2.keller-sports.de/shop/products/665x665/E2AC7D9C61050C7C5EFA180FB09489BE.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/E2AC7D9C61050C7C5EFA180FB09489BE.jpg" alt="Nike - Chaussettes lang Elite Run Cush Comp KN HI blancXL" src="http://i2.keller-sports.de/shop/products/665x665/E2AC7D9C61050C7C5EFA180FB09489BE.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">24.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour une protection du pied optimal Les chaussettes de running Nike Cush Compression Knee-High procu...</p>
+<p class="ng-binding">92% nylon/8% spandex</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI164002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - 2 paires de Chaussettes Anti</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CDA456137964C2237DF1B52F8618683B.jpg" alt="Nike - 2 paires de Chaussettes Anti" src="http://i2.keller-sports.de/shop/products/665x665/CDA456137964C2237DF1B52F8618683B.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CDA456137964C2237DF1B52F8618683B.jpg" alt="Nike - 2 paires de Chaussettes Anti" src="http://i2.keller-sports.de/shop/products/665x665/CDA456137964C2237DF1B52F8618683B.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">15.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Un confort sans irritations Les chaussettes Nike Anti-Blister Quarter sont dotées de deux couches de...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI165003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Elite Cushioned Quarter</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/FDCEF6275A838BD91B32FC628A4E0C8F.jpg" alt="Nike - Elite Cushioned Quarter" src="http://i2.keller-sports.de/shop/products/665x665/FDCEF6275A838BD91B32FC628A4E0C8F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/FDCEF6275A838BD91B32FC628A4E0C8F.jpg" alt="Nike - Elite Cushioned Quarter" src="http://i2.keller-sports.de/shop/products/665x665/FDCEF6275A838BD91B32FC628A4E0C8F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">10.90 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Frappe le pavé sans douleur avec les chaussettes Nike Elite Cushioned Quarter.rnrnLe puissant systèm...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI171001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Pro Brassière noir </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/016D23F2E31533F4F0A7F23859348213.jpg" alt="Nike - Pro Brassière noir " src="http://i2.keller-sports.de/shop/products/665x665/016D23F2E31533F4F0A7F23859348213.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/016D23F2E31533F4F0A7F23859348213.jpg" alt="Nike - Pro Brassière noir " src="http://i2.keller-sports.de/shop/products/665x665/016D23F2E31533F4F0A7F23859348213.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Soutien-gorge Nike Pro: pour les entraînements à impact moyenr.  Au même titre que le tee-shirt blan...</p>
+<p class="ng-binding">87% polyester/13% spandex</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI208001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Dri Fit Cushion Quarter Chaussettes </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/491F3C5F3E72DACF81A53EF1819F182E.jpg" alt="Nike - Dri Fit Cushion Quarter Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/491F3C5F3E72DACF81A53EF1819F182E.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/491F3C5F3E72DACF81A53EF1819F182E.jpg" alt="Nike - Dri Fit Cushion Quarter Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/491F3C5F3E72DACF81A53EF1819F182E.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">12.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">La nike Cushion QuarterDank strategisch platzierter Dämpfung,die für effektiven Aufprallschutz sorgt...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI273003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Brassière Shape Large Swoosh noir </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/19A397B5C0B2E5043DA9274B13101A95.jpg" alt="Nike - Brassière Shape Large Swoosh noir " src="http://i2.keller-sports.de/shop/products/665x665/19A397B5C0B2E5043DA9274B13101A95.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/19A397B5C0B2E5043DA9274B13101A95.jpg" alt="Nike - Brassière Shape Large Swoosh noir " src="http://i2.keller-sports.de/shop/products/665x665/19A397B5C0B2E5043DA9274B13101A95.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">30.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Haut de sport Nike Shape Swoosh&nbsp;: performance à faibleimpact Avec son soutien-gorge intégré et son a...</p>
+<p class="ng-binding">88% polyester/12% spandex</p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI387003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Dri Fit Cushioned </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8042F206148E2535975B905BB2E7B1E2.jpg" alt="Nike - Chaussettes Dri Fit Cushioned " src="http://i2.keller-sports.de/shop/products/665x665/8042F206148E2535975B905BB2E7B1E2.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8042F206148E2535975B905BB2E7B1E2.jpg" alt="Nike - Chaussettes Dri Fit Cushioned " src="http://i2.keller-sports.de/shop/products/665x665/8042F206148E2535975B905BB2E7B1E2.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">9.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">- Le tissu anti-humidité Dri-FIT vous permet de garder les pieds au sec et au frais - Rembourrage ba...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI688004">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Running</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/C433DA6E84E90990DBFD8F39024B27A0.jpg" alt="Nike - Running" src="http://i2.keller-sports.de/shop/products/665x665/C433DA6E84E90990DBFD8F39024B27A0.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/C433DA6E84E90990DBFD8F39024B27A0.jpg" alt="Nike - Running" src="http://i2.keller-sports.de/shop/products/665x665/C433DA6E84E90990DBFD8F39024B27A0.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">7.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Chaussettes Nike Cotton Fly Crew : confort et maintien sûr Avec le tissu anti-transpiration qui main...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI701001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Cushion Quater </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A8961D0B6B1970D729A785FFD2CD29AC.jpg" alt="Nike - Chaussettes Cushion Quater " src="http://i2.keller-sports.de/shop/products/665x665/A8961D0B6B1970D729A785FFD2CD29AC.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A8961D0B6B1970D729A785FFD2CD29AC.jpg" alt="Nike - Chaussettes Cushion Quater " src="http://i2.keller-sports.de/shop/products/665x665/A8961D0B6B1970D729A785FFD2CD29AC.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">13.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Des chaussettes taillées pour la compétition Pour améliorer vos perfomances à l´entraînement et&nbsp; com...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI703001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes DRI</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/CCF8973EF3364CF12258325BF6086E24.jpg" alt="Nike - Chaussettes DRI" src="http://i2.keller-sports.de/shop/products/665x665/CCF8973EF3364CF12258325BF6086E24.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/CCF8973EF3364CF12258325BF6086E24.jpg" alt="Nike - Chaussettes DRI" src="http://i2.keller-sports.de/shop/products/665x665/CCF8973EF3364CF12258325BF6086E24.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">7.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Légèreté et soutien dynamique Les chaussettes Nike Dri-FIT Performance sont conçues pour offrir un c...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI710001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Value Cotton </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/38812B71243614D03EC711394A6DE69A.jpg" alt="Nike - Chaussettes Value Cotton " src="http://i2.keller-sports.de/shop/products/665x665/38812B71243614D03EC711394A6DE69A.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/38812B71243614D03EC711394A6DE69A.jpg" alt="Nike - Chaussettes Value Cotton " src="http://i2.keller-sports.de/shop/products/665x665/38812B71243614D03EC711394A6DE69A.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">7.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort et chaleur Ces chaussettes Nike dri-fit sont excellentes pour vos footings ou vos entraineme...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI713001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes DRI</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/30AFEF34A5C828258E127ADF79FD6875.jpg" alt="Nike - Chaussettes DRI" src="http://i2.keller-sports.de/shop/products/665x665/30AFEF34A5C828258E127ADF79FD6875.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/30AFEF34A5C828258E127ADF79FD6875.jpg" alt="Nike - Chaussettes DRI" src="http://i2.keller-sports.de/shop/products/665x665/30AFEF34A5C828258E127ADF79FD6875.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">10.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Absorbe la transpiration de la peau Les chaussettes d´entraînement Nike Dri-FIT Graphic No-Show Tab ...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> bleu</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI714001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Graphic Cotton Cushion</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B16D5781AC296246995490B229C74585.jpg" alt="Nike - Chaussettes Graphic Cotton Cushion" src="http://i2.keller-sports.de/shop/products/665x665/B16D5781AC296246995490B229C74585.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B16D5781AC296246995490B229C74585.jpg" alt="Nike - Chaussettes Graphic Cotton Cushion" src="http://i2.keller-sports.de/shop/products/665x665/B16D5781AC296246995490B229C74585.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">11.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">CONFORT ET RÉSISTANCE Les chaussettes (3 paires) Nike GraphicCotton Cushion Crew pour Garçon (8-15 a...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> rouge</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI757001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Elite Cushion Crew</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/7D200DED1796CC55E2B378DE772D00EC.jpg" alt="Nike - Chaussettes Elite Cushion Crew" src="http://i2.keller-sports.de/shop/products/665x665/7D200DED1796CC55E2B378DE772D00EC.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/7D200DED1796CC55E2B378DE772D00EC.jpg" alt="Nike - Chaussettes Elite Cushion Crew" src="http://i2.keller-sports.de/shop/products/665x665/7D200DED1796CC55E2B378DE772D00EC.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">13.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Amorti ciblé et maintien La chaussette Elite Crew offre un amorti supplémentaire sur les zones du pi...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> gris</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI759001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Dri-Fit Cushioned</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg" alt="Nike - Chaussettes Dri-Fit Cushioned" src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg" alt="Nike - Chaussettes Dri-Fit Cushioned" src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">7.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort anti-transpiration et maintien Fabriquées dans un tissu extensible qui évacue la transpirati...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI866001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Elite Graduated Compression (vert/noir) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Nike - Chaussettes Elite Graduated Compression (vert/noir) "><div class="popup"><img ng-src="" alt="Nike - Chaussettes Elite Graduated Compression (vert/noir) "></div></div><br>
+
+
+<div class="prixarticle ng-binding">39.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Nike - Chaussettes Elite Graduated Compression (vert/noir) - S (EU 35 - 38)...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI870006">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Elite Running Cushioned Quarter Laufsocken (blau/grün) </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="" alt="Nike - Elite Running Cushioned Quarter Laufsocken (blau/grün) "><div class="popup"><img ng-src="" alt="Nike - Elite Running Cushioned Quarter Laufsocken (blau/grün) "></div></div><br>
+
+
+<div class="prixarticle ng-binding">13.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">TISSU ANTI-TRANSPIRATION ET PROTECTION CONTRE LES CHOCS Les chaussettes de running Nike Elite Cushio...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> vert</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBESI022003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Skins - Active Unisex Chaussettes </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/2FCA489AD9C9A9994E5B949F2ED64031.jpg" alt="Skins - Active Unisex Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/2FCA489AD9C9A9994E5B949F2ED64031.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/2FCA489AD9C9A9994E5B949F2ED64031.jpg" alt="Skins - Active Unisex Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/2FCA489AD9C9A9994E5B949F2ED64031.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">45.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Facilitez la circulation du sang Les Chaussettes Skins Active noires sont idéales pour améliorer vos...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBESI025003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Skins - Recovery Unisex Chaussettes </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/A06F5A0A57268C8B04ED4008D123A2D3.jpg" alt="Skins - Recovery Unisex Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/A06F5A0A57268C8B04ED4008D123A2D3.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/A06F5A0A57268C8B04ED4008D123A2D3.jpg" alt="Skins - Recovery Unisex Chaussettes " src="http://i2.keller-sports.de/shop/products/665x665/A06F5A0A57268C8B04ED4008D123A2D3.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">45.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Pour une récupération plus facile Optimisez votre récupération après vos entraînements et compétitio...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBESI026002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Skins - Bas de contention Essentials Unisex Calf Tights MX </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/D8226B1C776AE525F3ADA3D43C16AF48.jpg" alt="Skins - Bas de contention Essentials Unisex Calf Tights MX " src="http://i2.keller-sports.de/shop/products/665x665/D8226B1C776AE525F3ADA3D43C16AF48.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/D8226B1C776AE525F3ADA3D43C16AF48.jpg" alt="Skins - Bas de contention Essentials Unisex Calf Tights MX " src="http://i2.keller-sports.de/shop/products/665x665/D8226B1C776AE525F3ADA3D43C16AF48.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">45.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Bas de contention Skins Essentials Unisex Calf Tights MX,faites respirer vos jambes&nbsp;!  Bas de conten...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBESI027002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Skins -Bas de contention Essentials Unisex Calf Tights MX </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/8718A66D4607E49B2ED3793D37070624.jpg" alt="Skins -Bas de contention Essentials Unisex Calf Tights MX " src="http://i2.keller-sports.de/shop/products/665x665/8718A66D4607E49B2ED3793D37070624.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/8718A66D4607E49B2ED3793D37070624.jpg" alt="Skins -Bas de contention Essentials Unisex Calf Tights MX " src="http://i2.keller-sports.de/shop/products/665x665/8718A66D4607E49B2ED3793D37070624.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">45.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Skins -Bas de contention Essentials Unisex Calf Tights MX - S...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> blanc</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEUA015001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Under Armour - Short Evo Coldgear</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/23715B3B504B730F0F852C9905A4B941.jpg" alt="Under Armour - Short Evo Coldgear" src="http://i2.keller-sports.de/shop/products/665x665/23715B3B504B730F0F852C9905A4B941.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/23715B3B504B730F0F852C9905A4B941.jpg" alt="Under Armour - Short Evo Coldgear" src="http://i2.keller-sports.de/shop/products/665x665/23715B3B504B730F0F852C9905A4B941.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">34.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Toujours plus proche de l´athlète,Under Armour vous offre un concentré de technologies pour vous acc...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEUA032001">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Under Armour - T-shirt HG Sonic </h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/3B6036A3E6A44F15A63EAF41472EB796.jpg" alt="Under Armour - T-shirt HG Sonic " src="http://i2.keller-sports.de/shop/products/665x665/3B6036A3E6A44F15A63EAF41472EB796.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/3B6036A3E6A44F15A63EAF41472EB796.jpg" alt="Under Armour - T-shirt HG Sonic " src="http://i2.keller-sports.de/shop/products/665x665/3B6036A3E6A44F15A63EAF41472EB796.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">29.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Maintien et confort le tee-shirt manches courtes Under Armour HG Sonic Compression pour homme vous m...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBEMI084002">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Mizuno - Brassière Drylite Active</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg" alt="Mizuno - Brassière Drylite Active" src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg" alt="Mizuno - Brassière Drylite Active" src="http://i2.keller-sports.de/shop/products/665x665/6F232E706F27E0498B0065C72A1A3F4F.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">30.00 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Brassière polyvalente offrant un très bon maintien Cette brassière Mizuno Drylite Active vous apport...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> noir</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize --><div ng-repeat="product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize" class="ng-scope">
+			<a href="#!/vêtements/sous-vêtements &amp; chaussettes/RBENI759003">
+			
+			
+			
+			
+			<div class="blocarticle">	
+	<h2 class="ng-binding">Nike - Chaussettes Dri-Fit Cushioned</h2>
+	<p class="category ng-binding">Catégorie: Vêtements de running &gt; Sous-vêtements &amp; Chaussettes</p>
+<div class="logoarticle">
+<div class="thumb"><img class="articlept" ng-src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg" alt="Nike - Chaussettes Dri-Fit Cushioned" src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg"><div class="popup"><img ng-src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg" alt="Nike - Chaussettes Dri-Fit Cushioned" src="http://i2.keller-sports.de/shop/products/665x665/B5EAA32E89D0059F940B0FCC52EE2AF4.jpg"></div></div><br>
+
+
+<div class="prixarticle ng-binding">7.95 EUR </div>
+
+
+<div class="envoirplus">En voir plus</div>
+
+</div>
+
+<div class="chapoarticle">
+
+<p class="ng-binding">Confort anti-transpiration et maintien Fabriquées dans un tissu extensible qui évacue la transpirati...</p>
+<p class="ng-binding"></p>
+<p ng-show="product.Color" class="ng-binding"><strong>Couleur :</strong> jaune</p>
+				</div>
+				
+				</div></a>
+				</div><!-- end ngRepeat: product in cat = (products | filter:genderFilter | filter:query | filter:getField() | filter:subcatFilter() | filter:{Color:color}) | startFrom: (currentPage * pageSize || 0)  | limitTo:pageSize -->
+				
+		
+
+
+
+		
+		
+			<br clear="all">
+			
+			
+			
+				<!-- début pagination -->
+			<div id="pagination" class="pagination" ng-hide="noArticles">
+				<ul>
+					<li ng-class="{disabled: currentPage == 0}" class="disabled">
+                    	<a href="" ng-click="prevPage()">« Précédent</a>
+                    </li>
+					<!-- ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index --><li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}" class="ng-scope active">
+						<a href="" class="ng-binding">1</a>
+					</li><!-- end ngRepeat: i in getNumberAsArray(numberOfPages()) track by $index -->
+					<li ng-class="{disabled: currentPage == numberOfPages() - 1}" class="disabled">
+                    	<a href="" ng-click="nextPage()">Suivant »</a>
+                    </li>
+				</ul>
+			</div>
+				<!-- // pagination -->
+				
+				
+			
+			
+			
+	
+</ul></div><!--//gauche-->
+
+			<!--droite-->
+			<div id="droite" class="ng-scope">
+			
+		
+				<div class="panel-body">
+				
+				<div class="titre-top">
+<h4>Mot clé </h4>
+
+<div class="stripe-line"></div>
+</div>
+<span ng-show="category" class="">dans catégorie:  <span ng-class="{capitalize: isBrand}" class="ng-binding">sous-vêtements &amp; chaussettes</span></span><span ng-show="isPlural(subcat)" class="ng-hide">s</span>
+<input ng-model="query" ng-change="resetPage()" class="form-control ng-pristine ng-valid">
+				</div>
+				
+				
+				
+		 
+		
+		
+				
+				
+				
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Catégorie</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+
+<ul class="navigation">
+<li class="toggleSubMenu titrerub"><a href="#!/vêtements"><strong>Vêtements</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/veste" class="ng-binding">Veste<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/collant" class="ng-binding">Collant<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/t-shirt" class="ng-binding">T-shirt<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/short" class="ng-binding">Short<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/sous-vêtements &amp; chaussettes" class="ng-binding">Sous-vêtements &amp; chaussettes<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/pantalon" class="ng-binding">Pantalon<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray --><li ng-repeat="subcategory in vetementsSubcatsArray" class="ng-scope"><a href="#!/vêtements/casquette" class="ng-binding">Casquette<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in vetementsSubcatsArray -->
+					</ul>
+					
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/chaussures"><strong>Chaussures</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/trail" class="ng-binding">Trail<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/piste" class="ng-binding">Piste<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/compétition" class="ng-binding">Compétition<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/stable" class="ng-binding">Stable<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray --><li ng-repeat="subcategory in chaussuresSubcatsArray" class="ng-scope"><a href="#!/chaussures/nature" class="ng-binding">Nature<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in chaussuresSubcatsArray -->
+					</ul>
+					
+					<li class="toggleSubMenu titrerub"><a href="#!/accessoires"><strong>Accessoires</strong></a></li>
+					<ul class="subMenu">
+						<!-- ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac à dos" class="ng-binding">Sac à dos<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/cardio" class="ng-binding">Cardio<!-- ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/bouteille" class="ng-binding">Bouteille<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/gilet" class="ng-binding">Gilet<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray --><li ng-repeat="subcategory in accessoiresSubcatsArray" class="ng-scope"><a href="#!/accessoires/sac" class="ng-binding">Sac<!-- ngIf: isPlural(subcategory) --><span ng-if="isPlural(subcategory)" class="ng-scope">s</span><!-- end ngIf: isPlural(subcategory) --></a></li><!-- end ngRepeat: subcategory in accessoiresSubcatsArray -->
+					</ul>
+					
+					</ul>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+				<div class="panel-body">
+	<div class="titre-top">
+<h4>Marque</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<div class="left">
+						<!-- ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/adidas" class="ng-binding">adidas</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/asics" class="ng-binding">asics</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/mizuno" class="ng-binding">mizuno</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nathan" class="ng-binding">nathan</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/new balance" class="ng-binding">new balance</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/nike" class="ng-binding">nike</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/polar" class="ng-binding">polar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/powerbar" class="ng-binding">powerbar</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/puma" class="ng-binding">puma</a></p><!-- end ngRepeat: brand in brandsArray --><p ng-repeat="brand in brandsArray" class="capitalize ng-scope"><a href="#!/saucony" class="ng-binding">saucony</a></p><!-- end ngRepeat: brand in brandsArray -->
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				<div class="panel-body">
+				
+								<div class="panel-body">
+	<div class="titre-top">
+<h4 class="ng-binding">Couleur </h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					
+					<a href=""><div ng-model="color" class="color white ng-pristine ng-valid" ng-click="colorFunction('blanc')" ng-class="{selected: 'blanc' == color}"></div></a>
+					<a href=""><div class="color black ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('noir')" ng-class="{selected: 'noir' == color}"></div></a>
+					<a href=""><div class="color gray ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('gris')" ng-class="{selected: 'gris' == color}"></div></a>
+					<a href=""><div class="color red ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rouge')" ng-class="{selected: 'rouge' == color}"></div></a>
+					<a href=""><div class="color blue ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('bleu')" ng-class="{selected: 'bleu' == color}"></div></a>
+					<a href=""><div class="color olive ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('vert')" ng-class="{selected: 'vert' == color}"></div></a>
+					<a href=""><div class="color yellow ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('jaune')" ng-class="{selected: 'jaune' == color}"></div></a>
+					<a href=""><div class="color fuchsia ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('rose')" ng-class="{selected: 'rose' == color}"></div></a>
+					<a href=""><div class="color orange ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('orange')" ng-class="{selected: 'orange' == color}"></div></a>
+					<a href=""><div class="color purple ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('lila')" ng-class="{selected: 'lila' == color}"></div></a>
+					<a href=""><div class="color silver ng-pristine ng-valid" ng-model="color" ng-click="colorFunction('argent')" ng-class="{selected: 'argent' == color}"></div></a>
+					<p><a href="" ng-show="color" ng-click="colorFunction('')" class="ng-hide">Voir toutes</a></p>
+				</div>
+				
+				
+				
+				
+				<div class="panel-body">
+			
+<div class="titre-top">
+<h4>Pour</h4>
+
+<div class="stripe-line"></div>
+</div>
+
+					<p><input type="checkbox" ng-model="hommes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Hommes</p>
+					<p><input type="checkbox" ng-model="femmes" ng-change="setGenderFilter()" class="ng-pristine ng-valid"> Femmes</p>
+				</div>
+				
+				
+			</div>
+			<!--//droite-->
+
+			</div></div></div>
+	
+	</div>
+	
+	<div id="footer">
+<div class="footer">
+
+</div>
+</div>	
+
+
+
+
+
+
+
+</body></html>
