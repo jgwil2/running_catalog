@@ -15,7 +15,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
     $scope.controller = 'Catalog Controller';
 
-    $http.get('data/test.json').success(function(data){
+    $http.get('data/data.json').success(function(data){
       $scope.products = data;
     });
 
@@ -157,7 +157,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'D
 
     // Individual product
 
-    $http.get('data/test.json').success(function(data){
+    $http.get('data/data.json').success(function(data){
       $scope.products = data;
 
       // Get product ID from route parameter
