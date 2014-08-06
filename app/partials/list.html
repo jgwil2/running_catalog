@@ -27,7 +27,10 @@
 				<div class="panel-body">
 					<h4>Rechercher par marque :</h4>
 					<div class="left">
-						<p ng-repeat="brand in brandsArray" class="capitalize"><a href="#!/{{brand}}">{{ brand }}</a></p>
+						<p ng-repeat="brand in brandsArray" class="capitalize">
+							<a ng-if="!category || isBrand" href="#!/{{brand}}">{{ brand }}</a>
+							<a ng-if="category && !isBrand" href="#!/{{category}}/{{brand}}">{{ brand }}</a>
+						</p>
 					</div>
 				</div>
 				<div class="panel-body">

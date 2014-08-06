@@ -32,6 +32,29 @@ function loopArray($array, $commandLineArg = null){
 
 	$sitemap = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');
 
+	$categoryPages = array('chaussures', 'v%C3%AAtements', 'accessoires');
+
+	$subcategoryPages = array('veste', 'collant', 't-shirt', 'short', 'sous-vêtements & chaussettes', 'pantalon', 'casquette', 'trail', 'piste', 'compétition', 'stable', 'nature', 'sac à dos', 'cardio', 'bouteille', 'gilet', 'sac');
+
+	if($commandLineArg == "seo"){
+		// Add each menu page to sitemap and take its snapshot
+		foreach($categoryPages as $page){
+			echo "Writing snapshot of page ".$page."\n";
+			exec("phantomjs phantom/phantomjs-runner.js http://boutique.passionrunning.com/#\!/".$page." > phantom/snapshots/".$page.".html");
+			$url = $sitemap->addChild('url');
+			$url->addChild('loc', "http://boutique.passionrunning.com/#\!/".$page);
+			$url->addChild('lastmod', date("Y-m-d"));
+		}
+
+		foreach($subcategoryPages as $page){
+			echo "Writing snapshot of page ".$page."\n";
+			exec("phantomjs phantom/phantomjs-runner.js http://boutique.passionrunning.com/#\!/category/".$page." > phantom/snapshots/".$page.".html");
+			$url = $sitemap->addChild('url');
+			$url->addChild('loc', "http://boutique.passionrunning.com/#\!/category/".$page);
+			$url->addChild('lastmod', date("Y-m-d"));
+		}
+	}
+
 	// Iterate the array corresponding to the XML file
 	foreach($array['Product'] as $product){
 
