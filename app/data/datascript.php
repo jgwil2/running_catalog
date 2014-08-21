@@ -32,9 +32,9 @@ function loopArray($array, $commandLineArg = null){
 
 	$sitemap = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>');
 
-	$categoryPages = array('chaussures', 'v%C3%AAtements', 'accessoires');
+	$categoryPages = array('chaussures', 'accessoires');
 
-	$subcategoryPages = array('veste', 'collant', 't-shirt', 'short', 'sous-vêtements & chaussettes', 'pantalon', 'casquette', 'trail', 'piste', 'compétition', 'stable', 'nature', 'sac à dos', 'cardio', 'bouteille', 'gilet', 'sac');
+	$subcategoryPages = array('veste', 'collant', 't-shirt', 'short', 'pantalon', 'casquette', 'trail', 'piste', 'stable', 'nature', 'cardio', 'bouteille', 'gilet', 'sac');
 
 	if($commandLineArg == "seo"){
 		// Add each menu page to sitemap and take its snapshot

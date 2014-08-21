@@ -1,0 +1,82 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Espace Vendangeurs{% endblock %}
+
+{% block inscription %}
+	<div style='display:none'>
+	{{ include('MeVendangesBundle:Vendangeurs:inscription.html.twig') }}
+	</div>
+{% endblock %}
+
+{% block login %}
+	{{ include('MeVendangesBundle:Vendangeurs:connexion.html.twig')}}
+{% endblock %}
+
+{% block body %}
+
+<!-- début sousheader -->
+<div id="sousheader">Espace vendangeur</div>
+<!-- // sousheader -->
+
+<div id="menu">
+	{% if app.user.roles[0] == 'ROLE_VENDANGEUR' %}
+	<a href="{{ path('vendanges_vendangeurs_mon_profil') }}">
+		<div class="boutonnav">GERER MON PROFIL</div>
+	</a>
+	{% else %}
+	<a href="#inscription" class="inscription cboxElement">
+		<div class="boutonnav">CREER MON PROFIL DE VENDANGEUR</div>
+	</a>
+	{% endif %}
+
+	{% if app.user.roles[0] == 'ROLE_VENDANGEUR' %}
+	<a href="{{ path('vendanges_vendangeurs_consulter_annonces') }}">
+		<div class="boutonnav">CONSULTEZ LES ANNONCES<br />DES VIGNERONS</div>
+	</a>
+	{% else %}
+	<a href="#" id="incliquable">
+		<div class="boutonnav">CONSULTEZ LES ANNONCES<br />DES VIGNERONS</div>
+	</a>
+	{% endif %}
+</div>
+
+<div id="page">
+	<div class="contenugauche">
+		<h2>VENDANGEURS</h2> 
+
+		Pour la rentrée, mettez-vous au vert !
+		<br /><br />
+		Chaque année de fin août à fin-octobre, près de 18 000 saisonniers se lancent à l’assaut des vignes de notre région.
+		<br /><br />
+		Vous souhaitez partager une expérience conviviale ?
+		<br /><br />
+		Les bottes de pluie et l’imperméable sont pour vous comme une seconde peau ?
+		<br /><br />
+		Vous aimez les balades en pleine campagne et affectionnez l’ascension des collines ?<br />
+		Vous avez plus de 16 ans ?
+		<br /><br />
+		Alors les vendanges sont faites pour vous !
+		<br /><br />
+		Le travail saisonnier en tant que vendangeur ne nécessite pas de formation particulière. 
+		<br /><br />
+		La cueillette du raisin se fait à la main, les gestes sont simples. Le travail s’effectue en extérieur sur le versant des collines plus ou moins pentues.
+		<br /><br />
+		La pénibilité du travail est généralement compensée par une ambiance de travail conviviale et authentique. Pour certains saisonniers, les vendanges constituent un rendez-vous annuel
+		à ne pas manquer.
+	</div>
+
+	<div class="contenudroite">
+		<h2>AGENDA DES RECOLTES</h2>
+
+		MI-SEPTEMBRE : Vendanges pour le Crémant<br />
+		FIN SEPTEMBRE / DEBUT OCTOBRE : Autres 
+		cépages<br />
+		FIN OCTOBRE : La fin des Vendanges
+		<br /><br />
+		Les dates officielles varient selon la météo 
+		et sont communiquées sur la fiche officielle
+		de chaque vigneron.
+	</div>
+</div>
+
+{% endblock %}
