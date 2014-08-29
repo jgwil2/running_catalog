@@ -3,7 +3,7 @@ var runningCatalogApp = angular.module('runningCatalogApp', [
 	'catalogControllers',
 	'catalogFilters',
 	'ngRoute',
-	'Data'
+	'Title'
 ]);
 
 runningCatalogApp.config(['$routeProvider', '$locationProvider',

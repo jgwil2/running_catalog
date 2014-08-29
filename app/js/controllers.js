@@ -1,17 +1,17 @@
 var catalogControllers = angular.module('catalogControllers', []);
 
-catalogControllers.controller('MainCtrl', ['$scope', 'Data',
-  function($scope, Data){
-    $scope.data = Data;
+catalogControllers.controller('MainCtrl', ['$scope', 'Title',
+  function($scope, Title){
+    $scope.title = Title;
     $scope.status = "ready";
   }]);
 
-catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG', 'Data',
-  function($scope, $routeParams, $http, CONFIG, Data){
+catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CONFIG', 'Title',
+  function($scope, $routeParams, $http, CONFIG, Title){
 
     // Main page
 
-    Data.setTitle('Boutique Course à Pied');
+    Title.setTitle('Boutique Course à Pied');
 
     $scope.controller = 'Catalog Controller';
 
@@ -49,7 +49,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
     if($routeParams.category){
       $scope.category = $routeParams.category;
 
-      Data.setTitle($scope.category);
+      Title.setTitle($scope.category);
 
       if($scope.brandsArray.indexOf($scope.category) !== -1){
         $scope.isBrand = true;
@@ -62,7 +62,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       $scope.subcat = $routeParams.subcat;
       $scope.isSubcategory = true;
 
-      Data.setTitle($scope.subcat + ($scope.isPlural($scope.subcat) ? 's' : ''));
+      Title.setTitle($scope.subcat + ($scope.isPlural($scope.subcat) ? 's' : ''));
     }
 
     // If parameter is a brand, filter by Title field, otherwise filter by Category field
@@ -152,8 +152,8 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
 
   }]);
 
-catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'Data', 'CONFIG',
-  function($scope, $routeParams, $http, Data, CONFIG){
+catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'Title', 'CONFIG',
+  function($scope, $routeParams, $http, Title, CONFIG){
 
     // Individual product
 
@@ -171,7 +171,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'D
       };
 
       // Set page title to product title
-      Data.setTitle($scope.product.Title)
+      Title.setTitle($scope.product.Title)
 
       // Set gender filter to product.Gender
       $scope.genderFilter = $scope.product.Gender;
