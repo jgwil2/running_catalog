@@ -3,7 +3,8 @@ var runningCatalogApp = angular.module('runningCatalogApp', [
 	'catalogControllers',
 	'catalogFilters',
 	'ngRoute',
-	'Title'
+	'Title',
+	'Data'
 ]);
 
 runningCatalogApp.config(['$routeProvider', '$locationProvider',
@@ -29,4 +30,4 @@ runningCatalogApp.config(['$routeProvider', '$locationProvider',
 			otherwise({
 				redirectTo: '/'
 			});
-	}])
+	}]);
