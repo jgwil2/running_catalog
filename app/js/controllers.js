@@ -154,7 +154,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
       $scope.products = data;
 
       // Get product ID from route parameter and set to $scope.product
-      $scope.getProductID($routeParams.productID);
+      $scope.setProduct($routeParams.productID);
 
       // Remove main product from product array
       for (var i = 0, j = $scope.products.length; i < j; i++) {
@@ -198,7 +198,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
     }
 
     // Get product from list of products
-    $scope.getProductID = function(productID){
+    $scope.setProduct = function(productID){
       $scope.products.forEach(function(product){
         if(product._ArticleNumber == productID){
           $scope.product = product;
