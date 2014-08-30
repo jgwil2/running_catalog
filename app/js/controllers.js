@@ -153,7 +153,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
     Data.async().then(function(data){
       $scope.products = data;
 
-      // Get product ID from route parameter
+      // Get product ID from route parameter and set to $scope.product
       $scope.getProductID($routeParams.productID);
 
       // Remove main product from product array
