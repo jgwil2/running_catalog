@@ -160,6 +160,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
       for (var i = 0, j = $scope.products.length; i < j; i++) {
         if($scope.products[i] == $scope.product){
           $scope.products.splice(i, 1);
+          return;
         }
       }
 
