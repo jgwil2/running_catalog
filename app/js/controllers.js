@@ -160,7 +160,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
       for (var i = 0, j = $scope.products.length; i < j; i++) {
         if($scope.products[i] == $scope.product){
           $scope.products.splice(i, 1);
-          return;
+          break;
         }
       }
 
@@ -172,7 +172,7 @@ catalogControllers.controller('ProdCtrl', ['$scope', '$routeParams', '$http', 'T
 
       // Randomize products to display below main product
       $scope.products = $scope.shuffleArray($scope.products);
-    })
+    });
 
     // Get brands/subcategories/sucategories to pluralize from config.js to populate template
     $scope.brandsArray = CONFIG.brandsArray;
