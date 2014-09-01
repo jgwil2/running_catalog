@@ -1,3 +1,5 @@
+"use strict";
+
 angular.module('Title', []).factory('Title', function(){
 	var title = '';
 	return {

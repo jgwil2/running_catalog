@@ -1,3 +1,5 @@
+"use strict";
+
 var catalogConfig = angular.module('catalogConfig', []);
 
 catalogConfig.constant('CONFIG', {

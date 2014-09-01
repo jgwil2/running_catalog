@@ -1,3 +1,5 @@
+"use strict";
+
 var runningCatalogApp = angular.module('runningCatalogApp', [
 	'catalogConfig',
 	'catalogControllers',

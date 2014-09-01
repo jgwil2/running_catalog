@@ -1,3 +1,5 @@
+"use strict";
+
 var catalogFilters = angular.module('catalogFilters', []);
 
 catalogFilters.filter('startFrom', function() {

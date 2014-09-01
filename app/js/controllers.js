@@ -1,3 +1,5 @@
+"use strict";
+
 var catalogControllers = angular.module('catalogControllers', []);
 
 // Main controller
@@ -79,6 +81,8 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
         return $scope.subcat;
       }
     }
+
+    // Pagination
 
     // Set current page and number of items per page (config.js)
     $scope.currentPage = 0; 
