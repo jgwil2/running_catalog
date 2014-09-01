@@ -64,10 +64,10 @@
 					<li ng-class="{disabled: currentPage == 0}">
                     	<a href ng-click="prevPage()">« Prev</a>
                     </li>
-					<li ng-repeat="i in getNumberAsArray(numberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}">
+					<li ng-repeat="i in getNumberAsArray(getNumberOfPages()) track by $index" ng-click="setCurrentPage($index)" ng-class="{active: $index == currentPage}">
 						<a href >{{$index + 1}}</a>
 					</li>
-					<li ng-class="{disabled: currentPage == numberOfPages() - 1}">
+					<li ng-class="{disabled: currentPage == getNumberOfPages() - 1}">
                     	<a href ng-click="nextPage()">Next »</a>
                     </li>
 				</ul>

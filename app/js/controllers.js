@@ -92,7 +92,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
       return new Array(num)
     }
 
-    $scope.numberOfPages = function(){
+    $scope.getNumberOfPages = function(){
       if($scope.cat){
         if($scope.cat.length == 0){
           $scope.noArticles = true;
@@ -112,7 +112,7 @@ catalogControllers.controller('CatCtrl', ['$scope', '$routeParams', '$http', 'CO
     }
 
     $scope.nextPage = function(){
-      if($scope.currentPage < $scope.numberOfPages() - 1){
+      if($scope.currentPage < $scope.getNumberOfPages() - 1){
         $scope.currentPage++;
       }
     }
